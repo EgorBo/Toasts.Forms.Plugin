@@ -6,7 +6,6 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
-using Microsoft.Phone.Controls;
 
 namespace Toasts.Forms.Plugin.WindowsPhone
 {
@@ -28,8 +27,7 @@ namespace Toasts.Forms.Plugin.WindowsPhone
         
         public ToastPromtsHostControl()
         {
-            _activeItemsControl = new ItemsControl();
-            _activeItemsControl.Background = new SolidColorBrush(Colors.Transparent);
+            _activeItemsControl = new ItemsControl { Background = new SolidColorBrush(Colors.Transparent) };
             Children.Add(_activeItemsControl);
             
             _timer.Interval = TimeSpan.FromSeconds(1);
@@ -141,7 +139,7 @@ namespace Toasts.Forms.Plugin.WindowsPhone
             var layoutGrid = new Grid();
             var toastItem = new ToastItem(layoutGrid, DateTime.Now, notification);
             layoutGrid.HorizontalAlignment = HorizontalAlignment.Stretch;
-            layoutGrid.Height = 65;
+            layoutGrid.Height = 70;
             layoutGrid.Margin = new Thickness(0, 0, 0, 2); //2 - a margin between toasts
             layoutGrid.Background = notification.Brush;
             layoutGrid.Projection = new PlaneProjection();
@@ -158,14 +156,14 @@ namespace Toasts.Forms.Plugin.WindowsPhone
                 closeButton = new Button();
                 SetColumn(closeButton, 1);
                 closeButton.Tag = toastItem;
-                closeButton.Width = 60;
+                closeButton.Width = 66;
                 closeButton.Height = 90;
                 closeButton.Content = "\u2716"; //X symbol
                 closeButton.BorderThickness = new Thickness(0);
                 closeButton.FontSize = 32;
                 closeButton.Padding = new Thickness(0);
                 closeButton.Opacity = 0.4;
-                closeButton.Margin = new Thickness(-18, -12, -24, -8); //TODO: fix it
+                closeButton.Margin = new Thickness(-12, -15, -8, -8); //TODO: fix it
                 closeButton.FontSize = 32;
                 closeButton.HorizontalAlignment = HorizontalAlignment.Right;
                 closeButton.Tap += CloseButton_OnTap;

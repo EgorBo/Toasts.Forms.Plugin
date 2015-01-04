@@ -35,13 +35,13 @@ namespace Toasts.Forms.Plugin.Sample.WinPhone
             // Language display initialization
             InitializeLanguage();
 
-            // Show graphics profiling information while debugging.
+            // Notify graphics profiling information while debugging.
             if (Debugger.IsAttached)
             {
                 // Display the current frame rate counters.
                 Application.Current.Host.Settings.EnableFrameRateCounter = false;
 
-                // Show the areas of the app that are being redrawn in each frame.
+                // Notify the areas of the app that are being redrawn in each frame.
                 //Application.Current.Host.Settings.EnableRedrawRegions = true;
 
                 // Enable non-production analysis visualization mode,

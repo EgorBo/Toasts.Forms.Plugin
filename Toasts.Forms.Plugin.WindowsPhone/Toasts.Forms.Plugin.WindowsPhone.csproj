@@ -91,6 +91,7 @@
     <Resource Include="Icons\warning.png" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DefaultToastLayoutRenderer.cs" />
     <Compile Include="IToastLayoutCustomRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ToastInjector.cs" />

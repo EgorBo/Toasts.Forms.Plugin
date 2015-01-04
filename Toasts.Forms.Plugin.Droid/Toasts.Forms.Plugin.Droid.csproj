@@ -68,7 +68,7 @@
   <ItemGroup>
     <Compile Include="Crouton.cs" />
     <Compile Include="DefaultAnimationsBuilder.cs" />
-    <Compile Include="GlobalLayoutListener.cs" />
+    <Compile Include="DefaultToastLayoutRenderer.cs" />
     <Compile Include="IToastLayoutCustomRenderer.cs" />
     <Compile Include="Manager.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />

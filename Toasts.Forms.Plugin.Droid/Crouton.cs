@@ -8,7 +8,7 @@ namespace Toasts.Forms.Plugin.Droid
     public class Crouton : Java.Lang.Object, View.IOnClickListener
     {
         private readonly View _customView;
-        private readonly Action _onClick;
+        private readonly Action<bool> _onClick;
 
         private Activity _activity;
         private Animation _inAnimation;
@@ -16,7 +16,7 @@ namespace Toasts.Forms.Plugin.Droid
 
         public long DurationInMilliseconds { get; private set; }
 
-        public Crouton(Activity activity, View customView, int durationInMs, Action onClick = null)
+        public Crouton(Activity activity, View customView, int durationInMs, Action<bool> onClick = null)
         {
             if (activity == null) throw new ArgumentNullException("activity");
             if (customView == null) throw new ArgumentNullException("customView");
@@ -86,6 +86,8 @@ namespace Toasts.Forms.Plugin.Droid
 
         public void OnRemoved()
         {
+            if (_onClick != null)
+                _onClick(false);
         }
 
         public void OnDisplayed()
@@ -99,7 +101,7 @@ namespace Toasts.Forms.Plugin.Droid
         public void OnClick(View view)
         {
             if (_onClick != null)
-                _onClick();
+                _onClick(true);
         }
     }
 }

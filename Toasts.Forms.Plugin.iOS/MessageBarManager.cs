@@ -38,7 +38,6 @@ namespace Toasts.Forms.Plugin.iOS
     public class MessageBarManager : NSObject
     {
         private const float DismissAnimationDuration = 0.25f;
-
         private MessageWindow _messageWindow;
         private readonly Queue<MessageView> _messageBarQueue;
         private static MessageBarManager _instance;
@@ -55,10 +54,9 @@ namespace Toasts.Forms.Plugin.iOS
 			_messageBarQueue = new Queue<MessageView> ();
 			_messageVisible = false;
 			_messageBarOffset = 20;
-			new MessageBarStyleSheet ();
 		}
 
-		UIView MessageWindowView { get { return  GetMessageBarViewController ().View; } }
+	    private UIView MessageWindowView { get { return  GetMessageBarViewController ().View; } }
 
         /// <summary>
         /// Shows the message
@@ -69,11 +67,8 @@ namespace Toasts.Forms.Plugin.iOS
         /// <param name = "onDismiss">OnDismiss callback</param>
         /// <param name="duration"></param>
         /// <param name="styleSheet"></param>
-        public void ShowMessage(string title, string description, ToastNotificationType type, Action onDismiss, TimeSpan duration, MessageBarStyleSheet styleSheet = null)
+        public void ShowMessage(string title, string description, ToastNotificationType type, Action<bool> onDismiss, TimeSpan duration, MessageBarStyleSheet styleSheet = null)
 		{
-		    if (styleSheet == null)
-		        styleSheet = new MessageBarStyleSheet();
-
             var messageView = new MessageView (title, description, type, onDismiss, duration);
             messageView.StylesheetProvider = styleSheet;
 			messageView.Hidden = true;
@@ -137,17 +132,17 @@ namespace Toasts.Forms.Plugin.iOS
 		{
 			var view = recognizer.View as MessageView;
 		    if (view != null)
-		        DismissMessage(view);
+		        DismissMessage(view, true);
 		}
 
         private void DismissMessage(object messageView)
 		{
 			var view = messageView as MessageView;
             if (view != null)
-                InvokeOnMainThread(() => DismissMessage(view));
+                InvokeOnMainThread(() => DismissMessage(view, false));
 		}
 
-        private void DismissMessage(MessageView messageView)
+        private void DismissMessage(MessageView messageView, bool clicked)
 		{
 			if (messageView != null && !messageView.Hit) 
             {
@@ -160,7 +155,7 @@ namespace Toasts.Forms.Plugin.iOS
 
 				        var action = messageView.OnDismiss;
 				        if (action != null)
-				            action();
+                            action(clicked);
 
 				        if (_messageBarQueue.Count > 0)
 				            ShowNextMessage();

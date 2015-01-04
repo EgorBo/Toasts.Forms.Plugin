@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using Toasts.Forms.Plugin.Abstractions;
 using Xamarin.Forms;
 
@@ -37,15 +36,10 @@ namespace Toasts.Forms.Plugin.Sample
             };
         }
 
-        private void ShowToast(ToastNotificationType type)
+        private async void ShowToast(ToastNotificationType type)
         {
             var notificator = DependencyService.Get<IToastNotificator>();
-            notificator.Show(type, "Some " + type.ToString().ToLower(), "Some description", TimeSpan.FromSeconds(2), () => OnToastClick(type));
-        }
-
-        private void OnToastClick(ToastNotificationType type)
-        {
-            Debug.WriteLine("Toast {0} is clicked");
+            bool tapped = await notificator.Notify(type, "Some " + type.ToString().ToLower(), "Some description", TimeSpan.FromSeconds(2));
         }
     }
 }

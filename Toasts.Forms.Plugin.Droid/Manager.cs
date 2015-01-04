@@ -285,5 +285,19 @@ namespace Toasts.Forms.Plugin.Droid
                 accessibilityManager.SendAccessibilityEvent(ev);
             }
         }
+
+        private class GlobalLayoutListener : Java.Lang.Object, ViewTreeObserver.IOnGlobalLayoutListener
+        {
+            public void OnGlobalLayout(System.Action action)
+            {
+                action();
+            }
+
+            public void OnGlobalLayout() { }
+        }
+
+        public void RemoveCroutons()
+        {
+        }
     }
 }

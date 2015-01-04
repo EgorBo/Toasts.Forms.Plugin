@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Toasts.Forms.Plugin.Abstractions;
 using Toasts.Forms.Plugin.iOS;
 using Xamarin.Forms;
@@ -10,14 +11,21 @@ namespace Toasts.Forms.Plugin.iOS
     {
         private static MessageBarStyleSheet _customStyle;
 
-        public void Show(ToastNotificationType type, string title, string description, TimeSpan duration, Action clickAction = null)
+        public Task<bool> Notify(ToastNotificationType type, string title, string description, TimeSpan duration)
         {
-            MessageBarManager.SharedInstance.ShowMessage(title, description, type, clickAction, duration, _customStyle);
+            var taskCompletionSource = new TaskCompletionSource<bool>();
+            MessageBarManager.SharedInstance.ShowMessage(title, description, type, b => taskCompletionSource.TrySetResult(b), duration, _customStyle);
+            return taskCompletionSource.Task;
+        }
+
+        public void HideAll()
+        {
+            MessageBarManager.SharedInstance.HideAll();
         }
 
         public static void Init(MessageBarStyleSheet customStyle = null)
         {
-            _customStyle = customStyle;
+            _customStyle = customStyle ?? new MessageBarStyleSheet();
         }
     }
 }

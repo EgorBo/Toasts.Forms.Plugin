@@ -38,9 +38,8 @@ You must do this AFTER you call Xamarin.Forms.Init();
 Use dependency service in order to resolve IToastNotificator
 ```
 var notificator = DependencyService.Get<IToastNotificator>();
-notificator.Show(ToastNotificationType.Error, 
-	"Error", "Something went wrong", 
-	TimeSpan.FromSeconds(2), () => DoSmthOnClick());
+bool tapped = await notificator.Notify(ToastNotificationType.Error, 
+	"Error", "Something went wrong", TimeSpan.FromSeconds(2));
 ```
 
 

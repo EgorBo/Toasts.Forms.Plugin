@@ -1,9 +1,16 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace Toasts.Forms.Plugin.Abstractions
 {
     public interface IToastNotificator
     {
-        void Show(ToastNotificationType type, string title, string description, TimeSpan duration, Action clickAction = null);
+        /// <returns>true means clicked, false means displayed and then disapeared</returns>
+        Task<bool> Notify(ToastNotificationType type, string title, string description, TimeSpan duration);
+
+        /// <summary>
+        /// Clear notifications queue
+        /// </summary>
+        void HideAll();
     }
 }

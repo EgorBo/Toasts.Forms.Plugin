@@ -53,7 +53,7 @@ namespace Toasts.Forms.Plugin.iOS
             DescriptionColor = UIColor.FromWhiteAlpha(1.0f, 1.0f);
         }
 
-        internal MessageView(string title, string description, ToastNotificationType type, Action onDismiss, TimeSpan duration)
+        internal MessageView(string title, string description, ToastNotificationType type, Action<bool> onDismiss, TimeSpan duration)
             : this((NSString)title, (NSString)description, type)
         {
             OnDismiss = onDismiss;
@@ -76,7 +76,7 @@ namespace Toasts.Forms.Plugin.iOS
             NSNotificationCenter.DefaultCenter.AddObserver(UIDevice.OrientationDidChangeNotification, OrientationChanged);
         }
 
-	    public Action OnDismiss { get; set; }
+        public Action<bool> OnDismiss { get; set; }
 
 		public bool Hit { get; set; }
 
@@ -205,7 +205,6 @@ namespace Toasts.Forms.Plugin.iOS
             var descriptionRectangle = new RectangleF(xOffset, yOffset, (float)descriptionLabelSize.Width, (float)descriptionLabelSize.Height);
             Description.DrawString(descriptionRectangle, DescriptionFont, UILineBreakMode.TailTruncation, UITextAlignment.Left);
 		}
-
 
 	    private CGSize TitleSize()
 	    {
