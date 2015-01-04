@@ -2,12 +2,13 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
    <metadata minClientVersion="2.8.1">
        <id>Toasts.Forms.Plugin</id>
-       <version>1.0.0.3</version>
+       <version>1.0.0.4</version>
        <title>Toasts Plugin for Xamarin.Forms</title>
        <authors>Egor Bogatov</authors>
        <owners>Egor Bogatov</owners>
        <licenseUrl>https://github.com/EgorBo/Toasts.Forms.Plugin/blob/master/LICENSE</licenseUrl>
        <projectUrl>https://github.com/EgorBo/Toasts.Forms.Plugin</projectUrl>
+	   <iconUrl>http://habrastorage.org/files/9e9/052/d99/9e9052d994f943adbf566be461ede49e.png</iconUrl>
        <requireLicenseAcceptance>false</requireLicenseAcceptance>
        <summary>
           Xamarin.Forms plugin to display toast notifications
