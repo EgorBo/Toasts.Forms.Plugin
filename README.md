@@ -4,7 +4,7 @@ Toasts.Forms.Plugin
 A simple way of showing some notifications inside your Xamarin.Forms application. In windows phone world we call them "Toasts".
 
 #### Android
-Android implementation is based on https://github.com/keyboardsurfer/Crouton with several changes.
+Android implementation is based on https://github.com/keyboardsurfer/Crouton with several changes and ported to C# without bindings.
 
 ![Alt text](http://habrastorage.org/files/b72/3c4/362/b723c436271941309939da500f1e2abb.gif)
 
@@ -21,14 +21,15 @@ Unlike others WP8's version supports multiply toasts (can be limited to 1).
 Setup and usage
 ===================
 #### Setup
-* Available on NuGet: https://www.nuget.org/packages/Xam.Plugins.Forms.Vibrate
+* Available on NuGet: https://www.nuget.org/packages/Toasts.Forms.Plugin
 * Install into your PCL project and Client projects.
 
 In your iOS, Android, and Windows Phone projects please call:
 
 ```
 Xamarin.Forms.Init();//platform specific init
-ToastNotificatorImplementation.Init(); //you can pass your own custom renderer as an argument here
+ToastNotificatorImplementation.Init(); //you can pass your own 
+                                       //custom renderer as an argument here
 ```
 
 You must do this AFTER you call Xamarin.Forms.Init();
