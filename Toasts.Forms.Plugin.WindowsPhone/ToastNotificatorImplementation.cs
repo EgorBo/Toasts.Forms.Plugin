@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Resources;
 using Microsoft.Phone.Controls;
 using Toasts.Forms.Plugin.Abstractions;
 
@@ -22,19 +23,7 @@ namespace Toasts.Forms.Plugin.WindowsPhone
         {
             ToastPromtsHostControl.MaxToastCount = stackSize;
             _customRenderer = customRenderer;
-
-            /*
-             Let's inject our toast into frame using a special Frame template defined in FrameStyle.xaml
-             */
-            Deployment.Current.Dispatcher.BeginInvoke(() =>
-                {
-                    var frameStyleRd = new ResourceDictionary();
-                    var frame = (PhoneApplicationFrame) Application.Current.RootVisual;
-                    frameStyleRd.Source = new Uri("/Toasts.Forms.Plugin.WindowsPhone;component/FrameStyle.xaml",
-                        UriKind.Relative);
-                    Application.Current.Resources.MergedDictionaries.Add(frameStyleRd);
-                    frame.Style = Application.Current.Resources["MainFrameStyle"] as Style;
-                });
+            ToastInjector.Inject();
         }
 
         public void Show(ToastNotificationType type, string title, string description, TimeSpan duration, Action clickAction = null)
@@ -99,7 +88,7 @@ namespace Toasts.Forms.Plugin.WindowsPhone
                 image.Margin = new Thickness(10, 0, 0, 0);
                 image.VerticalAlignment = VerticalAlignment.Center;
                 image.HorizontalAlignment = HorizontalAlignment.Center;
-                image.Source = new BitmapImage(new Uri("Icons/" + iconFile, UriKind.Relative));
+                image.Source = LoadBitmapImage(iconFile);
                 Grid.SetRowSpan(image, 2);
 
                 Grid layout = new Grid();
@@ -125,6 +114,15 @@ namespace Toasts.Forms.Plugin.WindowsPhone
                 clickAction = delegate { };
 
             ToastPromtsHostControl.EnqueueItem(element, b => clickAction(), brush, tappable: tappable, timeout: duration, showCloseButton: hasCloseButton);
+        }
+
+        public static BitmapImage LoadBitmapImage(string fileName)
+        {
+            Uri imgUri = new Uri("/Toasts.Forms.Plugin.WindowsPhone;component/Icons/" + fileName, UriKind.Relative);
+            StreamResourceInfo imageResource = Application.GetResourceStream(imgUri);
+            BitmapImage image = new BitmapImage();
+            image.SetSource(imageResource.Stream);
+            return image;
         }
     }
 }

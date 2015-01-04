@@ -20,6 +20,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toasts.Forms.Plugin.Sample.WinPhone", "Sample\Toasts.Forms.Plugin.Sample.WinPhone\Toasts.Forms.Plugin.Sample.WinPhone.csproj", "{07B07508-2FA9-4D31-9D2A-F67CC82F1C50}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{5107FF7E-7D8C-486A-A304-50EE5DA447EC}"
+	ProjectSection(SolutionItems) = preProject
+		Misc\Toasts.Forms.Plugin.nuspec = Misc\Toasts.Forms.Plugin.nuspec
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toasts.Forms.Plugin.iOS", "Toasts.Forms.Plugin.iOS\Toasts.Forms.Plugin.iOS.csproj", "{4AEF417F-5FD0-4255-94E2-60538CCF0C40}"
 EndProject
