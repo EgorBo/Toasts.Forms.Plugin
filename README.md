@@ -26,17 +26,17 @@ Setup and usage
 
 In your iOS, Android, and Windows Phone projects please call:
 
-```
+```csharp
 Xamarin.Forms.Init();//platform specific init
-ToastNotificatorImplementation.Init(); //you can pass your own 
-                                       //custom renderer as an argument here
+ToastNotificatorImplementation.Init(); //you can pass additional parameters here
 ```
 
 You must do this AFTER you call Xamarin.Forms.Init();
+By the way, toasts on each platform support customization - you can pass your own style (custom renderer) as an argument in Init() method.
 
 #### Usage
 Use dependency service in order to resolve IToastNotificator
-```
+```csharp
 var notificator = DependencyService.Get<IToastNotificator>();
 bool tapped = await notificator.Notify(ToastNotificationType.Error, 
 	"Error", "Something went wrong", TimeSpan.FromSeconds(2));
