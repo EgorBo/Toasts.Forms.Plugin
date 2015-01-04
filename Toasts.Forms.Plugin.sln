@@ -386,6 +386,7 @@ Global
 		{4AEF417F-5FD0-4255-94E2-60538CCF0C40}.Release|ARM.ActiveCfg = Release|Any CPU
 		{4AEF417F-5FD0-4255-94E2-60538CCF0C40}.Release|iPhone.ActiveCfg = Release|Any CPU
 		{4AEF417F-5FD0-4255-94E2-60538CCF0C40}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{4AEF417F-5FD0-4255-94E2-60538CCF0C40}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{4AEF417F-5FD0-4255-94E2-60538CCF0C40}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{4AEF417F-5FD0-4255-94E2-60538CCF0C40}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{4AEF417F-5FD0-4255-94E2-60538CCF0C40}.Release|x64.ActiveCfg = Release|Any CPU
