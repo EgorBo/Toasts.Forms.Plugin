@@ -3,7 +3,7 @@
    <metadata minClientVersion="2.8.1">
        <id>Toasts.Forms.Plugin</id>
        <version>1.0.0.3</version>
-       <title>Toasts for Xamarin.Forms</title>
+       <title>Toasts Plugin for Xamarin.Forms</title>
        <authors>Egor Bogatov</authors>
        <owners>Egor Bogatov</owners>
        <licenseUrl>https://github.com/EgorBo/Toasts.Forms.Plugin/blob/master/LICENSE</licenseUrl>

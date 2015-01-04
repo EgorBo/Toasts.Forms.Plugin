@@ -1,4 +1,4 @@
-Toasts.Forms.Plugin
+Toasts Plugin for Xamarin.Forms
 ===================
 
 A simple way of showing some notifications inside your Xamarin.Forms application. In windows phone world we call them "Toasts".
