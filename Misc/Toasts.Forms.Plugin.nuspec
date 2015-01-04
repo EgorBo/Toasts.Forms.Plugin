@@ -25,31 +25,24 @@
    <files>
      <!--Core-->
      <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\portable-net45+wp8+win8+MonoAndroid10+MonoTouch10\Toasts.Forms.Plugin.Abstractions.dll" />
-     <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.xml" target="lib\portable-net45+wp8+win8+MonoAndroid10+MonoTouch10\Toasts.Forms.Plugin.Abstractions.xml" />
      <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.pdb" target="lib\portable-net45+wp8+win8+MonoAndroid10+MonoTouch10\Toasts.Forms.Plugin.Abstractions.pdb" />
 
      <!--Win Phone-->
      <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\wp8\Toasts.Forms.Plugin.Abstractions.dll" />
-     <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.xml" target="lib\wp8\Toasts.Forms.Plugin.Abstractions.xml" />
-     <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.xml" target="lib\wp8\Toasts.Forms.Plugin.Abstractions.pdb" />
+     <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.pdb" target="lib\wp8\Toasts.Forms.Plugin.Abstractions.pdb" />
      <file src="..\Toasts.Forms.Plugin.WindowsPhone\bin\Release\Toasts.Forms.Plugin.WindowsPhone.dll" target="lib\wp8\Toasts.Forms.Plugin.WindowsPhone.dll" />
-     <file src="..\Toasts.Forms.Plugin.WindowsPhone\bin\Release\Toasts.Forms.Plugin.WindowsPhone.xml" target="lib\wp8\Toasts.Forms.Plugin.WindowsPhone.xml" />
-     <file src="..\Toasts.Forms.Plugin.WindowsPhone\bin\Release\Toasts.Forms.Plugin.WindowsPhone.xml" target="lib\wp8\Toasts.Forms.Plugin.WindowsPhone.pdb" />
+     <file src="..\Toasts.Forms.Plugin.WindowsPhone\bin\Release\Toasts.Forms.Plugin.WindowsPhone.pdb" target="lib\wp8\Toasts.Forms.Plugin.WindowsPhone.pdb" />
 
      <!--Xamarin.Android-->
      <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\MonoAndroid10\Toasts.Forms.Plugin.Abstractions.dll" />
-     <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.xml" target="lib\MonoAndroid10\Toasts.Forms.Plugin.Abstractions.xml" />
      <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.pdb" target="lib\MonoAndroid10\Toasts.Forms.Plugin.Abstractions.pdb" />
-     <file src="..\Toasts.Forms.Plugin.Driod\bin\Release\Toasts.Forms.Plugin.Driod.dll" target="lib\MonoAndroid10\Toasts.Forms.Plugin.Driod.dll" />
-     <file src="..\Toasts.Forms.Plugin.Driod\bin\Release\Toasts.Forms.Plugin.Driod.xml" target="lib\MonoAndroid10\Toasts.Forms.Plugin.Driod.xml" />
-     <file src="..\Toasts.Forms.Plugin.Driod\bin\Release\Toasts.Forms.Plugin.Driod.xml" target="lib\MonoAndroid10\Toasts.Forms.Plugin.Driod.pdb" />
+     <file src="..\Toasts.Forms.Plugin.Droid\bin\Release\Toasts.Forms.Plugin.Droid.dll" target="lib\MonoAndroid10\Toasts.Forms.Plugin.Droid.dll" />
+     <file src="..\Toasts.Forms.Plugin.Droid\bin\Release\Toasts.Forms.Plugin.Droid.pdb" target="lib\MonoAndroid10\Toasts.Forms.Plugin.Droid.pdb" />
 
      <!--Xamarin.iOS-->
      <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\MonoTouch10\Toasts.Forms.Plugin.Abstractions.dll" />
-     <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.xml" target="lib\MonoTouch10\Toasts.Forms.Plugin.Abstractions.xml" />
      <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.pdb" target="lib\MonoTouch10\Toasts.Forms.Plugin.Abstractions.pdb" />
-     <file src="..\Toasts.Forms.Plugin.iOS\bin\Release\Toasts.Forms.Plugin.iOS.dll" target="lib\MonoTouch10\Toasts.Forms.Plugin.iOS.dll" />
-     <file src="..\Toasts.Forms.Plugin.iOS\bin\Release\Toasts.Forms.Plugin.iOS.xml" target="lib\MonoTouch10\Toasts.Forms.Plugin.iOS.xml" />
+     <file src="..\Toasts.Forms.Plugin.iOS\bin\iPhone\Release\Toasts.Forms.Plugin.iOS.dll" target="lib\MonoTouch10\Toasts.Forms.Plugin.iOS.dll" />
      
    </files>
 </package>
