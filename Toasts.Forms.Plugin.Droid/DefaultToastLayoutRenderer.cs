@@ -9,7 +9,16 @@ namespace Toasts.Forms.Plugin.Droid
 {
     public class DefaultToastLayoutRenderer : IToastLayoutCustomRenderer
     {
-        public virtual View Render(Activity activity, ToastNotificationType type, string title, string description)
+        private readonly Action<object, ImageView> _imageSetterForCustomType;
+        private readonly Func<object, Color> _backgroundColorForCustomTypeResolver;
+
+        public DefaultToastLayoutRenderer(Action<object, ImageView> imageSetterForCustomType = null, Func<object, Color> backgroundColorForCustomTypeResolver = null)
+        {
+            _imageSetterForCustomType = imageSetterForCustomType;
+            _backgroundColorForCustomTypeResolver = backgroundColorForCustomTypeResolver;
+        }
+
+        public virtual View Render(Activity activity, ToastNotificationType type, string title, string description, object context)
         {
             var view = activity.LayoutInflater.Inflate(Resource.Layout.crouton, null);
 
@@ -37,6 +46,10 @@ namespace Toasts.Forms.Plugin.Droid
                 case ToastNotificationType.Error:
                     image.SetImageResource(Resource.Drawable.error);
                     view.SetBackgroundColor(new Color(206, 24, 24));
+                    break;
+                case ToastNotificationType.Custom:
+                    _imageSetterForCustomType(context, image);
+                    view.SetBackgroundColor(_backgroundColorForCustomTypeResolver(context));
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("type");

@@ -8,7 +8,7 @@ namespace Toasts.Forms.Plugin.Droid
     public class Crouton : Java.Lang.Object, View.IOnClickListener
     {
         private readonly View _customView;
-        private readonly Action<bool> _onClick;
+        private Action<bool> _onClick;
 
         private Activity _activity;
         private Animation _inAnimation;
@@ -88,6 +88,7 @@ namespace Toasts.Forms.Plugin.Droid
         {
             if (_onClick != null)
                 _onClick(false);
+            _onClick = null;
         }
 
         public void OnDisplayed()
@@ -102,6 +103,7 @@ namespace Toasts.Forms.Plugin.Droid
         {
             if (_onClick != null)
                 _onClick(true);
+            _onClick = null;
         }
     }
 }

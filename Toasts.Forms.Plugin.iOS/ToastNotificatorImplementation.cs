@@ -11,7 +11,7 @@ namespace Toasts.Forms.Plugin.iOS
     {
         private static MessageBarStyleSheet _customStyle;
 
-        public Task<bool> Notify(ToastNotificationType type, string title, string description, TimeSpan duration)
+        public Task<bool> Notify(ToastNotificationType type, string title, string description, TimeSpan duration, object context)
         {
             var taskCompletionSource = new TaskCompletionSource<bool>();
             MessageBarManager.SharedInstance.ShowMessage(title, description, type, b => taskCompletionSource.TrySetResult(b), duration, _customStyle);

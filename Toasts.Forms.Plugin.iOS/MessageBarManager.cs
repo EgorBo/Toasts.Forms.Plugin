@@ -44,19 +44,19 @@ namespace Toasts.Forms.Plugin.iOS
         private readonly float _messageBarOffset;
         private bool _messageVisible;
 
-		public static MessageBarManager SharedInstance 
+        public static MessageBarManager SharedInstance
         {
-			get{ return _instance ?? (_instance = new MessageBarManager ()); }
-		}
+            get { return _instance ?? (_instance = new MessageBarManager()); }
+        }
 
-	    private	MessageBarManager ()
-		{
-			_messageBarQueue = new Queue<MessageView> ();
-			_messageVisible = false;
-			_messageBarOffset = 20;
-		}
+        private MessageBarManager()
+        {
+            _messageBarQueue = new Queue<MessageView>();
+            _messageVisible = false;
+            _messageBarOffset = 20;
+        }
 
-	    private UIView MessageWindowView { get { return  GetMessageBarViewController ().View; } }
+        private UIView MessageWindowView { get { return GetMessageBarViewController().View; } }
 
         /// <summary>
         /// Shows the message
@@ -68,100 +68,101 @@ namespace Toasts.Forms.Plugin.iOS
         /// <param name="duration"></param>
         /// <param name="styleSheet"></param>
         public void ShowMessage(string title, string description, ToastNotificationType type, Action<bool> onDismiss, TimeSpan duration, MessageBarStyleSheet styleSheet = null)
-		{
-            var messageView = new MessageView (title, description, type, onDismiss, duration);
+        {
+            var messageView = new MessageView(title, description, type, onDismiss, duration);
             messageView.StylesheetProvider = styleSheet;
-			messageView.Hidden = true;
+            messageView.Hidden = true;
 
-			MessageWindowView.AddSubview (messageView);
-			MessageWindowView.BringSubviewToFront (messageView);
+            MessageWindowView.AddSubview(messageView);
+            MessageWindowView.BringSubviewToFront(messageView);
 
-			_messageBarQueue.Enqueue (messageView);
-		
-			if (!_messageVisible) 
+            _messageBarQueue.Enqueue(messageView);
+
+            if (!_messageVisible)
             {
-				ShowNextMessage ();
-			}
-		}
+                ShowNextMessage();
+            }
+        }
 
-	    private void ShowNextMessage ()
-		{
+        private void ShowNextMessage()
+        {
             if (_messageBarQueue.Count > 0)
             {
-				_messageVisible = true;
+                _messageVisible = true;
                 MessageView messageView = _messageBarQueue.Dequeue();
-				messageView.Frame = new RectangleF (0, -messageView.Height, messageView.Width, messageView.Height);
-				messageView.Hidden = false;
-				messageView.SetNeedsDisplay ();
+                messageView.Frame = new RectangleF(0, -messageView.Height, messageView.Width, messageView.Height);
+                messageView.Hidden = false;
+                messageView.SetNeedsDisplay();
 
-				var gest = new UITapGestureRecognizer (MessageTapped);
-				messageView.AddGestureRecognizer (gest);
+                var gest = new UITapGestureRecognizer(MessageTapped);
+                messageView.AddGestureRecognizer(gest);
 
-				UIView.Animate (DismissAnimationDuration, () => messageView.Frame = new RectangleF ((float) messageView.Frame.X, 
-						(float) (_messageBarOffset + messageView.Frame.Y + messageView.Height), messageView.Width, messageView.Height));
+                UIView.Animate(DismissAnimationDuration, () => messageView.Frame = new RectangleF((float)messageView.Frame.X,
+                        (float)(_messageBarOffset + messageView.Frame.Y + messageView.Height), messageView.Width, messageView.Height));
 
-				//Need a better way of dissmissing the method
+                //Need a better way of dissmissing the method
                 var dismiss = new Timer(DismissMessage, messageView, TimeSpan.FromSeconds(messageView.DisplayDelay), TimeSpan.FromMilliseconds(-1));
-			}
-		}
+            }
+        }
 
-		/// <summary>
-		/// Hides all messages
-		/// </summary>
-		public void HideAll ()
-		{
-			MessageView currentMessageView = null;
-			var subviews = MessageWindowView.Subviews;
+        /// <summary>
+        /// Hides all messages
+        /// </summary>
+        public void HideAll()
+        {
+            MessageView currentMessageView = null;
+            var subviews = MessageWindowView.Subviews;
 
-			foreach (UIView subview in subviews) 
+            foreach (UIView subview in subviews)
             {
-				var view = subview as MessageView;
-				if (view != null) 
+                var view = subview as MessageView;
+                if (view != null)
                 {
-					currentMessageView = view;
-					currentMessageView.RemoveFromSuperview ();
-				}
-			}
+                    currentMessageView = view;
+                    currentMessageView.RemoveFromSuperview();
+                }
+            }
 
-			_messageVisible = false;
+            _messageVisible = false;
             _messageBarQueue.Clear();
-			CancelPreviousPerformRequest (this);
-		}
+            CancelPreviousPerformRequest(this);
+        }
 
-		private void MessageTapped (UIGestureRecognizer recognizer)
-		{
-			var view = recognizer.View as MessageView;
-		    if (view != null)
-		        DismissMessage(view, true);
-		}
+        private void MessageTapped(UIGestureRecognizer recognizer)
+        {
+            var view = recognizer.View as MessageView;
+            if (view != null)
+                DismissMessage(view, true);
+        }
 
         private void DismissMessage(object messageView)
-		{
-			var view = messageView as MessageView;
+        {
+            var view = messageView as MessageView;
             if (view != null)
                 InvokeOnMainThread(() => DismissMessage(view, false));
-		}
+        }
 
         private void DismissMessage(MessageView messageView, bool clicked)
-		{
-			if (messageView != null && !messageView.Hit) 
+        {
+            if (messageView != null && !messageView.Hit)
             {
-				messageView.Hit = true;
-				UIView.Animate (DismissAnimationDuration, () => messageView.Frame = 
-                    new RectangleF((float) messageView.Frame.X, (float) -(messageView.Frame.Height - _messageBarOffset), (float) messageView.Frame.Width, (float) messageView.Frame.Height),
-				    () => {
-				        _messageVisible = false;
-				        messageView.RemoveFromSuperview();
+                messageView.Hit = true;
+                UIView.Animate(DismissAnimationDuration, () => messageView.Frame =
+                    new RectangleF((float)messageView.Frame.X, (float)-(messageView.Frame.Height - _messageBarOffset), (float)messageView.Frame.Width, (float)messageView.Frame.Height),
+                    () =>
+                    {
+                        _messageVisible = false;
+                        messageView.RemoveFromSuperview();
 
-				        var action = messageView.OnDismiss;
-				        if (action != null)
+                        var action = messageView.OnDismiss;
+                        if (action != null)
                             action(clicked);
 
-				        if (_messageBarQueue.Count > 0)
-				            ShowNextMessage();
-				    });
-			}
-		}
+                        if (_messageBarQueue.Count > 0)
+                            ShowNextMessage();
+                    });
+            }
+        }
 
         private MessageBarViewController GetMessageBarViewController()
         {
@@ -177,7 +178,7 @@ namespace Toasts.Forms.Plugin.iOS
                 };
             }
 
-            return (MessageBarViewController) _messageWindow.RootViewController;
+            return (MessageBarViewController)_messageWindow.RootViewController;
         }
-	}
+    }
 }

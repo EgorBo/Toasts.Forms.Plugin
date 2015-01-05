@@ -24,12 +24,12 @@ namespace Toasts.Forms.Plugin.WindowsPhone
             ToastInjector.Inject();
         }
 
-        public Task<bool> Notify(ToastNotificationType type, string title, string description, TimeSpan duration)
+        public Task<bool> Notify(ToastNotificationType type, string title, string description, TimeSpan duration, object context)
         {
             var taskCompletionSource = new TaskCompletionSource<bool>();
 
             Brush brush;
-            var element = _customRenderer.Render(type, title, description, out brush);
+            var element = _customRenderer.Render(type, title, description, context, out brush);
 
             ToastPromtsHostControl.EnqueueItem(element, b => taskCompletionSource.TrySetResult(b), brush, 
                 tappable: _customRenderer.IsTappable, 

@@ -33,9 +33,9 @@ using UIKit;
 
 namespace Toasts.Forms.Plugin.iOS
 {
-	public class MessageView : UIView
-	{
-		private static readonly UIFont TitleFont;
+    public class MessageView : UIView
+    {
+        private static readonly UIFont TitleFont;
         private static readonly UIFont DescriptionFont;
         private static readonly UIColor TitleColor;
         private static readonly UIColor DescriptionColor;
@@ -78,33 +78,33 @@ namespace Toasts.Forms.Plugin.iOS
 
         public Action<bool> OnDismiss { get; set; }
 
-		public bool Hit { get; set; }
+        public bool Hit { get; set; }
 
-	    public float Height
-	    {
-	        get
-	        {
-	            if (Math.Abs(_height) < 0.0001)
-	            {
-	                CGSize titleLabelSize = TitleSize();
-	                CGSize descriptionLabelSize = DescriptionSize();
-	                _height = (float) Math.Max((Padding*2) + titleLabelSize.Height + descriptionLabelSize.Height, (Padding*2) + IconSize);
-	            }
-	            return _height;
-	        }
-	        private set { _height = value; }
-	    }
+        public float Height
+        {
+            get
+            {
+                if (Math.Abs(_height) < 0.0001)
+                {
+                    CGSize titleLabelSize = TitleSize();
+                    CGSize descriptionLabelSize = DescriptionSize();
+                    _height = (float) Math.Max((Padding*2) + titleLabelSize.Height + descriptionLabelSize.Height, (Padding*2) + IconSize);
+                }
+                return _height;
+            }
+            private set { _height = value; }
+        }
 
-	    public float Width
-	    {
-	        get
-	        {
-	            if (Math.Abs(_width) < 0.0001)
-	                _width = GetStatusBarFrame().Width;
-	            return _width;
-	        }
-	        private set { _width = value; }
-	    }
+        public float Width
+        {
+            get
+            {
+                if (Math.Abs(_width) < 0.0001)
+                    _width = GetStatusBarFrame().Width;
+                return _width;
+            }
+            private set { _width = value; }
+        }
         public double DisplayDelay { get; set; }
 
         internal MessageBarStyleSheet StylesheetProvider { get; set; }
@@ -115,133 +115,133 @@ namespace Toasts.Forms.Plugin.iOS
 
         private ToastNotificationType MessageType { get; set; }
 
-	    private float AvailableWidth
-	    {
-	        get
-	        {
-	            float maxWidth = (Width - (Padding*3) - IconSize);
-	            return maxWidth;
-	        }
-	    }
+        private float AvailableWidth
+        {
+            get
+            {
+                float maxWidth = (Width - (Padding*3) - IconSize);
+                return maxWidth;
+            }
+        }
 
 
-	    private void OrientationChanged(NSNotification notification)
-	    {
-	        Frame = new RectangleF((float) Frame.X, (float) Frame.Y, GetStatusBarFrame().Width, (float) Frame.Height);
-	        SetNeedsDisplay();
-	    }
+        private void OrientationChanged(NSNotification notification)
+        {
+            Frame = new RectangleF((float) Frame.X, (float) Frame.Y, GetStatusBarFrame().Width, (float) Frame.Height);
+            SetNeedsDisplay();
+        }
 
-	    private RectangleF GetStatusBarFrame()
-	    {
-	        var windowFrame = OrientFrame(UIApplication.SharedApplication.KeyWindow.Frame);
-	        var statusFrame = OrientFrame(UIApplication.SharedApplication.StatusBarFrame);
+        private RectangleF GetStatusBarFrame()
+        {
+            var windowFrame = OrientFrame(UIApplication.SharedApplication.KeyWindow.Frame);
+            var statusFrame = OrientFrame(UIApplication.SharedApplication.StatusBarFrame);
 
-	        return new RectangleF((float) windowFrame.X, (float) windowFrame.Y, (float) windowFrame.Width,
-	            (float) statusFrame.Height);
-	    }
+            return new RectangleF((float) windowFrame.X, (float) windowFrame.Y, (float) windowFrame.Width,
+                (float) statusFrame.Height);
+        }
 
-	    private CGRect OrientFrame(CGRect frame)
-	    {
-	        if (IsDeviceLandscape(UIDevice.CurrentDevice.Orientation) ||
-	            IsStatusBarLandscape(UIApplication.SharedApplication.StatusBarOrientation))
-	        {
-	            frame = new RectangleF((float) frame.X, (float) frame.Y, (float) frame.Height, (float) frame.Width);
-	        }
-	        return frame;
-	    }
+        private CGRect OrientFrame(CGRect frame)
+        {
+            if (IsDeviceLandscape(UIDevice.CurrentDevice.Orientation) ||
+                IsStatusBarLandscape(UIApplication.SharedApplication.StatusBarOrientation))
+            {
+                frame = new RectangleF((float) frame.X, (float) frame.Y, (float) frame.Height, (float) frame.Width);
+            }
+            return frame;
+        }
 
-	    private bool IsDeviceLandscape(UIDeviceOrientation orientation)
-	    {
-	        return orientation == UIDeviceOrientation.LandscapeLeft || orientation == UIDeviceOrientation.LandscapeRight;
-	    }
+        private bool IsDeviceLandscape(UIDeviceOrientation orientation)
+        {
+            return orientation == UIDeviceOrientation.LandscapeLeft || orientation == UIDeviceOrientation.LandscapeRight;
+        }
 
-	    private bool IsStatusBarLandscape(UIInterfaceOrientation orientation)
-	    {
-	        return orientation == UIInterfaceOrientation.LandscapeLeft ||
-	               orientation == UIInterfaceOrientation.LandscapeRight;
-	    }
+        private bool IsStatusBarLandscape(UIInterfaceOrientation orientation)
+        {
+            return orientation == UIInterfaceOrientation.LandscapeLeft ||
+                   orientation == UIInterfaceOrientation.LandscapeRight;
+        }
 
-	    public override void Draw(CGRect rect)
-		{
-			var context = UIGraphics.GetCurrentContext ();
+        public override void Draw(CGRect rect)
+        {
+            var context = UIGraphics.GetCurrentContext ();
 
             MessageBarStyleSheet styleSheet = StylesheetProvider;
-			context.SaveState ();
+            context.SaveState ();
 
-			styleSheet.BackgroundColorForMessageType (MessageType).SetColor ();
-			context.FillRect (rect);
-			context.RestoreState ();
-			context.SaveState ();
+            styleSheet.BackgroundColorForMessageType (MessageType).SetColor ();
+            context.FillRect (rect);
+            context.RestoreState ();
+            context.SaveState ();
 
-			context.BeginPath ();
-			context.MoveTo (0, rect.Size.Height);
-			context.SetStrokeColor(styleSheet.StrokeColorForMessageType (MessageType).CGColor);
-			context.SetLineWidth (1);
-			context.AddLineToPoint (rect.Size.Width, rect.Size.Height);
-			context.StrokePath ();
-			context.RestoreState ();
-			context.SaveState ();
-			
-			float xOffset = Padding;
-			float yOffset = Padding;
-			styleSheet.IconImageForMessageType (MessageType).Draw (new RectangleF (xOffset, yOffset, IconSize, IconSize));
-			context.SaveState ();
-				
-			yOffset -= TextOffset;
-			xOffset += IconSize + Padding;
+            context.BeginPath ();
+            context.MoveTo (0, rect.Size.Height);
+            context.SetStrokeColor(styleSheet.StrokeColorForMessageType (MessageType).CGColor);
+            context.SetLineWidth (1);
+            context.AddLineToPoint (rect.Size.Width, rect.Size.Height);
+            context.StrokePath ();
+            context.RestoreState ();
+            context.SaveState ();
+            
+            float xOffset = Padding;
+            float yOffset = Padding;
+            styleSheet.IconImageForMessageType (MessageType).Draw (new RectangleF (xOffset, yOffset, IconSize, IconSize));
+            context.SaveState ();
+                
+            yOffset -= TextOffset;
+            xOffset += IconSize + Padding;
             CGSize titleLabelSize = TitleSize();
-			if (string.IsNullOrEmpty (Title) && !string.IsNullOrEmpty (Description)) {
-				yOffset = (float)(Math.Ceiling ((double)rect.Size.Height * 0.5) - Math.Ceiling ((double)titleLabelSize.Height * 0.5) - TextOffset);
-			}
+            if (string.IsNullOrEmpty (Title) && !string.IsNullOrEmpty (Description)) {
+                yOffset = (float)(Math.Ceiling ((double)rect.Size.Height * 0.5) - Math.Ceiling ((double)titleLabelSize.Height * 0.5) - TextOffset);
+            }
 
-			TitleColor.SetColor ();
-				
-			var titleRectangle = new RectangleF (xOffset, yOffset, (float) titleLabelSize.Width + 5, (float) titleLabelSize.Height + 5);
+            TitleColor.SetColor ();
+                
+            var titleRectangle = new RectangleF (xOffset, yOffset, (float) titleLabelSize.Width + 5, (float) titleLabelSize.Height + 5);
             Title.DrawString(titleRectangle, TitleFont, UILineBreakMode.TailTruncation, UITextAlignment.Left);
-			yOffset += (float)titleLabelSize.Height;
+            yOffset += (float)titleLabelSize.Height;
 
             CGSize descriptionLabelSize = DescriptionSize();
             DescriptionColor.SetColor();
             var descriptionRectangle = new RectangleF(xOffset, yOffset, (float)descriptionLabelSize.Width, (float)descriptionLabelSize.Height);
             Description.DrawString(descriptionRectangle, DescriptionFont, UILineBreakMode.TailTruncation, UITextAlignment.Left);
-		}
+        }
 
-	    private CGSize TitleSize()
-	    {
-	        var boundedSize = new SizeF(AvailableWidth, float.MaxValue);
-	        CGSize titleLabelSize;
-	        if (!IsRunningiOS7OrLater())
-	        {
-	            var attr = new UIStringAttributes(NSDictionary.FromObjectAndKey(TitleFont, (NSString) TitleFont.Name));
-	            titleLabelSize = Title.GetBoundingRect(boundedSize, NSStringDrawingOptions.TruncatesLastVisibleLine, attr, null).Size;
-	        }
-	        else
-	        {
-	            titleLabelSize = Title.StringSize(TitleFont, boundedSize, UILineBreakMode.TailTruncation);
-	        }
-	        return titleLabelSize;
-	    }
+        private CGSize TitleSize()
+        {
+            var boundedSize = new SizeF(AvailableWidth, float.MaxValue);
+            CGSize titleLabelSize;
+            if (!IsRunningiOS7OrLater())
+            {
+                var attr = new UIStringAttributes(NSDictionary.FromObjectAndKey(TitleFont, (NSString) TitleFont.Name));
+                titleLabelSize = Title.GetBoundingRect(boundedSize, NSStringDrawingOptions.TruncatesLastVisibleLine, attr, null).Size;
+            }
+            else
+            {
+                titleLabelSize = Title.StringSize(TitleFont, boundedSize, UILineBreakMode.TailTruncation);
+            }
+            return titleLabelSize;
+        }
 
-	    private CGSize DescriptionSize()
-	    {
-	        var boundedSize = new SizeF(AvailableWidth, float.MaxValue);
-	        CGSize descriptionLabelSize;
-	        if (!IsRunningiOS7OrLater())
-	        {
-	            var attr = new UIStringAttributes(NSDictionary.FromObjectAndKey(TitleFont, (NSString) TitleFont.Name));
-	            descriptionLabelSize = Description.GetBoundingRect(boundedSize, NSStringDrawingOptions.TruncatesLastVisibleLine, attr, null).Size;
-	        }
-	        else
-	        {
-	            descriptionLabelSize = Description.StringSize(DescriptionFont, boundedSize, UILineBreakMode.TailTruncation);
-	        }
-	        return descriptionLabelSize;
-	    }
+        private CGSize DescriptionSize()
+        {
+            var boundedSize = new SizeF(AvailableWidth, float.MaxValue);
+            CGSize descriptionLabelSize;
+            if (!IsRunningiOS7OrLater())
+            {
+                var attr = new UIStringAttributes(NSDictionary.FromObjectAndKey(TitleFont, (NSString) TitleFont.Name));
+                descriptionLabelSize = Description.GetBoundingRect(boundedSize, NSStringDrawingOptions.TruncatesLastVisibleLine, attr, null).Size;
+            }
+            else
+            {
+                descriptionLabelSize = Description.StringSize(DescriptionFont, boundedSize, UILineBreakMode.TailTruncation);
+            }
+            return descriptionLabelSize;
+        }
 
         private bool IsRunningiOS7OrLater()
         {
             Version version = new Version(UIDevice.CurrentDevice.SystemVersion);
-		    return version.Major >= 7;
+            return version.Major >= 7;
         }
-	}
+    }
 }

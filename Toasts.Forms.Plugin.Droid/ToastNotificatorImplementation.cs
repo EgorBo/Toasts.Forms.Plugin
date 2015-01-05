@@ -17,7 +17,7 @@ namespace Toasts.Forms.Plugin.Droid
         {
         }
 
-        public Task<bool> Notify(ToastNotificationType type, string title, string description, TimeSpan duration)
+        public Task<bool> Notify(ToastNotificationType type, string title, string description, TimeSpan duration, object context = null)
         {
             var taskCompletionSource = new TaskCompletionSource<bool>();
 
@@ -25,7 +25,7 @@ namespace Toasts.Forms.Plugin.Droid
             if (currentActivity == null)
                 return Task.FromResult(false);
 
-            View view = _customRenderer.Render(currentActivity, type, title, description);
+            View view = _customRenderer.Render(currentActivity, type, title, description, context);
             Crouton crouton = new Crouton(currentActivity, view, (int)duration.TotalMilliseconds, b => taskCompletionSource.TrySetResult(b));
             crouton.Show();
             return taskCompletionSource.Task;

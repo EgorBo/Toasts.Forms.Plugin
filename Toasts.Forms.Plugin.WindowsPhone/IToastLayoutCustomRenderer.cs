@@ -6,7 +6,7 @@ namespace Toasts.Forms.Plugin.WindowsPhone
 {
     public interface IToastLayoutCustomRenderer
     {
-        UIElement Render(ToastNotificationType type, string title, string description, out Brush backgroundBrush);
+        UIElement Render(ToastNotificationType type, string title, string description, object context, out Brush backgroundBrush);
 
         bool IsTappable { get; }
 

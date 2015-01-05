@@ -298,6 +298,7 @@ namespace Toasts.Forms.Plugin.Droid
 
         public void RemoveCroutons()
         {
+            _croutonQueue.Clear();
         }
     }
 }
