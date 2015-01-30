@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
    <metadata minClientVersion="2.8.1">
        <id>Toasts.Forms.Plugin</id>
-       <version>1.0.0.6</version>
+       <version>1.0.0.7</version>
        <title>Toasts Plugin for Xamarin.Forms</title>
        <authors>Egor Bogatov</authors>
        <owners>Egor Bogatov</owners>
