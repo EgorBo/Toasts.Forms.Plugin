@@ -103,6 +103,7 @@ namespace Toasts.Forms.Plugin.Droid
         {
             if (_onClick != null)
                 _onClick(true);
+            Manager.Instance.RemoveCrouton(this);
             _onClick = null;
         }
     }
