@@ -170,7 +170,7 @@ namespace Toasts.Forms.Plugin.Droid
                 if (crouton.GetInAnimation() != null)
                 {
                     croutonView.StartAnimation(crouton.GetInAnimation());
-                    AnnounceForAccessibilityCompat(crouton.GetActivity(), null);
+                    AnnounceForAccessibilityCompat(crouton.GetActivity(), crouton.DataContext == null ? "NULL" : crouton.DataContext.ToString());
                     SendMessageDelayed(crouton, REMOVE_CROUTON,
                     crouton.DurationInMilliseconds + crouton.GetInAnimation().Duration);
                 }

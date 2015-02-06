@@ -26,7 +26,7 @@ namespace Toasts.Forms.Plugin.Droid
                 return Task.FromResult(false);
 
             View view = _customRenderer.Render(currentActivity, type, title, description, context);
-            Crouton crouton = new Crouton(currentActivity, view, (int)duration.TotalMilliseconds, b => taskCompletionSource.TrySetResult(b));
+            Crouton crouton = new Crouton(currentActivity, view, (int)duration.TotalMilliseconds, b => taskCompletionSource.TrySetResult(b), context);
             crouton.Show();
             return taskCompletionSource.Task;
         }

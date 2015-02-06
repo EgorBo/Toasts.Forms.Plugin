@@ -1,5 +1,6 @@
 using System;
 using Android.App;
+using Android.Support.V4.App;
 using Android.Views;
 using Android.Views.Animations;
 
@@ -16,7 +17,9 @@ namespace Toasts.Forms.Plugin.Droid
 
         public long DurationInMilliseconds { get; private set; }
 
-        public Crouton(Activity activity, View customView, int durationInMs, Action<bool> onClick = null)
+        public object DataContext { get; private set; }
+
+        public Crouton(Activity activity, View customView, int durationInMs, Action<bool> onClick = null, object dataContext = null)
         {
             if (activity == null) throw new ArgumentNullException("activity");
             if (customView == null) throw new ArgumentNullException("customView");
@@ -26,6 +29,7 @@ namespace Toasts.Forms.Plugin.Droid
             _onClick = onClick;
             customView.SetOnClickListener(this);
             DurationInMilliseconds = durationInMs;
+            DataContext = dataContext;
         }
         
         public void Show()
