@@ -70,28 +70,28 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\icon-error.png" />
+    <Content Include="Resources\Icons\icon-error.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\icon-error%402x.png" />
+    <Content Include="Resources\Icons\icon-error%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\icon-info.png" />
+    <Content Include="Resources\Icons\icon-info.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\icon-info%402x.png" />
+    <Content Include="Resources\Icons\icon-info%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\icon-success.png" />
+    <Content Include="Resources\Icons\icon-success.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\icon-success%402x.png" />
+    <Content Include="Resources\Icons\icon-success%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\icon-warning%402x.png" />
+    <Content Include="Resources\Icons\icon-warning%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\icon-warning.png" />
+    <Content Include="Resources\Icons\icon-warning.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

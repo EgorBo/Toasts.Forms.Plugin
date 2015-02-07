@@ -184,11 +184,15 @@ namespace Toasts.Forms.Plugin.iOS
             
             float xOffset = Padding;
             float yOffset = Padding;
-            styleSheet.IconImageForMessageType (MessageType).Draw (new RectangleF (xOffset, yOffset, IconSize, IconSize));
+            var icon = styleSheet.IconImageForMessageType(MessageType);
+            if (icon != null)
+            {
+                icon.Draw(new RectangleF(xOffset, yOffset, IconSize, IconSize));
+            }
             context.SaveState ();
                 
             yOffset -= TextOffset;
-            xOffset += IconSize + Padding;
+            xOffset += (icon == null ? 0 : IconSize) + Padding;
             CGSize titleLabelSize = TitleSize();
             if (string.IsNullOrEmpty (Title) && !string.IsNullOrEmpty (Description)) {
                 yOffset = (float)(Math.Ceiling ((double)rect.Size.Height * 0.5) - Math.Ceiling ((double)titleLabelSize.Height * 0.5) - TextOffset);

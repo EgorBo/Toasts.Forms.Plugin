@@ -33,10 +33,10 @@ namespace Toasts.Forms.Plugin.iOS
     public class MessageBarStyleSheet 
     {
         private const float Alpha = 0.96f;
-        private const string ErrorIcon = "icon-error.png";
-        private const string SuccessIcon = "icon-success.png";
-        private const string InfoIcon = "icon-info.png";
-        private const string WarningIcon = "icon-warning.png";
+        private const string ErrorIcon = "Icons/icon-error.png";
+        private const string SuccessIcon = "Icons/icon-success.png";
+        private const string InfoIcon = "Icons/icon-info.png";
+        private const string WarningIcon = "Icons/icon-warning.png";
 
         private readonly UIColor _errorBackgroundColor;
         private readonly UIColor _successBackgroundColor;
