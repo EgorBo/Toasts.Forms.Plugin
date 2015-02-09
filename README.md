@@ -52,7 +52,7 @@ bool tapped = await notificator.Notify(
 	duration: TimeSpan.FromSeconds(2), 
 	context: MyCustomTypes.LevelUp);
 ```			
-So we just set the type to Custom and passed an additional argument to Object context (last argument) - our custom enum MyCustomTypes.LevelUp.
+So we have just set the type to Custom and passed an additional argument to Object context (last argument) - our custom enum MyCustomTypes.LevelUp.
 Now we have to configure default renderer (or replace it by your own if you want to add more changes to the layout):
 ```csharp
 Xamarin.Forms.Forms.Init();
