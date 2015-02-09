@@ -206,7 +206,7 @@ namespace Toasts.Forms.Plugin.iOS
 
             CGSize descriptionLabelSize = DescriptionSize();
             DescriptionColor.SetColor();
-            var descriptionRectangle = new RectangleF(xOffset, yOffset, (float)descriptionLabelSize.Width, (float)descriptionLabelSize.Height);
+            var descriptionRectangle = new RectangleF(xOffset, yOffset, (float)descriptionLabelSize.Width + Padding, (float)descriptionLabelSize.Height);
             Description.DrawString(descriptionRectangle, DescriptionFont, UILineBreakMode.TailTruncation, UITextAlignment.Left);
         }
 
