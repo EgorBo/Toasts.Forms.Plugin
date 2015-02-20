@@ -142,8 +142,9 @@ namespace Toasts.Forms.Plugin.iOS
 
         private CGRect OrientFrame(CGRect frame)
         {
-            if (IsDeviceLandscape(UIDevice.CurrentDevice.Orientation) ||
-                IsStatusBarLandscape(UIApplication.SharedApplication.StatusBarOrientation))
+            if ((IsDeviceLandscape(UIDevice.CurrentDevice.Orientation) ||
+                IsStatusBarLandscape(UIApplication.SharedApplication.StatusBarOrientation)) &&
+                !IsRunningOnIOSVersionOrLater(8) /*http://stackoverflow.com/questions/24150359/is-uiscreen-mainscreen-bounds-size-becoming-orientation-dependent-in-ios8*/)
             {
                 frame = new RectangleF((float) frame.X, (float) frame.Y, (float) frame.Height, (float) frame.Width);
             }
@@ -214,7 +215,7 @@ namespace Toasts.Forms.Plugin.iOS
         {
             var boundedSize = new SizeF(AvailableWidth, float.MaxValue);
             CGSize titleLabelSize;
-            if (!IsRunningiOS7OrLater())
+            if (!IsRunningOnIOSVersionOrLater(7))
             {
                 var attr = new UIStringAttributes(NSDictionary.FromObjectAndKey(TitleFont, (NSString) TitleFont.Name));
                 titleLabelSize = Title.GetBoundingRect(boundedSize, NSStringDrawingOptions.TruncatesLastVisibleLine, attr, null).Size;
@@ -230,7 +231,7 @@ namespace Toasts.Forms.Plugin.iOS
         {
             var boundedSize = new SizeF(AvailableWidth, float.MaxValue);
             CGSize descriptionLabelSize;
-            if (!IsRunningiOS7OrLater())
+            if (!IsRunningOnIOSVersionOrLater(7))
             {
                 var attr = new UIStringAttributes(NSDictionary.FromObjectAndKey(TitleFont, (NSString) TitleFont.Name));
                 descriptionLabelSize = Description.GetBoundingRect(boundedSize, NSStringDrawingOptions.TruncatesLastVisibleLine, attr, null).Size;
@@ -242,10 +243,10 @@ namespace Toasts.Forms.Plugin.iOS
             return descriptionLabelSize;
         }
 
-        private bool IsRunningiOS7OrLater()
+        private bool IsRunningOnIOSVersionOrLater(int majorVersion)
         {
             Version version = new Version(UIDevice.CurrentDevice.SystemVersion);
-            return version.Major >= 7;
+            return version.Major >= majorVersion;
         }
     }
 }
