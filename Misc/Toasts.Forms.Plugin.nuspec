@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
    <metadata minClientVersion="2.8.1">
        <id>Toasts.Forms.Plugin</id>
-       <version>1.0.4.16</version>
+       <version>1.0.5.17</version>
        <title>Toasts Plugin for Xamarin.Forms</title>
        <authors>Egor Bogatov</authors>
        <owners>Egor Bogatov</owners>
@@ -14,13 +14,13 @@
           Xamarin.Forms plugin to display toast notifications
        </summary>
        <description>
-         Xamarin.Forms (1.3.4) plugin to display toast notifications. 
+         Xamarin.Forms (1.3.5) plugin to display toast notifications. 
          Ensure you call ToastNotificatorImplementation.Init(); in each project. 
          Read the full documenation on the projects page.
        </description>
        <tags>xamarin, xamarin.forms, android, ios, windows phone, toast notifications, crouton, TWMessageBarManager</tags>
        <dependencies>
-         <dependency id="Xamarin.Forms" version="1.3.4.6332" />
+         <dependency id="Xamarin.Forms" version="1.3.5.6337" />
        </dependencies>
    </metadata>
    <files>
