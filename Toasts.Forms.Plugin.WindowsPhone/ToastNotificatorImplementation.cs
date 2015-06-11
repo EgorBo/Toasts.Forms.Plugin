@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using Toasts;
@@ -23,18 +24,30 @@ namespace Toasts
             ToastInjector.Inject();
         }
 
-        public Task<bool> Notify(ToastNotificationType type, string title, string description, TimeSpan duration, object context)
+        public Task<bool> Notify(ToastNotificationType type, string title, string description, TimeSpan duration, object context, bool clickable = true)
         {
             var taskCompletionSource = new TaskCompletionSource<bool>();
 
             Brush brush;
             var element = _customRenderer.Render(type, title, description, context, out brush);
 
-            ToastPromtsHostControl.EnqueueItem(element, b => taskCompletionSource.TrySetResult(b), brush, 
+            ToastPromtsHostControl.EnqueueItem(element, b =>
+                {
+                    if (clickable)
+                    {
+                        taskCompletionSource.TrySetResult(b);
+                    }
+                }, brush, 
                 tappable: _customRenderer.IsTappable, 
                 timeout: duration, 
                 showCloseButton: _customRenderer.HasCloseButton);
             return taskCompletionSource.Task;
+        }
+
+        public Task NotifySticky(ToastNotificationType type, string title, string description, object context = null,
+            bool clickable = true, CancellationToken cancellationToken = default (CancellationToken), bool modal = false)
+        {
+            throw new NotImplementedException("yet");
         }
 
         public void HideAll()

@@ -4,6 +4,7 @@ using Android.App;
 using Toasts;
 using Xamarin.Forms;
 using View = Android.Views.View;
+using System.Threading;
 
 [assembly: Dependency(typeof(ToastNotificatorImplementation))]
 namespace Toasts
@@ -16,7 +17,7 @@ namespace Toasts
         {
         }
 
-        public Task<bool> Notify(ToastNotificationType type, string title, string description, TimeSpan duration, object context = null)
+        public Task<bool> Notify(ToastNotificationType type, string title, string description, TimeSpan duration, object context = null, bool clickable = true)
         {
             var taskCompletionSource = new TaskCompletionSource<bool>();
 
@@ -25,9 +26,22 @@ namespace Toasts
                 return Task.FromResult(false);
 
             View view = _customRenderer.Render(currentActivity, type, title, description, context);
-            Crouton crouton = new Crouton(currentActivity, view, (int)duration.TotalMilliseconds, b => taskCompletionSource.TrySetResult(b), context);
+            Crouton crouton = new Crouton(currentActivity, view, (int)duration.TotalMilliseconds, 
+                b =>
+                {
+                    if (clickable)
+                    {
+                        taskCompletionSource.TrySetResult(b);
+                    }
+                }, context);
             crouton.Show();
             return taskCompletionSource.Task;
+        }
+        
+        public Task NotifySticky(ToastNotificationType type, string title, string description, object context = null,
+            bool clickable = true, CancellationToken cancellationToken = new CancellationToken(), bool modal = false)
+        {
+            throw new NotImplementedException("yet");
         }
 
         public void HideAll()
