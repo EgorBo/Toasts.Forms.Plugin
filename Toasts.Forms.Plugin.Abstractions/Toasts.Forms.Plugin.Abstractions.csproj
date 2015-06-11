@@ -8,7 +8,7 @@
     <ProjectGuid>{A6005E12-DE46-4F28-8F97-8B8564AF191C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Toasts.Forms.Plugin.Abstractions</RootNamespace>
+    <RootNamespace>Toasts</RootNamespace>
     <AssemblyName>Toasts.Forms.Plugin.Abstractions</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>

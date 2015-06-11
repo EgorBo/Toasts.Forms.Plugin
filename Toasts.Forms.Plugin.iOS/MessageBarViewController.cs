@@ -26,7 +26,7 @@
 
 using UIKit;
 
-namespace Toasts.Forms.Plugin.iOS
+namespace Toasts
 {
     public class MessageBarViewController : UIViewController
     {

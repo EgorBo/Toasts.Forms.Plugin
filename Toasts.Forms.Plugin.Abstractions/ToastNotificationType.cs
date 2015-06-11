@@ -1,4 +1,4 @@
-﻿namespace Toasts.Forms.Plugin.Abstractions
+﻿namespace Toasts
 {
     public enum ToastNotificationType
     {

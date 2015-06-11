@@ -4,9 +4,8 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Resources;
-using Toasts.Forms.Plugin.Abstractions;
 
-namespace Toasts.Forms.Plugin.WindowsPhone
+namespace Toasts
 {
     public class DefaultToastLayoutRenderer : IToastLayoutCustomRenderer
     {

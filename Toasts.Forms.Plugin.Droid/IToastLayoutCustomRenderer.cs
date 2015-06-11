@@ -1,8 +1,7 @@
 ﻿using Android.App;
 using Android.Views;
-using Toasts.Forms.Plugin.Abstractions;
 
-namespace Toasts.Forms.Plugin.Droid
+namespace Toasts
 {
     public interface IToastLayoutCustomRenderer
     {

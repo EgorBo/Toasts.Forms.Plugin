@@ -1,7 +1,7 @@
 ﻿using CoreGraphics;
 using UIKit;
 
-namespace Toasts.Forms.Plugin.iOS
+namespace Toasts
 {
     public class MessageWindow : UIWindow
     {

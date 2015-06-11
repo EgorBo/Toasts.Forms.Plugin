@@ -1,8 +1,8 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:windowsPhone1="clr-namespace:Toasts.Forms.Plugin.WindowsPhone"
-    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone">
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:toasts="clr-namespace:Toasts">
 
     <Style x:Key="MainFrameStyle" TargetType="phone:PhoneApplicationFrame">
         <Setter Property="Template">
@@ -19,7 +19,7 @@
                                             HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                             VerticalAlignment="{TemplateBinding VerticalAlignment}"
                                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
-                            <windowsPhone1:ToastPromtsHostControl x:Name="ToastControl" VerticalAlignment="Top" HorizontalAlignment="Stretch"/>
+                            <toasts:ToastPromtsHostControl x:Name="ToastControl" VerticalAlignment="Top" HorizontalAlignment="Stretch"/>
                         </Grid>
                     </Border>
                 </ControlTemplate>

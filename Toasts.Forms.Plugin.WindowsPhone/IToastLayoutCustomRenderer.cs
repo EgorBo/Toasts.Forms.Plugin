@@ -1,8 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media;
-using Toasts.Forms.Plugin.Abstractions;
 
-namespace Toasts.Forms.Plugin.WindowsPhone
+namespace Toasts
 {
     public interface IToastLayoutCustomRenderer
     {

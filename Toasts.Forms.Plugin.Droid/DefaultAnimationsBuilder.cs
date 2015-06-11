@@ -1,7 +1,7 @@
 using Android.Views;
 using Android.Views.Animations;
 
-namespace Toasts.Forms.Plugin.Droid
+namespace Toasts
 {
     public static class DefaultAnimationsBuilder
     {

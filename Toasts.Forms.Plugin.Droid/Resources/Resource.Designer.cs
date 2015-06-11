@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("Toasts.Forms.Plugin.Droid.Resource", IsApplication=false)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("Toasts.Resource", IsApplication=false)]
 
-namespace Toasts.Forms.Plugin.Droid
+namespace Toasts
 {
 	
 	

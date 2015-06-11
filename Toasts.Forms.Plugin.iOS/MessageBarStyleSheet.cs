@@ -25,10 +25,9 @@
 // THE SOFTWARE.
 
 
-using Toasts.Forms.Plugin.Abstractions;
 using UIKit;
 
-namespace Toasts.Forms.Plugin.iOS
+namespace Toasts
 {
     public class MessageBarStyleSheet 
     {

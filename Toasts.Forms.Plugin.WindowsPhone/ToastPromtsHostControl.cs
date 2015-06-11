@@ -7,7 +7,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
 
-namespace Toasts.Forms.Plugin.WindowsPhone
+namespace Toasts
 {
     public class ToastPromtsHostControl : Grid
     {

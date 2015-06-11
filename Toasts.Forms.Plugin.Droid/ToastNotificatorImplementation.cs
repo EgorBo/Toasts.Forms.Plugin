@@ -1,13 +1,12 @@
 using System;
 using System.Threading.Tasks;
 using Android.App;
-using Toasts.Forms.Plugin.Abstractions;
-using Toasts.Forms.Plugin.Droid;
+using Toasts;
 using Xamarin.Forms;
 using View = Android.Views.View;
 
 [assembly: Dependency(typeof(ToastNotificatorImplementation))]
-namespace Toasts.Forms.Plugin.Droid
+namespace Toasts
 {
     public class ToastNotificatorImplementation : IToastNotificator
     {

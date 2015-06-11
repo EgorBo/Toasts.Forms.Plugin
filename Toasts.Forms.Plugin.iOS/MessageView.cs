@@ -28,10 +28,9 @@ using System;
 using System.Drawing;
 using CoreGraphics;
 using Foundation;
-using Toasts.Forms.Plugin.Abstractions;
 using UIKit;
 
-namespace Toasts.Forms.Plugin.iOS
+namespace Toasts
 {
     public class MessageView : UIView
     {

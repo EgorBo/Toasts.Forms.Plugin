@@ -1,11 +1,10 @@
 using System;
 using System.Threading.Tasks;
-using Toasts.Forms.Plugin.Abstractions;
-using Toasts.Forms.Plugin.iOS;
+using Toasts;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(ToastNotificatorImplementation))]
-namespace Toasts.Forms.Plugin.iOS
+namespace Toasts
 {
     public class ToastNotificatorImplementation : IToastNotificator
     {

@@ -1,10 +1,9 @@
 using System;
 using Android.App;
-using Android.Support.V4.App;
 using Android.Views;
 using Android.Views.Animations;
 
-namespace Toasts.Forms.Plugin.Droid
+namespace Toasts
 {
     public class Crouton : Java.Lang.Object, View.IOnClickListener
     {

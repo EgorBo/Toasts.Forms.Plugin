@@ -2,7 +2,7 @@
 using System.Windows;
 using Microsoft.Phone.Controls;
 
-namespace Toasts.Forms.Plugin.WindowsPhone
+namespace Toasts
 {
     internal static class ToastInjector
     {

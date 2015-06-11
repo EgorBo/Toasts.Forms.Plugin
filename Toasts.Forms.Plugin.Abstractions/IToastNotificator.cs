@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Toasts.Forms.Plugin.Abstractions
+namespace Toasts
 {
     public interface IToastNotificator
     {

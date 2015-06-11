@@ -3,9 +3,8 @@ using Android.App;
 using Android.Graphics;
 using Android.Views;
 using Android.Widget;
-using Toasts.Forms.Plugin.Abstractions;
 
-namespace Toasts.Forms.Plugin.Droid
+namespace Toasts
 {
     public class DefaultToastLayoutRenderer : IToastLayoutCustomRenderer
     {

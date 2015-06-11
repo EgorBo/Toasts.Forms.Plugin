@@ -6,7 +6,6 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using Toasts.Forms.Plugin.Droid;
 
 namespace Toasts.Forms.Plugin.Sample.Droid
 {

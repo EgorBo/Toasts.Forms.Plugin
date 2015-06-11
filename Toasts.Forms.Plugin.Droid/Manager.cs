@@ -2,7 +2,6 @@ using System;
 using Android.Annotation;
 using Android.App;
 using Android.Content;
-using Android.Content.Res;
 using Android.OS;
 using Android.Views;
 using Android.Views.Accessibility;
@@ -10,7 +9,7 @@ using Java.Interop;
 using Java.Util;
 using Java.Util.Concurrent;
 
-namespace Toasts.Forms.Plugin.Droid
+namespace Toasts
 {
     public class Manager : Handler
     {
@@ -208,7 +207,7 @@ namespace Toasts.Forms.Plugin.Droid
 
         private void SetActionBarMargin(ViewGroup.MarginLayoutParams parameters, Activity activity)
         {
-            int actionBarContainerId = Resources.System.GetIdentifier("action_bar_container", "id", "android");
+            int actionBarContainerId = Android.Content.Res.Resources.System.GetIdentifier("action_bar_container", "id", "android");
             View actionBarContainer = activity.FindViewById(actionBarContainerId);
             // The action bar is present: the app is using a Holo theme.
             if (null != actionBarContainer)
