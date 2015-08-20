@@ -297,7 +297,10 @@ namespace Toasts
 
         public void RemoveCroutons()
         {
-            _croutonQueue.Clear();
+			while (!_croutonQueue.IsEmpty)
+			{
+				RemoveCrouton((Crouton) _croutonQueue.Peek());
+			}
         }
     }
 }
