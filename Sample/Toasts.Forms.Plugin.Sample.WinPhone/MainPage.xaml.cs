@@ -7,7 +7,6 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using Toasts.Forms.Plugin.WindowsPhone;
 
 namespace Toasts.Forms.Plugin.Sample.WinPhone
 {
