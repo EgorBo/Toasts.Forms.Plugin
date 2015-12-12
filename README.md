@@ -28,6 +28,7 @@ In your iOS, Android, and Windows Phone projects please call:
 
 ```csharp
 Xamarin.Forms.Init();//platform specific init
+DependencyService.Register<ToastNotificatorImplementation>(); // Register your dependency
 ToastNotificatorImplementation.Init(); //you can pass additional parameters here
 ```
 
@@ -73,6 +74,7 @@ iOS and Android api also have similar extensibility
 
 #### Contributors
 * [EgorBo](https://github.com/EgorBo)
+* [AdamPed](https://github.com/AdamPed)
 
 Thanks!
 

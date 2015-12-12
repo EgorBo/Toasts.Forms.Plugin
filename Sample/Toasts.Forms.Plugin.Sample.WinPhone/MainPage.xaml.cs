@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Xamarin.Forms;
 
 namespace Toasts.Forms.Plugin.Sample.WinPhone
 {
@@ -18,6 +19,7 @@ namespace Toasts.Forms.Plugin.Sample.WinPhone
             SupportedOrientations = SupportedPageOrientation.PortraitOrLandscape;
 
             global::Xamarin.Forms.Forms.Init();
+            DependencyService.Register<ToastNotificatorImplementation>();
             ToastNotificatorImplementation.Init(stackSize: 2);
             LoadApplication(new Toasts.Forms.Plugin.Sample.App());
         }

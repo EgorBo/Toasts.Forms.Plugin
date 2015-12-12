@@ -2,10 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media;
-using Toasts;
-using Xamarin.Forms;
 
-[assembly: Dependency(typeof(ToastNotificatorImplementation))]
 namespace Toasts
 {
     public class ToastNotificatorImplementation : IToastNotificator

@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Xamarin.Forms;
 
 namespace Toasts.Forms.Plugin.Sample.Droid
 {
@@ -17,7 +18,8 @@ namespace Toasts.Forms.Plugin.Sample.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            ToastNotificatorImplementation.Init();
+            DependencyService.Register<ToastNotificatorImplementation>();
+            ToastNotificatorImplementation.Init(Xamarin.Forms.Forms.Context);
             LoadApplication(new App());
         }
     }
