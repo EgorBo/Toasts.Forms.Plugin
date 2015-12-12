@@ -2,26 +2,27 @@ using System;
 using System.Threading.Tasks;
 using Android.App;
 using Toasts;
-using Xamarin.Forms;
 using View = Android.Views.View;
 using System.Threading;
+using Android.Content;
 
-[assembly: Dependency(typeof(ToastNotificatorImplementation))]
 namespace Toasts
 {
     public class ToastNotificatorImplementation : IToastNotificator
     {
         private static IToastLayoutCustomRenderer _customRenderer;
 
+        private static Context _context = null;
         public ToastNotificatorImplementation()
         {
+            
         }
 
         public Task<bool> Notify(ToastNotificationType type, string title, string description, TimeSpan duration, object context = null, bool clickable = true)
         {
             var taskCompletionSource = new TaskCompletionSource<bool>();
 
-            Activity currentActivity = Xamarin.Forms.Forms.Context as Activity;
+            Activity currentActivity = _context as Activity;
             if (currentActivity == null)
                 return Task.FromResult(false);
 
@@ -52,8 +53,9 @@ namespace Toasts
         /// <summary>
         /// You can pass your custom renderer for toast layour, in case of null DefaultToastLayoutRenderer will be used
         /// </summary>
-        public static void Init(IToastLayoutCustomRenderer customRenderer = null)
+        public static void Init(Context context, IToastLayoutCustomRenderer customRenderer = null)
         {
+            _context = context;
             _customRenderer = customRenderer ?? new DefaultToastLayoutRenderer();
         }
     }

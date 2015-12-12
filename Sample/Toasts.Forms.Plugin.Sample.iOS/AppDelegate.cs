@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using Xamarin.Forms;
 
 namespace Toasts.Forms.Plugin.Sample.iOS
 {
@@ -23,6 +24,7 @@ namespace Toasts.Forms.Plugin.Sample.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            DependencyService.Register<ToastNotificatorImplementation>();
             ToastNotificatorImplementation.Init();
             LoadApplication(new App());
 
