@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Views;
 
-namespace Toasts
+namespace Plugin.Toasts
 {
     public interface IToastLayoutCustomRenderer
     {

@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Xamarin.Forms;
+using Plugin.Toasts;
 
 namespace Toasts.Forms.Plugin.Sample.WinPhone
 {
@@ -21,7 +22,7 @@ namespace Toasts.Forms.Plugin.Sample.WinPhone
             global::Xamarin.Forms.Forms.Init();
             DependencyService.Register<ToastNotificatorImplementation>();
             ToastNotificatorImplementation.Init(stackSize: 2);
-            LoadApplication(new Toasts.Forms.Plugin.Sample.App());
+            LoadApplication(new Sample.App());
         }
     }
 }

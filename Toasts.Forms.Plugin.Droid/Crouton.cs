@@ -3,7 +3,7 @@ using Android.App;
 using Android.Views;
 using Android.Views.Animations;
 
-namespace Toasts
+namespace Plugin.Toasts
 {
     public class Crouton : Java.Lang.Object, View.IOnClickListener
     {

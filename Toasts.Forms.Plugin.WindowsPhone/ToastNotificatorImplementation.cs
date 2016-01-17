@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
-namespace Toasts
+namespace Plugin.Toasts
 {
     public class ToastNotificatorImplementation : IToastNotificator
     {

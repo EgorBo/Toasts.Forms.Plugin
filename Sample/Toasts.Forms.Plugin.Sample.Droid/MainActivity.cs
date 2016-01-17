@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Xamarin.Forms;
+using Plugin.Toasts;
 
 namespace Toasts.Forms.Plugin.Sample.Droid
 {

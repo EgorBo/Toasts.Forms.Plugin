@@ -1,12 +1,11 @@
 using System;
 using System.Threading.Tasks;
 using Android.App;
-using Toasts;
 using View = Android.Views.View;
 using System.Threading;
 using Android.Content;
 
-namespace Toasts
+namespace Plugin.Toasts
 {
     public class ToastNotificatorImplementation : IToastNotificator
     {

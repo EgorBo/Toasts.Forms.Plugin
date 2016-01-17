@@ -4,7 +4,7 @@ using Android.Graphics;
 using Android.Views;
 using Android.Widget;
 
-namespace Toasts
+namespace Plugin.Toasts
 {
     public class DefaultToastLayoutRenderer : IToastLayoutCustomRenderer
     {

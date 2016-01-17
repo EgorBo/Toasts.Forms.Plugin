@@ -5,7 +5,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Resources;
 
-namespace Toasts
+namespace Plugin.Toasts
 {
     public class DefaultToastLayoutRenderer : IToastLayoutCustomRenderer
     {

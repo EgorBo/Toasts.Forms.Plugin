@@ -1,0 +1,28 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Windows.UI.Xaml.Controls;assembly=Windows"
+    xmlns:toasts="using:Plugin.Toasts">
+    <Style x:Key="MainFrameStyle" TargetType="Frame">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Frame">
+                    <Border x:Name="ClientArea" BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Background="{TemplateBinding Background}"
+                            HorizontalAlignment="{TemplateBinding HorizontalAlignment}" 
+                            VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                        <Grid>
+                            <ContentControl ContentTemplate="{TemplateBinding ContentTemplate}"
+                                            Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                            VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            <toasts:ToastPromptsHostControl x:Name="ToastControl" VerticalAlignment="Top" HorizontalAlignment="Stretch"/>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
