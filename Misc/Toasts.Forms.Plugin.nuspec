@@ -2,10 +2,10 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata minClientVersion="2.8.1">
     <id>Toasts.Forms.Plugin</id>
-    <version>1.0.9.21</version>
-    <title>Toasts Plugin for Xamarin.Forms</title>
-    <authors>Egor Bogatov</authors>
-    <owners>Egor Bogatov</owners>
+    <version>2.0.0-pre1</version>
+    <title>Toasts Plugin for Xamarin and Windows</title>
+    <authors>Egor Bogatov, Adam Pedley</authors>
+    <owners>Egor Bogatov, Adam Pedley</owners>
     <licenseUrl>https://github.com/EgorBo/Toasts.Forms.Plugin/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/EgorBo/Toasts.Forms.Plugin</projectUrl>
     <iconUrl>http://habrastorage.org/files/9e9/052/d99/9e9052d994f943adbf566be461ede49e.png</iconUrl>
@@ -14,18 +14,19 @@
       Xamarin.Forms plugin to display toast notifications
     </summary>
     <description>
-      Xamarin.Forms plugin to display toast notifications.
+      Xamarin.Forms plugin to display toast notifications. Supports Xamarin and Windows Platforms.
 
-      *** BREAKING CHANGE ***
-      You must now register the plugin in each native project.
-      DependencyService.Register&lt;ToastNotificatorImplementation&gt;();
-      No longer has Xamarin Forms dependency
+      Ensure you call ToastNotificatorImplementation.Init(); and register the dependency in each project. DependencyService.Register&lt;ToastNotificatorImplementation&gt;();
 
-      Ensure you call ToastNotificatorImplementation.Init(); and register the dependency in each project.
-      
       Read the full documenation on the projects page.
     </description>
-    <tags>xamarin, xamarin.forms, android, ios, windows phone, toast notifications, crouton, TWMessageBarManager</tags>
+    <tags>xamarin, xamarin.forms, android, ios, windows phone, toast notifications, crouton, TWMessageBarManager, local notifications</tags>
+    <releaseNotes>
+      [2.0.0-pre1]
+      -Support for WinRT added
+      -Breaking changes:
+      --New namespace - Plugin.Settings     
+    </releaseNotes>
   </metadata>
   <files>
     <!--Core-->
@@ -37,6 +38,12 @@
     <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.pdb" target="lib\wp8\Toasts.Forms.Plugin.Abstractions.pdb" />
     <file src="..\Toasts.Forms.Plugin.WindowsPhone\bin\Release\Toasts.Forms.Plugin.WindowsPhone.dll" target="lib\wp8\Toasts.Forms.Plugin.WindowsPhone.dll" />
     <file src="..\Toasts.Forms.Plugin.WindowsPhone\bin\Release\Toasts.Forms.Plugin.WindowsPhone.pdb" target="lib\wp8\Toasts.Forms.Plugin.WindowsPhone.pdb" />
+
+    <!--Win RT-->
+    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\wpa81\Toasts.Forms.Plugin.Abstractions.dll" />
+    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.pdb" target="lib\wpa81\Toasts.Forms.Plugin.Abstractions.pdb" />
+    <file src="..\Toasts.Forms.Plugin.WinRT\bin\Release\Toasts.Forms.Plugin.WinRT.dll" target="lib\wpa81\Toasts.Forms.Plugin.WinRT.dll" />
+    <file src="..\Toasts.Forms.Plugin.WinRT\bin\Release\Toasts.Forms.Plugin.WinRT.pdb" target="lib\wpa81\Toasts.Forms.Plugin.WinRT.pdb" />
 
     <!--Xamarin.Android-->
     <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\MonoAndroid10\Toasts.Forms.Plugin.Abstractions.dll" />

@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Toasts
+namespace Plugin.Toasts
 {
     public interface IToastNotificator
     {

@@ -1,5 +1,6 @@
 ﻿using System;
 using Xamarin.Forms;
+using Plugin.Toasts;
 
 namespace Toasts.Forms.Plugin.Sample
 {
@@ -9,7 +10,7 @@ namespace Toasts.Forms.Plugin.Sample
         {
             Button showInfo = new Button { Text = "Info" };
             showInfo.Clicked += (s, e) => ShowToast(ToastNotificationType.Info);
-
+           
             Button showSuccess = new Button { Text = "Success" };
             showSuccess.Clicked += (s, e) => ShowToast(ToastNotificationType.Success);
 

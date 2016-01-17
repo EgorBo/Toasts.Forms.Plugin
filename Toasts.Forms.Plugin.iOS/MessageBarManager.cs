@@ -32,7 +32,7 @@ using System.Threading;
 using Foundation;
 using UIKit;
 
-namespace Toasts
+namespace Plugin.Toasts
 {
     public class MessageBarManager : NSObject
     {

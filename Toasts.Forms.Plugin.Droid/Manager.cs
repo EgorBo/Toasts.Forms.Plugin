@@ -9,7 +9,7 @@ using Java.Interop;
 using Java.Util;
 using Java.Util.Concurrent;
 
-namespace Toasts
+namespace Plugin.Toasts
 {
     public class Manager : Handler
     {

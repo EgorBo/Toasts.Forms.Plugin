@@ -7,7 +7,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
 
-namespace Toasts
+namespace Plugin.Toasts
 {
     public class ToastPromtsHostControl : Grid
     {
@@ -164,7 +164,6 @@ namespace Toasts
                 closeButton.Padding = new Thickness(0);
                 closeButton.Opacity = 0.4;
                 closeButton.Margin = new Thickness(-12, -15, -8, -8); //TODO: fix it
-                closeButton.FontSize = 32;
                 closeButton.HorizontalAlignment = HorizontalAlignment.Right;
                 closeButton.Tap += CloseButton_OnTap;
                 layoutGrid.Children.Add(closeButton);

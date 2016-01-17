@@ -27,7 +27,7 @@
 
 using UIKit;
 
-namespace Toasts
+namespace Plugin.Toasts
 {
     public class MessageBarStyleSheet 
     {

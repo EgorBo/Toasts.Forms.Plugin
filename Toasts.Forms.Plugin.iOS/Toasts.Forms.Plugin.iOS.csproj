@@ -8,7 +8,7 @@
     <ProjectGuid>{4AEF417F-5FD0-4255-94E2-60538CCF0C40}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>Toasts</RootNamespace>
+    <RootNamespace>Plugin.Toasts</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>Toasts.Forms.Plugin.iOS</AssemblyName>
     <NuGetPackageImportStamp>

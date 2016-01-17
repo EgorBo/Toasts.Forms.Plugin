@@ -30,7 +30,7 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace Toasts
+namespace Plugin.Toasts
 {
     public class MessageView : UIView
     {

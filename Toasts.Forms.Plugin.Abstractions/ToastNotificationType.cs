@@ -1,4 +1,4 @@
-﻿namespace Toasts
+﻿namespace Plugin.Toasts
 {
     public enum ToastNotificationType
     {

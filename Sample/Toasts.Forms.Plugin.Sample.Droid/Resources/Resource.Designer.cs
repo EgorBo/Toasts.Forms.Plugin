@@ -26,16 +26,16 @@ namespace Toasts.Forms.Plugin.Sample.Droid
 		
 		public static void UpdateIdValues()
 		{
-			global::Toasts.Resource.Drawable.error = global::Toasts.Forms.Plugin.Sample.Droid.Resource.Drawable.error;
-			global::Toasts.Resource.Drawable.info = global::Toasts.Forms.Plugin.Sample.Droid.Resource.Drawable.info;
-			global::Toasts.Resource.Drawable.success = global::Toasts.Forms.Plugin.Sample.Droid.Resource.Drawable.success;
-			global::Toasts.Resource.Drawable.warning = global::Toasts.Forms.Plugin.Sample.Droid.Resource.Drawable.warning;
-			global::Toasts.Resource.Id.desc = global::Toasts.Forms.Plugin.Sample.Droid.Resource.Id.desc;
-			global::Toasts.Resource.Id.image = global::Toasts.Forms.Plugin.Sample.Droid.Resource.Id.image;
-			global::Toasts.Resource.Id.title = global::Toasts.Forms.Plugin.Sample.Droid.Resource.Id.title;
-			global::Toasts.Resource.Layout.crouton = global::Toasts.Forms.Plugin.Sample.Droid.Resource.Layout.crouton;
-			global::Toasts.Resource.String.ApplicationName = global::Toasts.Forms.Plugin.Sample.Droid.Resource.String.ApplicationName;
-			global::Toasts.Resource.String.Hello = global::Toasts.Forms.Plugin.Sample.Droid.Resource.String.Hello;
+			global::Plugin.Toasts.Resource.Drawable.error = global::Toasts.Forms.Plugin.Sample.Droid.Resource.Drawable.error;
+			global::Plugin.Toasts.Resource.Drawable.info = global::Toasts.Forms.Plugin.Sample.Droid.Resource.Drawable.info;
+			global::Plugin.Toasts.Resource.Drawable.success = global::Toasts.Forms.Plugin.Sample.Droid.Resource.Drawable.success;
+			global::Plugin.Toasts.Resource.Drawable.warning = global::Toasts.Forms.Plugin.Sample.Droid.Resource.Drawable.warning;
+			global::Plugin.Toasts.Resource.Id.desc = global::Toasts.Forms.Plugin.Sample.Droid.Resource.Id.desc;
+			global::Plugin.Toasts.Resource.Id.image = global::Toasts.Forms.Plugin.Sample.Droid.Resource.Id.image;
+			global::Plugin.Toasts.Resource.Id.title = global::Toasts.Forms.Plugin.Sample.Droid.Resource.Id.title;
+			global::Plugin.Toasts.Resource.Layout.crouton = global::Toasts.Forms.Plugin.Sample.Droid.Resource.Layout.crouton;
+			global::Plugin.Toasts.Resource.String.ApplicationName = global::Toasts.Forms.Plugin.Sample.Droid.Resource.String.ApplicationName;
+			global::Plugin.Toasts.Resource.String.Hello = global::Toasts.Forms.Plugin.Sample.Droid.Resource.String.Hello;
 			global::Xamarin.Forms.Platform.Resource.Animation.abc_fade_in = global::Toasts.Forms.Plugin.Sample.Droid.Resource.Animation.abc_fade_in;
 			global::Xamarin.Forms.Platform.Resource.Animation.abc_fade_out = global::Toasts.Forms.Plugin.Sample.Droid.Resource.Animation.abc_fade_out;
 			global::Xamarin.Forms.Platform.Resource.Animation.abc_grow_fade_in_from_bottom = global::Toasts.Forms.Plugin.Sample.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
