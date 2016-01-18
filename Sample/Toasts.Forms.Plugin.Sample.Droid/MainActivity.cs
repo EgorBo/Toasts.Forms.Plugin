@@ -19,8 +19,11 @@ namespace Toasts.Forms.Plugin.Sample.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
             DependencyService.Register<ToastNotificatorImplementation>();
-            ToastNotificatorImplementation.Init(Xamarin.Forms.Forms.Context);
+
+            ToastNotificatorImplementation.Init(this);
+
             LoadApplication(new App());
         }
     }

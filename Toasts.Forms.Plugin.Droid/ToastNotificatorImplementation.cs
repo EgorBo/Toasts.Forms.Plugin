@@ -20,7 +20,7 @@ namespace Plugin.Toasts
         public Task<bool> Notify(ToastNotificationType type, string title, string description, TimeSpan duration, object context = null, bool clickable = true)
         {
             var taskCompletionSource = new TaskCompletionSource<bool>();
-
+            
             Activity currentActivity = _context as Activity;
             if (currentActivity == null)
                 return Task.FromResult(false);
