@@ -40,10 +40,10 @@
     <file src="..\Toasts.Forms.Plugin.WindowsPhone\bin\Release\Toasts.Forms.Plugin.WindowsPhone.pdb" target="lib\wp8\Toasts.Forms.Plugin.WindowsPhone.pdb" />
 
     <!--Win RT-->
-    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\wpa81+netcore4511\Toasts.Forms.Plugin.Abstractions.dll" />
-    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.pdb" target="lib\wpa81+netcore451\Toasts.Forms.Plugin.Abstractions.pdb" />
-    <file src="..\Toasts.Forms.Plugin.WinRT\bin\Release\Toasts.Forms.Plugin.WinRT.dll" target="lib\wpa81+netcore451\Toasts.Forms.Plugin.WinRT.dll" />
-    <file src="..\Toasts.Forms.Plugin.WinRT\bin\Release\Toasts.Forms.Plugin.WinRT.pdb" target="lib\wpa81+netcore451\Toasts.Forms.Plugin.WinRT.pdb" />
+    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\portable-netcore451+wpa81\Toasts.Forms.Plugin.Abstractions.dll" />
+    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.pdb" target="lib\portable-netcore451+wpa81\Toasts.Forms.Plugin.Abstractions.pdb" />
+    <file src="..\Toasts.Forms.Plugin.WinRT\bin\Release\Toasts.Forms.Plugin.WinRT.dll" target="lib\portable-netcore451+wpa81\Toasts.Forms.Plugin.WinRT.dll" />
+    <file src="..\Toasts.Forms.Plugin.WinRT\bin\Release\Toasts.Forms.Plugin.WinRT.pdb" target="lib\portable-netcore451+wpa81\Toasts.Forms.Plugin.WinRT.pdb" />
 
     <!--Xamarin.Android-->
     <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\MonoAndroid10\Toasts.Forms.Plugin.Abstractions.dll" />
