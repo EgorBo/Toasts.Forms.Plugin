@@ -30,6 +30,7 @@ In your iOS, Android, and Windows Phone projects please call:
 Xamarin.Forms.Init();//platform specific init
 DependencyService.Register<ToastNotificatorImplementation>(); // Register your dependency
 ToastNotificatorImplementation.Init(); //you can pass additional parameters here
+//ToastNotificatorImplementation.Init(this); // In Android
 ```
 
 You must do this AFTER you call Xamarin.Forms.Init();

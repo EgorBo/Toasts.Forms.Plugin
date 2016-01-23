@@ -59,28 +59,28 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Icons\icon-error.png" />
+    <BundleResource Include="Resources\Icons\icon-error.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Icons\icon-error%402x.png" />
+    <BundleResource Include="Resources\Icons\icon-error%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Icons\icon-info.png" />
+    <BundleResource Include="Resources\Icons\icon-info.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Icons\icon-info%402x.png" />
+    <BundleResource Include="Resources\Icons\icon-info%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Icons\icon-success.png" />
+    <BundleResource Include="Resources\Icons\icon-success.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Icons\icon-success%402x.png" />
+    <BundleResource Include="Resources\Icons\icon-success%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Icons\icon-warning%402x.png" />
+    <BundleResource Include="Resources\Icons\icon-warning%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Icons\icon-warning.png" />
+    <BundleResource Include="Resources\Icons\icon-warning.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -48,10 +48,12 @@ namespace Plugin.Toasts
         {
             Manager.Instance.RemoveCroutons();
         }
-
+               
         /// <summary>
-        /// You can pass your custom renderer for toast layour, in case of null DefaultToastLayoutRenderer will be used
+        /// You can pass your custom renderer for toast layout, in case of null DefaultToastLayoutRenderer will be used
         /// </summary>
+        /// <param name="context">The current activity. In Xamarin Forms pass the instance of the MainActity e.g. Init(this);</param>
+        /// <param name="customRenderer"></param>
         public static void Init(Context context, IToastLayoutCustomRenderer customRenderer = null)
         {
             _context = context;
