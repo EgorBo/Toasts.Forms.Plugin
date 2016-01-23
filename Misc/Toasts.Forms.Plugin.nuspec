@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata minClientVersion="2.8.1">
     <id>Toasts.Forms.Plugin</id>
-    <version>2.0.0-pre1</version>
+    <version>2.0.0-pre2</version>
     <title>Toasts Plugin for Xamarin and Windows</title>
     <authors>Egor Bogatov, Adam Pedley</authors>
     <owners>Egor Bogatov, Adam Pedley</owners>
@@ -22,10 +22,13 @@
     </description>
     <tags>xamarin, xamarin.forms, android, ios, windows phone, toast notifications, crouton, TWMessageBarManager, local notifications</tags>
     <releaseNotes>
+      [2.0.0-pre2]
+      -iOS BundleResource Image Fix
+      -2 line support on Toast in ARM64 iOS
       [2.0.0-pre1]
       -Support for WinRT added
       -Breaking changes:
-      --New namespace - Plugin.Settings     
+      --New namespace - Plugin.Settings
     </releaseNotes>
   </metadata>
   <files>
