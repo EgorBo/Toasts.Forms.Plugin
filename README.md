@@ -24,6 +24,20 @@ Setup and usage
 * Available on NuGet: https://www.nuget.org/packages/Toasts.Forms.Plugin
 * Install into your PCL project and Client projects.
 
+**Platform Support**
+
+|Platform|Supported|Version|
+| ------------------- | :-----------: | :------------------: |
+|Xamarin.iOS|Yes|iOS 7+|
+|Xamarin.iOS Unified|Yes|iOS 7+|
+|Xamarin.Android|Yes|API 16+|
+|Windows Phone Silverlight|Yes|8.0+|
+|Windows Phone RT|Yes|8.1+|
+|Windows Store RT|Yes|8.1+|
+|Windows 10 UWP|Yes|10+|
+|Xamarin.Mac|No||
+
+
 In your iOS, Android, and Windows Phone projects please call:
 
 ```csharp

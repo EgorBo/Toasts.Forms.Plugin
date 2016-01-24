@@ -34,6 +34,8 @@ namespace Toasts.Forms.Plugin.Sample
 					}
                 }
             };
+            
+
         }
 
         private async void ShowToast(ToastNotificationType type)
