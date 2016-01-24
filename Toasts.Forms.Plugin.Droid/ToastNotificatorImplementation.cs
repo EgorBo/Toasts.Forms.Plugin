@@ -11,7 +11,7 @@ namespace Plugin.Toasts
     {
         private static IToastLayoutCustomRenderer _customRenderer;
 
-        private static Context _context = null;
+        private static Activity _activity = null;
         public ToastNotificatorImplementation()
         {
             
@@ -21,12 +21,11 @@ namespace Plugin.Toasts
         {
             var taskCompletionSource = new TaskCompletionSource<bool>();
             
-            Activity currentActivity = _context as Activity;
-            if (currentActivity == null)
+            if (_activity == null)
                 return Task.FromResult(false);
 
-            View view = _customRenderer.Render(currentActivity, type, title, description, context);
-            Crouton crouton = new Crouton(currentActivity, view, (int)duration.TotalMilliseconds, 
+            View view = _customRenderer.Render(_activity, type, title, description, context);
+            Crouton crouton = new Crouton(_activity, view, (int)duration.TotalMilliseconds, 
                 b =>
                 {
                     if (clickable)
@@ -52,11 +51,11 @@ namespace Plugin.Toasts
         /// <summary>
         /// You can pass your custom renderer for toast layout, in case of null DefaultToastLayoutRenderer will be used
         /// </summary>
-        /// <param name="context">The current activity. In Xamarin Forms pass the instance of the MainActity e.g. Init(this);</param>
+        /// <param name="activity">The current activity. In Xamarin Forms pass the instance of the MainActity e.g. Init(this);</param>
         /// <param name="customRenderer"></param>
-        public static void Init(Context context, IToastLayoutCustomRenderer customRenderer = null)
+        public static void Init(Activity activity, IToastLayoutCustomRenderer customRenderer = null)
         {
-            _context = context;
+            _activity = activity;
             _customRenderer = customRenderer ?? new DefaultToastLayoutRenderer();
         }
     }
