@@ -17,11 +17,12 @@ namespace Toasts.Forms.Plugin.Sample.WinPhone
         public MainPage()
         {
             InitializeComponent();
-            SupportedOrientations = SupportedPageOrientation.PortraitOrLandscape;
 
-            global::Xamarin.Forms.Forms.Init();
+            Xamarin.Forms.Forms.Init();
+
             DependencyService.Register<ToastNotificatorImplementation>();
             ToastNotificatorImplementation.Init(stackSize: 2);
+
             LoadApplication(new Sample.App());
         }
     }
