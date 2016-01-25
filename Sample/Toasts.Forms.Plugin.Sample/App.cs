@@ -41,7 +41,7 @@ namespace Toasts.Forms.Plugin.Sample
         private async void ShowToast(ToastNotificationType type)
         {
             var notificator = DependencyService.Get<IToastNotificator>();
-            bool tapped = await notificator.Notify(ToastNotificationType.Info, "Title", "Description", TimeSpan.FromSeconds(2));
+            bool tapped = await notificator.Notify(type, "Some " + type.ToString().ToLower(), "Some description", TimeSpan.FromSeconds(2));
         }
     }
 }
