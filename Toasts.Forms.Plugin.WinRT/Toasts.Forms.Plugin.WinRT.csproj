@@ -117,10 +117,18 @@
     <Compile Include="ToastPromptsHostControl.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Icons\error.png" />
-    <Content Include="Icons\info.png" />
-    <Content Include="Icons\success.png" />
-    <Content Include="Icons\warning.png" />
+    <Content Include="Icons\error.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Icons\info.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Icons\success.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Icons\warning.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <TargetPlatform Include="Windows, Version=8.1" />
