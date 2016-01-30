@@ -2,7 +2,7 @@
 <package>
   <metadata minClientVersion="2.8.1">
     <id>Toasts.Forms.Plugin</id>
-    <version>2.0.2</version>
+    <version>2.0.3</version>
     <title>Toasts Plugin for Xamarin and Windows</title>
     <authors>Egor Bogatov, Adam Pedley</authors>
     <owners>Egor Bogatov, Adam Pedley</owners>
@@ -22,20 +22,16 @@
     </description>
     <tags>xamarin, xamarin.forms, android, ios, windows phone, toast notifications, crouton, TWMessageBarManager, local notifications</tags>
     <releaseNotes>
-      [2.0.4]
+      [2.0.3]
       - iOS bug fix
       - WinRT bug fix
     </releaseNotes>   
   </metadata>
   <files>
     <!--Core-->
-<<<<<<< HEAD
-    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Toasts.Forms.Plugin.Abstractions.dll" />
-    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.pdb" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Toasts.Forms.Plugin.Abstractions.pdb" />
-=======
+
     <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\portable-net45+wp8+win8+wpa81+netcore451+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Toasts.Forms.Plugin.Abstractions.dll" />
     <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.pdb" target="lib\portable-net45+wp8+win8+wpa81+netcore451+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Toasts.Forms.Plugin.Abstractions.pdb" />
->>>>>>> refs/remotes/EgorBo/master
 
     <!--Win Phone-->
     <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\wp8\Toasts.Forms.Plugin.Abstractions.dll" />
@@ -49,12 +45,12 @@
     <file src="..\Toasts.Forms.Plugin.WinRT\bin\Release\Toasts.Forms.Plugin.WinRT.dll" target="lib\portable-netcore451+wpa81\Toasts.Forms.Plugin.WinRT.dll" />
     <file src="..\Toasts.Forms.Plugin.WinRT\bin\Release\Toasts.Forms.Plugin.WinRT.pdb" target="lib\portable-netcore451+wpa81\Toasts.Forms.Plugin.WinRT.pdb" />
 
-    <file src="..\Toasts.Forms.Plugin.WinRT\bin\Release\Icons\error.png" target="content\wpa81\Icons\error.png" />
-    <file src="..\Toasts.Forms.Plugin.WinRT\bin\Release\Icons\info.png" target="content\wpa81\Icons\info.png" />
-    <file src="..\Toasts.Forms.Plugin.WinRT\bin\Release\Icons\success.png" target="content\wpa81\Icons\success.png" />
-    <file src="..\Toasts.Forms.Plugin.WinRT\bin\Release\Icons\warning.png" target="content\wpa81\Icons\warning.png" />
+    <file src="..\Toasts.Forms.Plugin.WinRT\bin\Release\Icons\error.png" target="content\portable-netcore451+wpa81\Icons\error.png" />
+    <file src="..\Toasts.Forms.Plugin.WinRT\bin\Release\Icons\info.png" target="content\portable-netcore451+wpa81\Icons\info.png" />
+    <file src="..\Toasts.Forms.Plugin.WinRT\bin\Release\Icons\success.png" target="content\portable-netcore451+wpa81\Icons\success.png" />
+    <file src="..\Toasts.Forms.Plugin.WinRT\bin\Release\Icons\warning.png" target="content\portable-netcore451+wpa81\Icons\warning.png" />
     
-    <file src="..\Toasts.Forms.Plugin.WinRT\FrameStyle.xaml" target="content\wpa81\FrameStyle.xaml" />
+    <file src="..\Toasts.Forms.Plugin.WinRT\FrameStyle.xaml" target="content\portable-netcore451+wpa81\FrameStyle.xaml" />
 
     <!--Xamarin.Android-->
     <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\MonoAndroid10\Toasts.Forms.Plugin.Abstractions.dll" />
@@ -68,11 +64,5 @@
     <file src="..\Toasts.Forms.Plugin.iOS\bin\iPhone\Release\Toasts.Forms.Plugin.iOS.dll" target="lib\Xamarin.iOS10\Toasts.Forms.Plugin.iOS.dll" />
 
   </files>
-<<<<<<< HEAD
-
-
 
 </package>
-=======
-</package>
->>>>>>> refs/remotes/EgorBo/master
