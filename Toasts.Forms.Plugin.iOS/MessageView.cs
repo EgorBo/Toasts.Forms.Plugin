@@ -201,13 +201,13 @@ namespace Plugin.Toasts
             TitleColor.SetColor ();
                 
             var titleRectangle = new RectangleF (xOffset, yOffset, (float) titleLabelSize.Width + 5, (float) titleLabelSize.Height + 5);
-            Title.DrawString(titleRectangle, TitleFont, UILineBreakMode.TailTruncation, UITextAlignment.Left);
+			Title.DrawString (titleRectangle, new UIStringAttributes {Font=TitleFont, ForegroundColor = TitleColor});
             yOffset += (float)titleLabelSize.Height;
 
             CGSize descriptionLabelSize = DescriptionSize();
             DescriptionColor.SetColor();
             var descriptionRectangle = new RectangleF(xOffset, yOffset, (float)descriptionLabelSize.Width + Padding, (float)descriptionLabelSize.Height);
-            Description.DrawString(descriptionRectangle, DescriptionFont, UILineBreakMode.TailTruncation, UITextAlignment.Left);
+			Description.DrawString (descriptionRectangle, new UIStringAttributes {Font=DescriptionFont, ForegroundColor = DescriptionColor});
         }
 
         private CGSize TitleSize()
