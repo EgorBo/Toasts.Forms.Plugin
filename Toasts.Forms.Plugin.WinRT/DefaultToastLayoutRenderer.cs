@@ -121,7 +121,7 @@ namespace Plugin.Toasts
 
         private static BitmapImage LoadBitmapImage(string fileName)
         {
-            Uri uri = new Uri("ms-appx:///Toasts.Forms.Plugin.WinRT/Icons/" + fileName, UriKind.Absolute);
+            Uri uri = new Uri("ms-appx:///Icons/" + fileName, UriKind.Absolute);
             BitmapImage bitmap = new BitmapImage(uri);
             return bitmap;
 

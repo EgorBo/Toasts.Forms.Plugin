@@ -23,7 +23,7 @@ namespace Plugin.Toasts
                 // Let's inject our toast into frame using a special Frame template defined in FrameStyle.xaml
                 var frameStyleRd = new ResourceDictionary();
                 var frame = (Frame)Window.Current.Content;
-                frameStyleRd.Source = new Uri("ms-appx:///Toasts.Forms.Plugin.WinRT/FrameStyle.xaml",
+                frameStyleRd.Source = new Uri("ms-appx:///FrameStyle.xaml",
                     UriKind.Absolute);
                 Application.Current.Resources.MergedDictionaries.Add(frameStyleRd);
                 frame.Style = Application.Current.Resources["MainFrameStyle"] as Style;
