@@ -1,7 +1,7 @@
-Toasts Plugin for Xamarin.Forms
+Toasts Plugin for Xamarin and Windows
 ===================
 
-A simple way of showing some notifications inside your Xamarin.Forms application. In windows phone world we call them "Toasts".
+A simple way of showing some notifications inside your Xamarin or Windows application. In windows phone world we call them "Toasts".
 
 #### Android
 Android implementation is based on https://github.com/keyboardsurfer/Crouton with several changes and ported to C# without bindings.
@@ -47,7 +47,7 @@ ToastNotificatorImplementation.Init(); //you can pass additional parameters here
 //ToastNotificatorImplementation.Init(this); // In Android
 ```
 
-You must do this AFTER you call Xamarin.Forms.Init();
+If you are using Xamarin Forms, you must do this AFTER your call to Xamarin.Forms.Init();
 By the way, toasts on each platform support customization - you can pass your own style (custom renderer) as an argument in Init() method.
 
 #### Usage
@@ -58,7 +58,7 @@ bool tapped = await notificator.Notify(ToastNotificationType.Error,
 	"Error", "Something went wrong", TimeSpan.FromSeconds(2));
 ```
 #### Customization
-On all three platforms you can completely override toast UI. However, there is also an easy way to add a new status with custom icon and background, let's take a look on a Windows Phone example. In this example we want to add a few more types of messages with custom icons. Our code in PCL will look like this:
+On all three platforms you can completely override toast UI. However, there is also an easy way to add a new status with a custom icon and background, let's take a look on a Windows Phone example. In this example we want to add a few more types of messages with custom icons. Our code will look like this:
 ```csharp
 var notificator = DependencyService.Get<IToastNotificator>();
 bool tapped = await notificator.Notify(
