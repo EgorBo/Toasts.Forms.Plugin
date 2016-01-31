@@ -41,10 +41,9 @@ Setup and usage
 In your iOS, Android, and Windows Phone projects please call:
 
 ```csharp
-Xamarin.Forms.Init();//platform specific init
 DependencyService.Register<ToastNotificatorImplementation>(); // Register your dependency
 ToastNotificatorImplementation.Init(); //you can pass additional parameters here
-//ToastNotificatorImplementation.Init(this); // In Android
+// ToastNotificatorImplementation.Init(this); // In Android ([this] is the current Android Activity)
 ```
 
 If you are using Xamarin Forms, you must do this AFTER your call to Xamarin.Forms.Init();
