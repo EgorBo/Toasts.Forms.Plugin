@@ -118,11 +118,6 @@
       <Project>{A6005E12-DE46-4F28-8F97-8B8564AF191C}</Project>
       <Name>Toasts.Forms.Plugin.Abstractions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Toasts.Forms.Plugin.iOS\Toasts.Forms.Plugin.iOS.csproj">
-      <Project>{4AEF417F-5FD0-4255-94E2-60538CCF0C40}</Project>
-      <Name>Toasts.Forms.Plugin.iOS</Name>
-      <IsAppExtension>false</IsAppExtension>
-    </ProjectReference>
     <ProjectReference Include="..\Toasts.Forms.Plugin.Sample\Toasts.Forms.Plugin.Sample.csproj">
       <Name>Toasts.Forms.Plugin.Sample</Name>
     </ProjectReference>
@@ -149,6 +144,10 @@
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
+    <Reference Include="Toasts.Forms.Plugin.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Toasts.Forms.Plugin.iOS\bin\iPhone\Debug\Toasts.Forms.Plugin.iOS.dll</HintPath>
+    </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.2.1.0.6529\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
       <Private>True</Private>
