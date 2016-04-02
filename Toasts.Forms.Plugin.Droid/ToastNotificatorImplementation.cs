@@ -25,6 +25,7 @@ namespace Plugin.Toasts
                 return Task.FromResult(false);
 
             View view = _customRenderer.Render(_activity, type, title, description, context);
+
             Crouton crouton = new Crouton(_activity, view, (int)duration.TotalMilliseconds, 
                 b =>
                 {
@@ -33,6 +34,7 @@ namespace Plugin.Toasts
                         taskCompletionSource.TrySetResult(b);
                     }
                 }, context);
+        
             crouton.Show();
             return taskCompletionSource.Task;
         }
