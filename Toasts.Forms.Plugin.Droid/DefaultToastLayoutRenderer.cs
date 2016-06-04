@@ -1,8 +1,10 @@
-﻿using System;
+using System;
 using Android.App;
 using Android.Graphics;
 using Android.Views;
 using Android.Widget;
+using Android.Content;
+using Android.Runtime;
 
 namespace Plugin.Toasts
 {
@@ -54,6 +56,18 @@ namespace Plugin.Toasts
                     throw new ArgumentOutOfRangeException("type");
             }
 
+            // First, we get application metrics
+            IWindowManager windowManager = Application.Context.GetSystemService(Context.WindowService).JavaCast<IWindowManager>();
+            var metrics = new Android.Util.DisplayMetrics();
+            windowManager.DefaultDisplay.GetMetrics(metrics);
+    
+            // then we convert statusbar height in dpi to real pixels
+            int statusBarDpiHeight = 24;
+            int sizeInPixels = Convert.ToInt32(Math.Ceiling(statusBarDpiHeight * metrics.Density));
+    
+            // and least we set the Y of the view to be just under the statusbar
+            view.SetY(sizeInPixels);
+      
             return view;
         }
     }
