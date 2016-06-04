@@ -157,7 +157,7 @@ namespace Plugin.Toasts
             var layoutListener = new GlobalLayoutListener();
             layoutListener.OnGlobalLayout(delegate
             {
-                if (Build.VERSION.SdkInt < Build.VERSION_CODES.JellyBean)
+                if (Build.VERSION.SdkInt < BuildVersionCodes.JellyBean)
                 {
                     croutonView.ViewTreeObserver.RemoveGlobalOnLayoutListener(layoutListener);
                 }
@@ -180,7 +180,7 @@ namespace Plugin.Toasts
         private void HandleTranslucentActionBar(ViewGroup.MarginLayoutParams parameters, Activity activity)
         {
             // Translucent status is only available as of Android 4.4 Kit Kat.
-            if (Build.VERSION.SdkInt >= Build.VERSION_CODES.Kitkat)
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.Kitkat)
             {
                 var flags = (int) activity.Window.Attributes.Flags;
                 var translucentStatusFlag = (int) WindowManagerFlags.TranslucentStatus;
@@ -195,7 +195,7 @@ namespace Plugin.Toasts
         private void HandleActionBarOverlay(ViewGroup.MarginLayoutParams parameters, Activity activity)
         {
             // ActionBar overlay is only available as of Android 3.0 Honeycomb.
-            if (Build.VERSION.SdkInt >= Build.VERSION_CODES.Honeycomb)
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.Honeycomb)
             {
                 bool flags = activity.Window.HasFeature(WindowFeatures.ActionBarOverlay);
                 if (flags)
