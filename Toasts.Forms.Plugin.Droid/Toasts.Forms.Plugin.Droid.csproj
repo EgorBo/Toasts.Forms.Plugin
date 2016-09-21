@@ -59,8 +59,9 @@
     <Compile Include="ToastNotificatorImplementation.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AboutResources.txt" />
-    <AndroidResource Include="Resources\Layout\crouton.axml" />
+    <AndroidResource Include="Resources\Layout\crouton.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />

@@ -8,17 +8,17 @@ namespace Toasts.Forms.Plugin.Sample
     {
         public App()
         {
-            Button showInfo = new Button { Text = "Info" };
-            showInfo.Clicked += (s, e) => ShowToast(ToastNotificationType.Info);
+
+            var options = new NotificationOptions()
+            {
+                Title = "Title",
+                Description = "Some Description"
+            };
+
+            Button showToast = new Button { Text = "Show Toast" };
+            showToast.Clicked += (s, e) => ShowToast(options);
            
-            Button showSuccess = new Button { Text = "Success" };
-            showSuccess.Clicked += (s, e) => ShowToast(ToastNotificationType.Success);
-
-            Button showWarning = new Button { Text = "Warning" };
-            showWarning.Clicked += (s, e) => ShowToast(ToastNotificationType.Warning);
-
-            Button showError = new Button { Text = "Error" };
-            showError.Clicked += (s, e) => ShowToast(ToastNotificationType.Error);
+         
 
             // The root page of your application
             MainPage = new ContentPage
@@ -27,10 +27,7 @@ namespace Toasts.Forms.Plugin.Sample
                 {
                     VerticalOptions = LayoutOptions.Center,
                     Children = {
-                        showInfo,
-                        showSuccess,
-                        showWarning,
-                        showError
+                        showToast
 					}
                 }
             };
@@ -38,10 +35,10 @@ namespace Toasts.Forms.Plugin.Sample
 
         }
 
-        private async void ShowToast(ToastNotificationType type)
+        private async void ShowToast(INotificationOptions options)
         {
             var notificator = DependencyService.Get<IToastNotificator>();
-            bool tapped = await notificator.Notify(type, "Some " + type.ToString().ToLower(), "Some description", TimeSpan.FromSeconds(2));
+            bool tapped = await notificator.Notify(options);
         }
     }
 }

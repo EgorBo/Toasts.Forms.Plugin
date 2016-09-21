@@ -28,10 +28,10 @@ Setup and usage
 
 |Platform|Supported|Version|
 | ------------------- | :-----------: | :------------------: |
-|Xamarin.iOS|Yes|iOS 7+|
+|Xamarin.iOS|No||
 |Xamarin.iOS Unified|Yes|iOS 7+|
-|Xamarin.Android|Yes|API 16+|
-|Windows Phone Silverlight|Yes|8.0+|
+|Xamarin.Android|Yes|API 16+ (AppCompat Only)|
+|Windows Phone Silverlight|No||
 |Windows Phone RT|Yes|8.1+|
 |Windows Store RT|Yes|8.1+|
 |Windows 10 UWP|Yes|10+|
@@ -42,12 +42,10 @@ In your iOS, Android, and Windows Phone projects please call:
 
 ```csharp
 DependencyService.Register<ToastNotificatorImplementation>(); // Register your dependency
-ToastNotificatorImplementation.Init(); //you can pass additional parameters here
-// ToastNotificatorImplementation.Init(this); // In Android ([this] is the current Android Activity)
+ToastNotificatorImplementation.Init(); //you can optionally pass a custom renderer
 ```
 
 If you are using Xamarin Forms, you must do this AFTER your call to Xamarin.Forms.Init();
-By the way, toasts on each platform support customization - you can pass your own style (custom renderer) as an argument in Init() method.
 
 #### Usage
 Use dependency service in order to resolve IToastNotificator

@@ -1,5 +1,4 @@
 using System;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Plugin.Toasts
@@ -19,12 +18,6 @@ namespace Plugin.Toasts
                     }
                 }, duration, _customStyle);
             return taskCompletionSource.Task;
-        }
-
-        public Task NotifySticky(ToastNotificationType type, string title, string description, object context = null,
-            bool clickable = true, CancellationToken cancellationToken = new CancellationToken(), bool modal = false)
-        {
-            throw new NotImplementedException("yet");
         }
 
         public void HideAll()

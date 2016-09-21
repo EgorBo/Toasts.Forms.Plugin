@@ -1,9 +1,7 @@
+using Android.App;
 using System;
 using System.Threading.Tasks;
-using Android.App;
 using View = Android.Views.View;
-using System.Threading;
-using Android.Content;
 
 namespace Plugin.Toasts
 {
@@ -38,13 +36,7 @@ namespace Plugin.Toasts
             crouton.Show();
             return taskCompletionSource.Task;
         }
-        
-        public Task NotifySticky(ToastNotificationType type, string title, string description, object context = null,
-            bool clickable = true, CancellationToken cancellationToken = new CancellationToken(), bool modal = false)
-        {
-            throw new NotImplementedException("yet");
-        }
-
+      
         public void HideAll()
         {
             Manager.Instance.RemoveCroutons();
@@ -55,9 +47,9 @@ namespace Plugin.Toasts
         /// </summary>
         /// <param name="activity">The current activity. In Xamarin Forms pass the instance of the MainActity e.g. Init(this);</param>
         /// <param name="customRenderer"></param>
-        public static void Init(Activity activity, IToastLayoutCustomRenderer customRenderer = null)
+        public static void Init(IToastLayoutCustomRenderer customRenderer = null)
         {
-            _activity = activity;
+            _activity = (Activity)Application.Context;
             _customRenderer = customRenderer ?? new DefaultToastLayoutRenderer();
         }
     }

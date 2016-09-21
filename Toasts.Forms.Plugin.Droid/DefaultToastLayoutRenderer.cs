@@ -1,14 +1,12 @@
-﻿using System;
-using Android.App;
+﻿using Android.App;
 using Android.Graphics;
 using Android.Views;
 using Android.Widget;
-using Android.Content;
-using Android.Runtime;
+using System;
 
 namespace Plugin.Toasts
 {
-	public class DefaultToastLayoutRenderer : IToastLayoutCustomRenderer
+    public class DefaultToastLayoutRenderer : IToastLayoutCustomRenderer
 	{
 		private readonly Action<object, ImageView> _imageSetterForCustomType;
 		private readonly Func<object, Color> _backgroundColorForCustomTypeResolver;
