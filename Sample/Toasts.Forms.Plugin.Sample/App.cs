@@ -12,7 +12,9 @@ namespace Toasts.Forms.Plugin.Sample
             var options = new NotificationOptions()
             {
                 Title = "Title",
-                Description = "Some Description"
+                Description = "Some Description",
+                LogoUri = "icon.png",
+                IsClickable = true
             };
 
             Button showToast = new Button { Text = "Show Toast" };
@@ -38,7 +40,7 @@ namespace Toasts.Forms.Plugin.Sample
         private async void ShowToast(INotificationOptions options)
         {
             var notificator = DependencyService.Get<IToastNotificator>();
-            bool tapped = await notificator.Notify(options);
+            var result = await notificator.Notify(options);
         }
     }
 }

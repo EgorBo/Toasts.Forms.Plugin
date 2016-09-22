@@ -7,6 +7,7 @@
         string Title { get; }
         string Description { get; }
         DateTime? Expiry { get; }
-        Uri LogoSource { get; }
+        string LogoUri { get; }
+        bool IsClickable { get; }
     }
 }

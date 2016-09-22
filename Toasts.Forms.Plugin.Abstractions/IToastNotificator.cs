@@ -12,8 +12,8 @@ namespace Plugin.Toasts
         /// <param name="title"></param>
         /// <param name="description"></param>
         /// <param name="duration"></param>
-        /// <returns>True means clicked, False means displayed and then disappeared</returns>
-        Task<bool> Notify(INotificationOptions options);
+        /// <returns></returns>
+        Task<NotificationResult> Notify(INotificationOptions options);
     
     }
 }

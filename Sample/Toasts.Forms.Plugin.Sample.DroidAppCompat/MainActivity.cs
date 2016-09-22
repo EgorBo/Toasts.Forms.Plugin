@@ -23,8 +23,8 @@ namespace Toasts.Forms.Plugin.Sample.DroidAppCompat
 
             Xamarin.Forms.Forms.Init(this, bundle);
 
-            DependencyService.Register<ToastNotificatorImplementation>();
-            ToastNotificatorImplementation.Init(this);
+            DependencyService.Register<ToastNotification>();
+            ToastNotification.Init(this);
 
             LoadApplication(new App());
         }

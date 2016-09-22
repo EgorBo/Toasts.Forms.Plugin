@@ -1,5 +1,8 @@
-Toasts Plugin for Xamarin and Windows
+Toasts Notification Plugin for Xamarin and Windows
 ===================
+
+## Currently under a rebuild
+
 
 A simple way of showing some notifications inside your Xamarin or Windows application. In windows phone world we call them "Toasts".
 
