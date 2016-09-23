@@ -1,12 +1,7 @@
 Toasts Notification Plugin for Xamarin and Windows
 ===================
 
-## Currently under a rebuild.
-Due to the recent advancedments in notification systems on each platform, I am bring it into the future. Using native toast / notification platform instead of custom UI overlays.
-
-This is a sharp detour but brings the UI inline with user expectations and doesn't try to shove a similar look and experience across platforms.
-
-A simple way of showing some notifications inside your Xamarin or Windows application. In windows phone world we call them "Toasts".
+A simple way of showing notifications inside your Xamarin or Windows application. In windows phone world we call them "Toasts". This plugin uses the platforms native toast / notification API's.
 
 Setup and usage
 ===================
@@ -27,13 +22,13 @@ Setup and usage
 |Windows 10 UWP|Yes|10+|
 |Xamarin.Mac|No||
 
-
-In your iOS, Android, and UWP projects please call:
+In your iOS, Android, WinRT and UWP projects please call:
 
 ```csharp
 DependencyService.Register<ToastNotification>(); // Register your dependency
+ToastNotification.Init();
 
-// If you are using Android you must also call Init
+// If you are using Android you must pass through the activity
 ToastNotification.Init(this);
 ```
 
@@ -43,38 +38,42 @@ If you are using Xamarin Forms, you must do this AFTER your call to Xamarin.Form
 Use dependency service in order to resolve IToastNotificator
 ```csharp
 var notificator = DependencyService.Get<IToastNotificator>();
-bool tapped = await notificator.Notify(ToastNotificationType.Error, 
-	"Error", "Something went wrong", TimeSpan.FromSeconds(2));
+
+var options = new NotificationOptions()
+            {
+                Title = "Title",
+                Description = "Description"
+            };
+
+var result = await notificator.Notify(options);
 ```
-#### Customization
-On all three platforms you can completely override toast UI. However, there is also an easy way to add a new status with a custom icon and background, let's take a look on a Windows Phone example. In this example we want to add a few more types of messages with custom icons. Our code will look like this:
+
+The result that is returned is one of the following options
 ```csharp
-var notificator = DependencyService.Get<IToastNotificator>();
-bool tapped = await notificator.Notify(
-	type: ToastNotificationType.Custom, 
-	title: "Level up!", 
-	description: "Congratulations!", 
-	duration: TimeSpan.FromSeconds(2), 
-	context: MyCustomTypes.LevelUp);
-```			
-So we have just set the type to Custom and passed an additional argument to Object context (last argument) - our custom enum MyCustomTypes.LevelUp.
-Now we have to configure default renderer (or replace it by your own if you want to add more changes to the layout):
-```csharp
-Xamarin.Forms.Forms.Init();
-ToastNotificatorImplementation.Init(stackSize: 2, 
-	customRenderer: new DefaultToastLayoutRenderer(
-		context =>
-		{
-			switch ((MyCustomTypes)context)
-			{
-				case MyCustomTypes.LevelUp:
-					return new BitmapImage(new Uri("level_up.png", UriKind.Relative));
-				...
-			}
-		}, 
-		context => new SolidColorBrush(Colors.Magenta)));
+[Flags]
+public enum NotificationResult
+{
+    Timeout = 1, // Hides by itself
+    Clicked = 2, // User clicked on notification
+    Dismissed = 4, // User manually dismissed notification
+    ApplicationHidden = 8, // Application went to background
+    Failed = 16 // When failed to display the toast
+}
 ```
-iOS and Android api also have similar extensibility
+
+If you want the Clicked `NotificationResult` you must set `IsClickable = true` in the `NotificationOptions`.
+
+#### Permissions
+
+In iOS you must request permission to show local notifications first since it is a user interrupting action.
+
+```csharp
+// Request Permissions
+UNUserNotificationCenter.Current.RequestAuthorization(UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound, (granted, error) =>
+{
+     // Do something if needed
+});
+```
 
 #### Contributors
 * [EgorBo](https://github.com/EgorBo)
