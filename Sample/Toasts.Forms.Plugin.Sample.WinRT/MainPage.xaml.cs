@@ -15,7 +15,8 @@ namespace Toasts.Forms.Plugin.Sample.WinRT
             this.InitializeComponent();
             
             DependencyService.Register<ToastNotification>();
-  
+            ToastNotification.Init();
+
             LoadApplication(new Sample.App());
         }
 

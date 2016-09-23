@@ -29,6 +29,7 @@ namespace Toasts.Forms.Plugin.Sample.UWP
             this.InitializeComponent();
 
             DependencyService.Register<ToastNotification>();
+            ToastNotification.Init();
 
             LoadApplication(new Sample.App());
         }

@@ -6,6 +6,7 @@ using Plugin.Toasts;
 using Foundation;
 using UIKit;
 using Xamarin.Forms;
+using UserNotifications;
 
 namespace Toasts.Forms.Plugin.Sample.iOS
 {
@@ -26,12 +27,23 @@ namespace Toasts.Forms.Plugin.Sample.iOS
         {
             Xamarin.Forms.Forms.Init();
 
-            DependencyService.Register<ToastNotificatorImplementation>();
-            ToastNotificatorImplementation.Init();
+            DependencyService.Register<ToastNotification>();
+            ToastNotification.Init();
 
             LoadApplication(new App());
 
+            // Request Permissions
+            UNUserNotificationCenter.Current.RequestAuthorization(UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound, (granted, error) =>
+            {
+                // Do something if needed
+            });
+
             return base.FinishedLaunching(app, options);
         }
+        public override void ReceivedLocalNotification(UIApplication application, UILocalNotification notification)
+        {
+           // Local Notifications are received here
+        }
+       
     }
 }

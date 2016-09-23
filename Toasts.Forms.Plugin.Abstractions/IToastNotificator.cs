@@ -1,8 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-
-namespace Plugin.Toasts
+﻿namespace Plugin.Toasts
 {
+    using System.Threading.Tasks;
+
     public interface IToastNotificator
     {
         /// <summary>

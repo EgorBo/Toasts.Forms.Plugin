@@ -24,6 +24,8 @@ namespace Toasts.Forms.Plugin.WinRT
         private IDictionary<string, Windows.UI.Notifications.ToastNotification> _toasts = new Dictionary<string, Windows.UI.Notifications.ToastNotification>();
 #endif
 
+        public static void Init() { }
+
         public Task<NotificationResult> Notify(INotificationOptions options)
         {
             return Task.Run(() =>
@@ -34,7 +36,7 @@ namespace Toasts.Forms.Plugin.WinRT
                 toastNodeList.Item(0).AppendChild(toastXml.CreateTextNode(options.Title));
                 toastNodeList.Item(1).AppendChild(toastXml.CreateTextNode(options.Description));
                 Windows.Data.Xml.Dom.IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
-
+             
                 if (!string.IsNullOrEmpty(options.LogoUri))
                 {
                     Windows.Data.Xml.Dom.XmlElement image = toastXml.CreateElement("image");

@@ -38,12 +38,7 @@
     <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ToastNotificatorImplementation.cs" />
-    <Compile Include="MessageBarManager.cs" />
-    <Compile Include="MessageBarStyleSheet.cs" />
-    <Compile Include="MessageBarViewController.cs" />
-    <Compile Include="MessageView.cs" />
-    <Compile Include="MessageWindow.cs" />
+    <Compile Include="ToastNotification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

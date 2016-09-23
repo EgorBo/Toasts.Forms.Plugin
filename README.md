@@ -1,25 +1,12 @@
 Toasts Notification Plugin for Xamarin and Windows
 ===================
 
-## Currently under a rebuild
+## Currently under a rebuild.
+Due to the recent advancedments in notification systems on each platform, I am bring it into the future. Using native toast / notification platform instead of custom UI overlays.
 
+This is a sharp detour but brings the UI inline with user expectations and doesn't try to shove a similar look and experience across platforms.
 
 A simple way of showing some notifications inside your Xamarin or Windows application. In windows phone world we call them "Toasts".
-
-#### Android
-Android implementation is based on https://github.com/keyboardsurfer/Crouton with several changes and ported to C# without bindings.
-
-![Alt text](http://habrastorage.org/files/b72/3c4/362/b723c436271941309939da500f1e2abb.gif)
-
-#### iOS
-iOS implementation is based on https://github.com/terryworona/TWMessageBarManager with several changes (thanks to prashantvc with his https://github.com/prashantvc/Xamarin.iOS-MessageBar)
-
-![Alt text](http://habrastorage.org/files/d1e/dd7/cbd/d1edd7cbdfe141cfb8f7be36f692b1a1.gif)
-
-#### WP8
-Unlike others WP8's version supports multiply toasts (can be limited to 1).
-
-![Alt text](http://habrastorage.org/files/e96/4fd/8c5/e964fd8c5cb14ad08d4dab3cb6f36e73.gif)
 
 Setup and usage
 ===================
@@ -32,7 +19,7 @@ Setup and usage
 |Platform|Supported|Version|
 | ------------------- | :-----------: | :------------------: |
 |Xamarin.iOS|No||
-|Xamarin.iOS Unified|Yes|iOS 7+|
+|Xamarin.iOS Unified (v10 SDK+)|Yes|iOS 7+|
 |Xamarin.Android|Yes|API 16+ (AppCompat Only)|
 |Windows Phone Silverlight|No||
 |Windows Phone RT|Yes|8.1+|
@@ -41,11 +28,13 @@ Setup and usage
 |Xamarin.Mac|No||
 
 
-In your iOS, Android, and Windows Phone projects please call:
+In your iOS, Android, and UWP projects please call:
 
 ```csharp
-DependencyService.Register<ToastNotificatorImplementation>(); // Register your dependency
-ToastNotificatorImplementation.Init(); //you can optionally pass a custom renderer
+DependencyService.Register<ToastNotification>(); // Register your dependency
+
+// If you are using Android you must also call Init
+ToastNotification.Init(this);
 ```
 
 If you are using Xamarin Forms, you must do this AFTER your call to Xamarin.Forms.Init();

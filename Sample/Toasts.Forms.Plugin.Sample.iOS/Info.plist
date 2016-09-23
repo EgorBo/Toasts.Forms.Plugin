@@ -21,22 +21,27 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>6.0</string>
+	<string>7.1</string>
 	<key>CFBundleDisplayName</key>
 	<string>Toasts.Forms.Plugin.Sample</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.yourcompany.Toasts.Forms.Plugin.Sample</string>
+	<string>com.toasts.forms.plugin.sample</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>Icon-60@2x.png</string>
-		<string>Icon-Small.png</string>
+		<string>Default.png</string>
+		<string>Default@2x.png</string>
+		<string>Default-568h@2x.png</string>
+		<string>Default-Portrait.png</string>
+		<string>Default-Portrait@2x.png</string>
 		<string>Icon-Small-40@2x.png</string>
+		<string>Icon-Small.png</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleShortVersionString</key>
-	<string></string>
+	<string>1</string>
 </dict>
 </plist>
