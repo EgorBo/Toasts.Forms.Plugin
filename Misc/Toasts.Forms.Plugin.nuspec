@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package>
-  <metadata minClientVersion="2.8.1">
+  <metadata minClientVersion="3.1">
     <id>Toasts.Forms.Plugin</id>
-    <version>2.0.3</version>
-    <title>Toasts Plugin for Xamarin and Windows</title>
+    <version>3.0.0-beta1</version>
+    <title>Toast Notification Plugin for Xamarin and Windows</title>
     <authors>Egor Bogatov, Adam Pedley</authors>
     <owners>Egor Bogatov, Adam Pedley</owners>
     <licenseUrl>https://github.com/EgorBo/Toasts.Forms.Plugin/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/EgorBo/Toasts.Forms.Plugin</projectUrl>
-    <iconUrl>http://habrastorage.org/files/9e9/052/d99/9e9052d994f943adbf566be461ede49e.png</iconUrl>
+    <iconUrl>https://i.imgsafe.org/2026268038.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>
       Xamarin.Forms plugin to display toast notifications
@@ -16,41 +16,28 @@
     <description>
       Xamarin.Forms plugin to display toast notifications. Supports Xamarin and Windows Platforms.
 
-      Ensure you call ToastNotificatorImplementation.Init(); and register the dependency in each project. DependencyService.Register&lt;ToastNotificatorImplementation&gt;();
+      Ensure you call ToastNotification.Init(); and register the dependency in each project. DependencyService.Register&lt;ToastNotification&gt;();
 
       Read the full documenation on the projects page.
     </description>
-    <tags>xamarin, xamarin.forms, android, ios, windows phone, toast notifications, crouton, TWMessageBarManager, local notifications</tags>
+    <tags>xamarin, xamarin.forms, android, ios, windows phone, uwp, toast notifications, UNUserNotificationCenter, ToastNotificationManager, local notifications, snackbar</tags>
     <releaseNotes>
-      [2.0.3]
-      - iOS bug fix
-      - WinRT bug fix
+      [3.0.0-beta1]
+      - iOS now uses UNUserNotificationCenter
+      - WinRT/UWP now uses ToastNotificationManager
+      - Android now uses Snackbar
     </releaseNotes>   
   </metadata>
   <files>
     <!--Core-->
-
     <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\portable-net45+wp8+win8+wpa81+netcore451+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Toasts.Forms.Plugin.Abstractions.dll" />
     <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.pdb" target="lib\portable-net45+wp8+win8+wpa81+netcore451+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Toasts.Forms.Plugin.Abstractions.pdb" />
-
-    <!--Win Phone-->
-    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\wp8\Toasts.Forms.Plugin.Abstractions.dll" />
-    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.pdb" target="lib\wp8\Toasts.Forms.Plugin.Abstractions.pdb" />
-    <file src="..\Toasts.Forms.Plugin.WindowsPhone\bin\Release\Toasts.Forms.Plugin.WindowsPhone.dll" target="lib\wp8\Toasts.Forms.Plugin.WindowsPhone.dll" />
-    <file src="..\Toasts.Forms.Plugin.WindowsPhone\bin\Release\Toasts.Forms.Plugin.WindowsPhone.pdb" target="lib\wp8\Toasts.Forms.Plugin.WindowsPhone.pdb" />
 
     <!--Win RT-->
     <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\portable-netcore451+wpa81\Toasts.Forms.Plugin.Abstractions.dll" />
     <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.pdb" target="lib\portable-netcore451+wpa81\Toasts.Forms.Plugin.Abstractions.pdb" />
     <file src="..\Toasts.Forms.Plugin.WinRT\bin\Release\Toasts.Forms.Plugin.WinRT.dll" target="lib\portable-netcore451+wpa81\Toasts.Forms.Plugin.WinRT.dll" />
     <file src="..\Toasts.Forms.Plugin.WinRT\bin\Release\Toasts.Forms.Plugin.WinRT.pdb" target="lib\portable-netcore451+wpa81\Toasts.Forms.Plugin.WinRT.pdb" />
-
-    <file src="..\Toasts.Forms.Plugin.WinRT\bin\Release\Icons\error.png" target="content\portable-netcore451+wpa81\Icons\error.png" />
-    <file src="..\Toasts.Forms.Plugin.WinRT\bin\Release\Icons\info.png" target="content\portable-netcore451+wpa81\Icons\info.png" />
-    <file src="..\Toasts.Forms.Plugin.WinRT\bin\Release\Icons\success.png" target="content\portable-netcore451+wpa81\Icons\success.png" />
-    <file src="..\Toasts.Forms.Plugin.WinRT\bin\Release\Icons\warning.png" target="content\portable-netcore451+wpa81\Icons\warning.png" />
-    
-    <file src="..\Toasts.Forms.Plugin.WinRT\FrameStyle.xaml" target="content\portable-netcore451+wpa81\FrameStyle.xaml" />
 
     <!--Xamarin.Android-->
     <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\MonoAndroid10\Toasts.Forms.Plugin.Abstractions.dll" />

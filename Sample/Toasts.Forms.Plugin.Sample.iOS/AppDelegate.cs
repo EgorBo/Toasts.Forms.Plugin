@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using Plugin.Toasts;
+﻿using Plugin.Toasts;
 using Foundation;
 using UIKit;
 using Xamarin.Forms;
