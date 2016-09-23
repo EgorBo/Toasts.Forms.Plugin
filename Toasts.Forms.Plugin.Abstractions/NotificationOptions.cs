@@ -6,8 +6,6 @@
     {
         public string Description { get; set; } = string.Empty;
 
-        public DateTime? Expiry { get; set; } = null;
-
         /// <summary>
         /// Only for Windows. It works in Android but it goes against Material Design Guidelines. iOS doesn't have option to override the logo url.
         /// </summary>
