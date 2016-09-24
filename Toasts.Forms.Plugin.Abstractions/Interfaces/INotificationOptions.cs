@@ -5,7 +5,10 @@
     {
         string Title { get; }
         string Description { get; }
-        string LogoUri { get; }
         bool IsClickable { get; }
+
+        IWindowsOptions WindowsOptions { get; }
+        IAndroidOptions AndroidOptions { get; }
+        IiOSOptions iOSOptions { get; }
     }
 }

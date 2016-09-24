@@ -73,8 +73,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Options\AndroidOptions.cs" />
-    <Compile Include="Options\IAndroidOptions.cs" />
+    <Compile Include="Options\PlatformOptions.cs" />
+    <Compile Include="Options\IPlatformOptions.cs" />
     <Compile Include="NotificationBuilder.cs" />
     <Compile Include="Options\NotificationStyle.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -97,6 +97,9 @@
   <ItemGroup>
     <Folder Include="Resources\Drawable\" />
     <Folder Include="Resources\Layout\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ImageInSnackbar.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -39,11 +39,19 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="INotificationOptions.cs" />
-    <Compile Include="IToastNotificator.cs" />
-    <Compile Include="NotificationOptions.cs" />
+    <Compile Include="Interfaces\INotificationResult.cs" />
+    <Compile Include="NotificationAction.cs" />
+    <Compile Include="Options\AndroidOptions.cs" />
+    <Compile Include="Interfaces\IAndroidOptions.cs" />
+    <Compile Include="Interfaces\IiOSOptions.cs" />
+    <Compile Include="Interfaces\INotificationOptions.cs" />
+    <Compile Include="Options\iOSOptions.cs" />
+    <Compile Include="Interfaces\IToastNotificator.cs" />
+    <Compile Include="Interfaces\IWindowsOptions.cs" />
+    <Compile Include="Options\NotificationOptions.cs" />
     <Compile Include="NotificationResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Options\WindowsOptions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

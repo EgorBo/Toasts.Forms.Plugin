@@ -1,16 +1,14 @@
 namespace Plugin.Toasts
 {
     using Android.App;
-    using Android.Provider;
     using Android.Support.Design.Widget;
     using Android.Text;
-    using Android.Text.Style;
     using Android.Views;
     using System;
     using System.Collections.Generic;
     using System.Threading;
 
-    public class SnackbarNotification
+    internal class SnackbarNotification
     {
         private IDictionary<string, ManualResetEvent> _resetEvents = new Dictionary<string, ManualResetEvent>();
         private IDictionary<string, NotificationResult> _eventResult = new Dictionary<string, NotificationResult>();
@@ -22,37 +20,12 @@ namespace Plugin.Toasts
             var view = activity.FindViewById(Android.Resource.Id.Content);
 
             SpannableStringBuilder builder = new SpannableStringBuilder();
-            int spannableWidth = 0;
-            if (!string.IsNullOrEmpty(options.LogoUri))
-            {
-                builder.Append(" "); // Because the ImageSpan is spanning over this text.
-
-                var imageName = options.LogoUri;
-                if (!options.LogoUri.Contains("//") && options.LogoUri.Contains("."))
-                    imageName = options.LogoUri.Substring(0, options.LogoUri.IndexOf("."));
-
-                var bitmap = MediaStore.Images.Media.GetBitmap(activity.ContentResolver, Android.Net.Uri.Parse($"android.resource://{activity.PackageName}/drawable/{imageName}"));
-
-                ImageSpan imageSpan = new ImageSpan(bitmap, SpanAlign.Bottom);
-                imageSpan.Drawable.SetBounds(0, 0, bitmap.Width, bitmap.Height); //TODO: check in different DPI's if this is constant
-                builder.SetSpan(imageSpan, 0, 1, SpanTypes.ExclusiveExclusive);
-                spannableWidth = bitmap.Width;
-            }
-
+           
             builder.Append(options.Title);
 
             if (!string.IsNullOrEmpty(options.Title) && !string.IsNullOrEmpty(options.Description))
                 builder.Append("\n"); // Max of 2 lines for snackbar
-
-            if (spannableWidth > 0)
-            {
-                builder.Append(" ");
-                // There is an image and we need to align the next line with the Title
-                ImageSpan blankImage = new ImageSpan((Android.Graphics.Bitmap)null);
-                blankImage.Drawable.SetBounds(0, 0, spannableWidth, 0);
-                builder.SetSpan(blankImage, builder.Length() - 1, builder.Length(), SpanTypes.ExclusiveExclusive);
-            }
-
+            
             builder.Append(options.Description);
 
             var id = _count.ToString();
@@ -60,9 +33,9 @@ namespace Plugin.Toasts
 
             var snackbar = Snackbar.Make(view, builder, Snackbar.LengthLong);
             if (options.IsClickable)
-                snackbar.SetAction("View", new EmptyOnClickListener(id, (toastId, result) => { ToastClosed(toastId, result); }, NotificationResult.Clicked));
+                snackbar.SetAction("View", new EmptyOnClickListener(id, (toastId, result) => { ToastClosed(toastId, result); }, new NotificationResult() { Action = NotificationAction.Clicked }));
             else
-                snackbar.SetAction("Dismiss", new EmptyOnClickListener(id, (toastId, result) => { ToastClosed(toastId, result); }, NotificationResult.Dismissed));
+                snackbar.SetAction("Dismiss", new EmptyOnClickListener(id, (toastId, result) => { ToastClosed(toastId, result); }, new NotificationResult() { Action = NotificationAction.Dismissed }));
 
             // Monitor callbacks
             snackbar.SetCallback(new ToastCallback(id, (toastId, result) => { ToastClosed(toastId, result); }));
@@ -112,21 +85,21 @@ namespace Plugin.Toasts
                 case DismissEventConsecutive:
                 case DismissEventManual:
                 case DismissEventSwipe:
-                    _callback(_id, NotificationResult.Dismissed);
+                    _callback(_id, new NotificationResult() { Action = NotificationAction.Dismissed });
                     break;
                 case DismissEventTimeout:
                 default:
-                    _callback(_id, NotificationResult.Timeout);
+                    _callback(_id, new NotificationResult() { Action = NotificationAction.Timeout });
                     break;
             }
         }
     }
-    
+
     internal class EmptyOnClickListener : Java.Lang.Object, View.IOnClickListener
     {
         private string _id = "";
         private Action<string, NotificationResult> _callback;
-        private NotificationResult _result = NotificationResult.Dismissed;
+        private NotificationResult _result = new NotificationResult() { Action = NotificationAction.Dismissed };
         public EmptyOnClickListener(string id, Action<string, NotificationResult> callback, NotificationResult result)
         {
             _id = id;

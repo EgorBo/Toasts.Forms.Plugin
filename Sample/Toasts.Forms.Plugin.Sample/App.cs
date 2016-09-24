@@ -1,5 +1,4 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Plugin.Toasts;
 
 namespace Toasts.Forms.Plugin.Sample
@@ -13,14 +12,13 @@ namespace Toasts.Forms.Plugin.Sample
             {
                 Title = "Title",
                 Description = "Some Description",
-                IsClickable = true
+                IsClickable = true,
+                WindowsOptions = new WindowsOptions() { LogoUri = "icon.png" }
             };
 
             Button showToast = new Button { Text = "Show Toast" };
             showToast.Clicked += (s, e) => ShowToast(options);
-           
-         
-
+            
             // The root page of your application
             MainPage = new ContentPage
             {
@@ -29,10 +27,9 @@ namespace Toasts.Forms.Plugin.Sample
                     VerticalOptions = LayoutOptions.Center,
                     Children = {
                         showToast
-					}
+                    }
                 }
             };
-            
 
         }
 

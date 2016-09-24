@@ -12,6 +12,7 @@ namespace Toasts.Forms.Plugin.WinRT
     using System.Threading;
     using System.Threading.Tasks;
     using Windows.UI.Notifications;
+    using System;
 
     public class ToastNotification : IToastNotificator
     {
@@ -26,7 +27,7 @@ namespace Toasts.Forms.Plugin.WinRT
 
         public static void Init() { }
 
-        public Task<NotificationResult> Notify(INotificationOptions options)
+        public Task<INotificationResult> Notify(INotificationOptions options)
         {
             return Task.Run(() =>
             {
@@ -37,14 +38,14 @@ namespace Toasts.Forms.Plugin.WinRT
                 toastNodeList.Item(1).AppendChild(toastXml.CreateTextNode(options.Description));
                 Windows.Data.Xml.Dom.IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
              
-                if (!string.IsNullOrEmpty(options.LogoUri))
+                if (!string.IsNullOrEmpty(options.WindowsOptions.LogoUri))
                 {
                     Windows.Data.Xml.Dom.XmlElement image = toastXml.CreateElement("image");
                     image.SetAttribute("placement", "appLogoOverride");
 
-                    var imageUri = options.LogoUri;
-                    if (!options.LogoUri.Contains("//"))
-                        imageUri = $"ms-appx:///{options.LogoUri}";
+                    var imageUri = options.WindowsOptions.LogoUri;
+                    if (!options.WindowsOptions.LogoUri.Contains("//"))
+                        imageUri = $"ms-appx:///{options.WindowsOptions.LogoUri}";
 
                     image.SetAttribute("src", imageUri);
 
@@ -72,10 +73,10 @@ namespace Toasts.Forms.Plugin.WinRT
 
                 waitEvent.WaitOne();
 
-                var result = _eventResult[id];
+                INotificationResult result = _eventResult[id];
 
-                if (!options.IsClickable && result == NotificationResult.Clicked) // A click is transformed to manual dismiss
-                    result = NotificationResult.Dismissed;
+                if (!options.IsClickable && result.Action == NotificationAction.Clicked) // A click is transformed to manual dismiss
+                    result = new NotificationResult() { Action = NotificationAction.Dismissed };
 
                 _resetEvents.Remove(id);
                 _eventResult.Remove(id);
@@ -95,7 +96,7 @@ namespace Toasts.Forms.Plugin.WinRT
 #else
             var id = _toasts.Single(x => x.Value == sender).Key;
 #endif
-            _eventResult.Add(id, NotificationResult.Failed);
+            _eventResult.Add(id, new NotificationResult() { Action = NotificationAction.Failed });
             _resetEvents[id].Set();
         }
 
@@ -106,7 +107,7 @@ namespace Toasts.Forms.Plugin.WinRT
 #else
             var id = _toasts.Single(x => x.Value == sender).Key;
 #endif
-            _eventResult.Add(id, NotificationResult.Clicked);
+            _eventResult.Add(id, new NotificationResult() { Action = NotificationAction.Clicked });
             _resetEvents[id].Set();
         }
 
@@ -120,19 +121,23 @@ namespace Toasts.Forms.Plugin.WinRT
             switch (args.Reason)
             {
                 case ToastDismissalReason.ApplicationHidden:
-                    _eventResult.Add(id, NotificationResult.ApplicationHidden);
+                    _eventResult.Add(id, new NotificationResult() { Action = NotificationAction.ApplicationHidden });
                     break;
                 case ToastDismissalReason.TimedOut:
-                    _eventResult.Add(id, NotificationResult.Timeout);
+                    _eventResult.Add(id, new NotificationResult() { Action = NotificationAction.Timeout });
                     break;
                 case ToastDismissalReason.UserCanceled:
                 default:
-                    _eventResult.Add(id, NotificationResult.Dismissed);
+                    _eventResult.Add(id, new NotificationResult() { Action = NotificationAction.Dismissed });
                     break;
             }
 
             _resetEvents[id].Set();
         }
 
+        public void Notify(Action<INotificationResult> callback, INotificationOptions options)
+        {
+            Task.Run(async () => callback(await Notify(options)));
+        }
     }
 }

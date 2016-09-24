@@ -2,10 +2,11 @@ namespace Plugin.Toasts
 {
     using Android.App;
     using Android.Content;
+    using System;
     using System.Collections.Generic;
     using System.Threading;
 
-    public class NotificationBuilder
+    internal class NotificationBuilder
     {
         public static IDictionary<string, ManualResetEvent> ResetEvent = new Dictionary<string, ManualResetEvent>();
         public static IDictionary<string, NotificationResult> EventResult = new Dictionary<string, NotificationResult>();
@@ -17,8 +18,9 @@ namespace Plugin.Toasts
         private int _count = 0;
         private object _lock = new object();
         private static NotificationReceiver _receiver;
+        private IPlatformOptions _androidOptions;
 
-        public void Init(Activity activity)
+        public void Init(Activity activity, IPlatformOptions androidOptions)
         {
             IntentFilter filter = new IntentFilter();
             filter.AddAction(DismissedClickIntent);
@@ -27,9 +29,11 @@ namespace Plugin.Toasts
             _receiver = new NotificationReceiver();
 
             activity.RegisterReceiver(_receiver, filter);
+
+            _androidOptions = androidOptions;
         }
 
-        public NotificationResult Notify(Activity activity, INotificationOptions options)
+        public INotificationResult Notify(Activity activity, INotificationOptions options)
         {
             var notificationId = _count;
             var id = _count.ToString();
@@ -45,12 +49,22 @@ namespace Plugin.Toasts
 
             PendingIntent pendingClickIntent = PendingIntent.GetBroadcast(activity.ApplicationContext, 123, clickIntent, 0);
 
+            int smallIcon;
+
+            if (options.AndroidOptions.SmallDrawableIcon.HasValue)
+                smallIcon = options.AndroidOptions.SmallDrawableIcon.Value;
+            else if (_androidOptions.SmallIconDrawable.HasValue)
+                smallIcon = _androidOptions.SmallIconDrawable.Value;
+            else
+                smallIcon = Android.Resource.Drawable.IcDialogInfo; // As last resort
+
+
             Notification.Builder builder = new Notification.Builder(activity)
                     .SetContentTitle(options.Title)
                     .SetContentText(options.Description)
-                    .SetSmallIcon(Android.Resource.Drawable.ButtonStar) //Android.Graphics.Drawables.Icon.CreateWithContentUri
-                    .SetPriority((int)NotificationPriority.High)
-                    .SetDefaults(NotificationDefaults.All)
+                    .SetSmallIcon(smallIcon) // Must have small icon to display
+                    .SetPriority((int)NotificationPriority.High) // Must be set to High to get Heads-up notification
+                    .SetDefaults(NotificationDefaults.All) // Must also include vibrate to get Heads-up notification
                     .SetAutoCancel(true) // To allow click event to trigger delete Intent
                     .SetContentIntent(pendingClickIntent) // Must have Intent to accept the click
                     .SetDeleteIntent(pendingDismissIntent);
@@ -61,6 +75,8 @@ namespace Plugin.Toasts
                 activity.GetSystemService(Context.NotificationService) as NotificationManager;
             
             notificationManager.Notify(notificationId, notification);
+            
+            var timer = new Timer(x => TimerFinished(id), null, TimeSpan.FromSeconds(7), TimeSpan.FromSeconds(100));
 
             var resetEvent = new ManualResetEvent(false);
             ResetEvent.Add(id, resetEvent);
@@ -69,20 +85,32 @@ namespace Plugin.Toasts
 
             var notificationResult = EventResult[id];
 
-            if (!options.IsClickable && notificationResult == NotificationResult.Clicked)
-                notificationResult = NotificationResult.Dismissed;
+            if (!options.IsClickable && notificationResult.Action == NotificationAction.Clicked)
+                notificationResult.Action = NotificationAction.Dismissed;
 
             EventResult.Remove(id);
             ResetEvent.Remove(id);
+
+            // Dispose of Intents and Timer
             pendingClickIntent.Cancel();
             pendingDismissIntent.Cancel();
+            timer.Dispose();
 
             return notificationResult;            
         }
 
+        private void TimerFinished(string id)
+        {
+            if (ResetEvent.ContainsKey(id))
+            {
+                EventResult.Add(id, new NotificationResult() { Action = NotificationAction.Timeout });
+                ResetEvent[id].Set();
+            }
+        }
+
     }
 
-    public class NotificationReceiver : BroadcastReceiver
+    internal class NotificationReceiver : BroadcastReceiver
     {
         public override void OnReceive(Context context, Intent intent)
         {
@@ -91,11 +119,11 @@ namespace Plugin.Toasts
             switch (intent.Action)
             {
                 case NotificationBuilder.OnClickIntent:
-                    NotificationBuilder.EventResult.Add(notificationId, NotificationResult.Clicked);                   
+                    NotificationBuilder.EventResult.Add(notificationId, new NotificationResult() { Action = NotificationAction.Clicked });                   
                     break;
                 default:
                 case NotificationBuilder.DismissedClickIntent:
-                    NotificationBuilder.EventResult.Add(notificationId, NotificationResult.Dismissed);
+                    NotificationBuilder.EventResult.Add(notificationId, new NotificationResult() { Action = NotificationAction.Dismissed });
                     break;
             }
 

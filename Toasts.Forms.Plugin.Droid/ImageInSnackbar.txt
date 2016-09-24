@@ -1,0 +1,40 @@
+﻿I have taken this out for the moment because it is against Material Design Guidelines. I think it might be best to leave it out but the code is here just incase.
+
+            SpannableStringBuilder builder = new SpannableStringBuilder();
+            int spannableWidth = 0;
+            if (!string.IsNullOrEmpty(options.LogoUri))
+            {
+                builder.Append(" "); // Because the ImageSpan is spanning over this text.
+
+                var imageName = options.LogoUri;
+                if (!options.LogoUri.Contains("//") && options.LogoUri.Contains("."))
+                    imageName = options.LogoUri.Substring(0, options.LogoUri.IndexOf("."));
+
+                Android.Net.Uri uri;
+
+                if (!imageName.Contains("//"))
+                    uri = Android.Net.Uri.Parse($"android.resource://{activity.PackageName}/drawable/{imageName}");
+                else
+                    uri = Android.Net.Uri.Parse(options.LogoUri);
+
+                var bitmap = MediaStore.Images.Media.GetBitmap(activity.ContentResolver, uri);
+
+                ImageSpan imageSpan = new ImageSpan(bitmap, SpanAlign.Bottom);
+                imageSpan.Drawable.SetBounds(0, 0, bitmap.Width, bitmap.Height); //TODO: check in different DPI's if this is constant
+                builder.SetSpan(imageSpan, 0, 1, SpanTypes.ExclusiveExclusive);
+                spannableWidth = bitmap.Width;
+            }
+
+            builder.Append(options.Title);
+
+            if (!string.IsNullOrEmpty(options.Title) && !string.IsNullOrEmpty(options.Description))
+                builder.Append("\n"); // Max of 2 lines for snackbar
+
+            if (spannableWidth > 0)
+            {
+                builder.Append(" ");
+                // There is an image and we need to align the next line with the Title
+                ImageSpan blankImage = new ImageSpan((Android.Graphics.Bitmap)null);
+                blankImage.Drawable.SetBounds(0, 0, spannableWidth, 0);
+                builder.SetSpan(blankImage, builder.Length() - 1, builder.Length(), SpanTypes.ExclusiveExclusive);
+            }

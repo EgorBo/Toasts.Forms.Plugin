@@ -16,7 +16,7 @@
 
         public static void Init() { }
 
-        public async Task<NotificationResult> Notify(INotificationOptions options)
+        public async Task<INotificationResult> Notify(INotificationOptions options)
         {
             return await Task.Run(() =>
             {
@@ -47,7 +47,7 @@
                 notificationCenter.AddNotificationRequest(request, (error) =>
                 {
                     if (error != null)
-                        _eventResult.Add(request.Identifier, NotificationResult.Failed);
+                        _eventResult.Add(request.Identifier, new NotificationResult() { Action = NotificationAction.Failed });
                 });
 
                 resetEvent.WaitOne();
@@ -59,6 +59,11 @@
 
                 return result;
             });
+        }
+
+        public void Notify(Action<INotificationResult> callback, INotificationOptions options)
+        {
+            Task.Run(async () => callback(await Notify(options)));
         }
     }
 
@@ -77,7 +82,7 @@
             // Timer here for a timeout since no Toast Dismissed Event (7 seconds til auto dismiss)
             var timer = NSTimer.CreateScheduledTimer(TimeSpan.FromSeconds(7), (nsTimer) =>
             {
-                _action(_id, NotificationResult.Timeout);
+                _action(_id, new NotificationResult() { Action = NotificationAction.Timeout });
                 nsTimer.Invalidate();
             });
 
@@ -89,7 +94,7 @@
         public override void DidReceiveNotificationResponse(UNUserNotificationCenter center, UNNotificationResponse response, Action completionHandler)
         {
             // I Clicked it :)
-            _action(_id, NotificationResult.Clicked);
+            _action(_id, new NotificationResult() { Action = NotificationAction.Clicked });
         }
 
     }
