@@ -1,13 +1,8 @@
-﻿using System;
-using Android.App;
-using Android.Content;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+﻿using Android.App;
 using Android.OS;
-using Xamarin.Forms.Platform.Android;
-using Xamarin.Forms;
 using Plugin.Toasts;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 
 namespace Toasts.Forms.Plugin.Sample.DroidAppCompat
 {
@@ -24,7 +19,7 @@ namespace Toasts.Forms.Plugin.Sample.DroidAppCompat
             Xamarin.Forms.Forms.Init(this, bundle);
 
             DependencyService.Register<ToastNotification>();
-            ToastNotification.Init(this);
+            ToastNotification.Init(this, new PlatformOptions() { SmallIconDrawable = Android.Resource.Drawable.IcDialogInfo } );
 
             LoadApplication(new App());
         }
