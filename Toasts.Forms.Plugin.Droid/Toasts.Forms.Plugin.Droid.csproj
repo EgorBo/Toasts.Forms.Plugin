@@ -73,8 +73,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Options\AndroidOptions.cs" />
+    <Compile Include="Options\IAndroidOptions.cs" />
+    <Compile Include="NotificationBuilder.cs" />
+    <Compile Include="Options\NotificationStyle.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SnackbarNotification.cs" />
     <Compile Include="ToastNotification.cs" />
   </ItemGroup>
   <ItemGroup>

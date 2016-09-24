@@ -13,7 +13,6 @@ namespace Toasts.Forms.Plugin.Sample
             {
                 Title = "Title",
                 Description = "Some Description",
-                LogoUri = "icon.png",
                 IsClickable = true
             };
 
