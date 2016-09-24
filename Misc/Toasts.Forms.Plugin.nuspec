@@ -2,7 +2,7 @@
 <package>
   <metadata minClientVersion="3.1">
     <id>Toasts.Forms.Plugin</id>
-    <version>3.0.0-beta1</version>
+    <version>3.0.0-beta2</version>
     <title>Toast Notification Plugin for Xamarin and Windows</title>
     <authors>Egor Bogatov, Adam Pedley</authors>
     <owners>Egor Bogatov, Adam Pedley</owners>
@@ -20,12 +20,11 @@
 
       Read the full documenation on the projects page.
     </description>
-    <tags>xamarin, xamarin.forms, android, ios, windows phone, uwp, toast notifications, UNUserNotificationCenter, ToastNotificationManager, local notifications, snackbar</tags>
+    <tags>xamarin, xamarin.forms, android, ios, windows phone, uwp, toast notifications, toast, toasts, UNUserNotificationCenter, ToastNotificationManager, local notifications, snackbar</tags>
     <releaseNotes>
-      [3.0.0-beta1]
-      - iOS now uses UNUserNotificationCenter
-      - WinRT/UWP now uses ToastNotificationManager
-      - Android now uses Snackbar
+      [3.0.0-beta2]
+      - Android now uses Snackbar pre-Lollipop or Notification.Builder (or manually choose).
+      - Platform specific options applicable
     </releaseNotes>   
   </metadata>
   <files>

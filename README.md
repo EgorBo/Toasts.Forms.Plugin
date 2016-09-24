@@ -48,10 +48,10 @@ var options = new NotificationOptions()
 var result = await notificator.Notify(options);
 ```
 
-The result that is returned is one of the following options
+The result that is returned is a NotificationResult with an Action inside with one of the following values.
 ```csharp
 [Flags]
-public enum NotificationResult
+public enum NotificationAction
 {
     Timeout = 1, // Hides by itself
     Clicked = 2, // User clicked on notification
@@ -61,7 +61,7 @@ public enum NotificationResult
 }
 ```
 
-If you want the Clicked `NotificationResult` you must set `IsClickable = true` in the `NotificationOptions`.
+If you want the Clicked `NotificationAction` you must set `IsClickable = true` in the `NotificationOptions`.
 
 #### Permissions
 
