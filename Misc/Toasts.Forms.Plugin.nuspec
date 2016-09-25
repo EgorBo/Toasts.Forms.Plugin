@@ -11,14 +11,14 @@
     <iconUrl>https://i.imgsafe.org/2026268038.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>
-      Xamarin.Forms plugin to display toast notifications
+      Display toast notifications on Xamarin and Windows.
     </summary>
     <description>
-      Xamarin.Forms plugin to display toast notifications. Supports Xamarin and Windows Platforms.
+      Display toast notifications on Xamarin and Windows Platforms.
 
-      Ensure you call ToastNotification.Init(); and register the dependency in each project. DependencyService.Register&lt;ToastNotification&gt;();
+      Ensure you call ToastNotification.Init(); and register the dependency in each project. DependencyService.Register<ToastNotification>();
 
-      Read the full documenation on the projects page.
+      Read the full documentation on the projects page.
     </description>
     <tags>xamarin, xamarin.forms, android, ios, windows phone, uwp, toast notifications, toast, toasts, UNUserNotificationCenter, ToastNotificationManager, local notifications, snackbar</tags>
     <releaseNotes>
