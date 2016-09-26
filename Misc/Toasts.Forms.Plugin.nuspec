@@ -2,10 +2,10 @@
 <package>
   <metadata minClientVersion="3.1">
     <id>Toasts.Forms.Plugin</id>
-    <version>3.0.0-beta2</version>
+    <version>3.0.0</version>
     <title>Toast Notification Plugin for Xamarin and Windows</title>
-    <authors>Egor Bogatov, Adam Pedley</authors>
-    <owners>Egor Bogatov, Adam Pedley</owners>
+    <authors>Adam Pedley, Egor Bogatov</authors>
+    <owners>Adam Pedley, Egor Bogatov</owners>
     <licenseUrl>https://github.com/EgorBo/Toasts.Forms.Plugin/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/EgorBo/Toasts.Forms.Plugin</projectUrl>
     <iconUrl>https://i.imgsafe.org/2026268038.png</iconUrl>
@@ -16,15 +16,19 @@
     <description>
       Display toast notifications on Xamarin and Windows Platforms.
 
-      Ensure you call ToastNotification.Init(); and register the dependency in each project. DependencyService.Register<ToastNotification>();
+      Ensure you call ToastNotification.Init(); and register the dependency in each project. DependencyService.Register&lt;ToastNotification&gt;();
 
       Read the full documentation on the projects page.
     </description>
     <tags>xamarin, xamarin.forms, android, ios, windows phone, uwp, toast notifications, toast, toasts, UNUserNotificationCenter, ToastNotificationManager, local notifications, snackbar</tags>
     <releaseNotes>
-      [3.0.0-beta2]
+      **Breaking Changes**
+      Please read Project Site for latest API or https://xamarinhelp.com/toast-notifications-xamarin-forms/
+      
+      [3.0.0] - Stable Release of rewritten Toast Plugin
       - Android now uses Snackbar pre-Lollipop or Notification.Builder (or manually choose).
-      - Platform specific options applicable
+      - UWP uses ToastNotification
+      - iOS uses UNNotificationRequest
     </releaseNotes>   
   </metadata>
   <files>
