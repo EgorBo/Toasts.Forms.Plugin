@@ -2,6 +2,7 @@ namespace Plugin.Toasts
 {
     using Android.App;
     using Android.Content;
+    using Android.Service.Notification;
     using System;
     using System.Collections.Generic;
     using System.Threading;
@@ -10,7 +11,7 @@ namespace Plugin.Toasts
     {
         public static IDictionary<string, ManualResetEvent> ResetEvent = new Dictionary<string, ManualResetEvent>();
         public static IDictionary<string, NotificationResult> EventResult = new Dictionary<string, NotificationResult>();
-      
+
         public const string NotificationId = "NOTIFICATION_ID";
         public const string DismissedClickIntent = "android.intent.action.DISMISSED";
         public const string OnClickIntent = "android.intent.action.CLICK";
@@ -33,6 +34,28 @@ namespace Plugin.Toasts
             _androidOptions = androidOptions;
         }
 
+        public IList<INotification> GetDeliveredNotifications(Activity activity)
+        {
+            if (Android.OS.Build.VERSION.SdkInt < Android.OS.BuildVersionCodes.M)
+                return new List<INotification>();
+
+            IList<INotification> list = new List<INotification>();
+
+            NotificationManager notificationManager =
+                activity.GetSystemService(Context.NotificationService) as NotificationManager;
+
+            foreach (var notification in notificationManager.GetActiveNotifications())
+                list.Add(new Notification()
+                {
+                    Id = notification.Id.ToString(),
+                    Title = notification.Notification.Extras.GetString("android.title"),
+                    Description = notification.Notification.Extras.GetString("android.text"),
+                    Delivered = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(notification.Notification.When)
+                });
+
+            return list;
+        }
+
         public INotificationResult Notify(Activity activity, INotificationOptions options)
         {
             var notificationId = _count;
@@ -40,7 +63,7 @@ namespace Plugin.Toasts
             _count++;
 
             Intent dismissIntent = new Intent(DismissedClickIntent);
-            dismissIntent.PutExtra(NotificationId, notificationId);          
+            dismissIntent.PutExtra(NotificationId, notificationId);
 
             PendingIntent pendingDismissIntent = PendingIntent.GetBroadcast(activity.ApplicationContext, 123, dismissIntent, 0);
 
@@ -58,8 +81,7 @@ namespace Plugin.Toasts
             else
                 smallIcon = Android.Resource.Drawable.IcDialogInfo; // As last resort
 
-
-            Notification.Builder builder = new Notification.Builder(activity)
+            Android.App.Notification.Builder builder = new Android.App.Notification.Builder(activity)
                     .SetContentTitle(options.Title)
                     .SetContentText(options.Description)
                     .SetSmallIcon(smallIcon) // Must have small icon to display
@@ -69,18 +91,18 @@ namespace Plugin.Toasts
                     .SetContentIntent(pendingClickIntent) // Must have Intent to accept the click
                     .SetDeleteIntent(pendingDismissIntent);
 
-            Notification notification = builder.Build();
+            Android.App.Notification notification = builder.Build();
 
             NotificationManager notificationManager =
                 activity.GetSystemService(Context.NotificationService) as NotificationManager;
-            
+
             notificationManager.Notify(notificationId, notification);
-            
+
             var timer = new Timer(x => TimerFinished(id), null, TimeSpan.FromSeconds(7), TimeSpan.FromSeconds(100));
 
             var resetEvent = new ManualResetEvent(false);
             ResetEvent.Add(id, resetEvent);
-            
+
             resetEvent.WaitOne(); // Wait for a result
 
             var notificationResult = EventResult[id];
@@ -96,7 +118,7 @@ namespace Plugin.Toasts
             pendingDismissIntent.Cancel();
             timer.Dispose();
 
-            return notificationResult;            
+            return notificationResult;
         }
 
         private void TimerFinished(string id)
@@ -119,7 +141,7 @@ namespace Plugin.Toasts
             switch (intent.Action)
             {
                 case NotificationBuilder.OnClickIntent:
-                    NotificationBuilder.EventResult.Add(notificationId, new NotificationResult() { Action = NotificationAction.Clicked });                   
+                    NotificationBuilder.EventResult.Add(notificationId, new NotificationResult() { Action = NotificationAction.Clicked });
                     break;
                 default:
                 case NotificationBuilder.DismissedClickIntent:

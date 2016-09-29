@@ -3,6 +3,7 @@ namespace Plugin.Toasts
     using Android.App;
     using System;
     using System.Threading.Tasks;
+    using System.Collections.Generic;
 
     public class ToastNotification : IToastNotificator
     {
@@ -49,6 +50,15 @@ namespace Plugin.Toasts
             Task.Run(async () => callback(await Notify(options)));
         }
 
+        /// <summary>
+        /// Available on >= API23 (Android 6.0) as is.
+        /// Not Available on >= API23, will return empty list
+        /// </summary>
+        /// <returns></returns>
+        public Task<IList<INotification>> GetDeliveredNotifications()
+        {
+            return Task.FromResult(_notificationBuilder.GetDeliveredNotifications(_activity));
+        }
     }
 
 }

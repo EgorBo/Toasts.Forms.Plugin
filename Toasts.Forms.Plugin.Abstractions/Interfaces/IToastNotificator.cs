@@ -1,6 +1,7 @@
 ﻿namespace Plugin.Toasts
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     public interface IToastNotificator
@@ -21,6 +22,13 @@
         /// <param name="callback"></param>
         /// <param name="options"></param>
         void Notify(Action<INotificationResult> callback, INotificationOptions options);
+
+        /// <summary>
+        /// Delivered Notifications to the phone through the Toast Plugin
+        /// UWP, iOS or Android >= API23 only.
+        /// </summary>
+        /// <returns></returns>
+        Task<IList<INotification>> GetDeliveredNotifications();
 
     }
 }

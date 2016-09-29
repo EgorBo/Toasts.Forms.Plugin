@@ -39,7 +39,9 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\INotification.cs" />
     <Compile Include="Interfaces\INotificationResult.cs" />
+    <Compile Include="Notification.cs" />
     <Compile Include="NotificationAction.cs" />
     <Compile Include="Options\AndroidOptions.cs" />
     <Compile Include="Interfaces\IAndroidOptions.cs" />

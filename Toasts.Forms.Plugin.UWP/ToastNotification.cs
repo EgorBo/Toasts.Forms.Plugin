@@ -1,13 +1,13 @@
 ﻿#if WINDOWS_UWP
-namespace Toasts.Forms.Plugin.UWP
+namespace Plugin.Toasts.UWP
 {
 #else
-namespace Toasts.Forms.Plugin.WinRT
+namespace Plugin.Toasts.WinRT
 {
     using System.Linq;
 #endif
 
-    using global::Plugin.Toasts;
+    using Toasts;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
@@ -37,7 +37,7 @@ namespace Toasts.Forms.Plugin.WinRT
                 toastNodeList.Item(0).AppendChild(toastXml.CreateTextNode(options.Title));
                 toastNodeList.Item(1).AppendChild(toastXml.CreateTextNode(options.Description));
                 Windows.Data.Xml.Dom.IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
-             
+
                 if (!string.IsNullOrEmpty(options.WindowsOptions.LogoUri))
                 {
                     Windows.Data.Xml.Dom.XmlElement image = toastXml.CreateElement("image");
@@ -138,6 +138,34 @@ namespace Toasts.Forms.Plugin.WinRT
         public void Notify(Action<INotificationResult> callback, INotificationOptions options)
         {
             Task.Run(async () => callback(await Notify(options)));
+        }
+
+        /// <summary>
+        /// Delivered Notifications for UWP that have not been dismissed.
+        /// Not Available for WinRT.
+        /// </summary>
+        /// <returns></returns>
+        public Task<IList<INotification>> GetDeliveredNotifications()
+        {
+
+#if WINDOWS_UWP
+            IList<INotification> notifications = new List<INotification>();
+
+            foreach (var notification in ToastNotificationManager.History.GetHistory())
+                notifications.Add(new Toasts.Notification()
+                {
+                    Id = notification.Tag,
+                    Title = notification.Content.GetElementsByTagName("text")[0].InnerText,
+                    Description = notification.Content.GetElementsByTagName("text")[1].InnerText,
+                    Delivered = DateTime.MinValue // Unknown
+                });
+
+            return Task.FromResult(notifications);
+#else
+            IList<INotification> notifications = new List<INotification>();
+            return Task.FromResult(notifications);
+#endif
+
         }
     }
 }

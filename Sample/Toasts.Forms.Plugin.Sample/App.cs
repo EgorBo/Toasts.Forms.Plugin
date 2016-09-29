@@ -37,6 +37,8 @@ namespace Toasts.Forms.Plugin.Sample
         {
             var notificator = DependencyService.Get<IToastNotificator>();
             var result = await notificator.Notify(options);
+
+           var notifications = await notificator.GetDeliveredNotifications();
         }
     }
 }

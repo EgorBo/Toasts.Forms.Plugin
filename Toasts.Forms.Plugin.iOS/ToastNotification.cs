@@ -1,5 +1,6 @@
 ﻿namespace Plugin.Toasts
 {
+    using Extensions;
     using Foundation;
     using System;
     using System.Collections.Generic;
@@ -64,6 +65,29 @@
         public void Notify(Action<INotificationResult> callback, INotificationOptions options)
         {
             Task.Run(async () => callback(await Notify(options)));
+        }
+
+        public async Task<IList<INotification>> GetDeliveredNotifications()
+        {
+            IList<INotification> list = new List<INotification>();
+
+            var notificationCenter = UNUserNotificationCenter.Current;
+
+            var deliveredNotifications = await notificationCenter.GetDeliveredNotificationsAsync();
+
+            foreach (var notification in deliveredNotifications)
+            {
+                UNNotificationContent content = notification.Request.Content;
+                list.Add(new Notification()
+                {
+                    Id = notification.Request.Identifier,
+                    Title = content.Title,
+                    Description = content.Body,
+                    Delivered = notification.Date.ToDateTime()
+                });
+            }
+
+            return list;
         }
     }
 

@@ -1,10 +1,8 @@
-﻿using Toasts.Forms.Plugin.WinRT;
-using Xamarin.Forms;
-
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
-
-namespace Toasts.Forms.Plugin.Sample.WinRT
+﻿namespace Toasts.Forms.Plugin.Sample.WinRT
 {
+    using global::Plugin.Toasts.WinRT;
+    using Xamarin.Forms;
+
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -19,7 +17,5 @@ namespace Toasts.Forms.Plugin.Sample.WinRT
 
             LoadApplication(new Sample.App());
         }
-
-     
     }
 }
