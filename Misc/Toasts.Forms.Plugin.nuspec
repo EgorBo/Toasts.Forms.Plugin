@@ -26,27 +26,36 @@
       - Minor Packaging Update
       - Allows update of text on Snackbar
       - Gets list of delivered notifications
+      - Cancel all delivered notifications
     </releaseNotes>
   </metadata>
   <files>
     <!--Core-->
-    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\netstandard1.3\Toasts.Forms.Plugin.Abstractions.dll" />
-    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.pdb" target="lib\netstandard1.3\Toasts.Forms.Plugin.Abstractions.pdb" />
+    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\netstandard1.3" />
+    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.pdb" target="lib\netstandard1.3" />
 
     <!--Win RT-->
-    <file src="..\Toasts.Forms.Plugin.WinRT\bin\Release\Toasts.Forms.Plugin.WinRT.dll" target="lib\portable-netcore451+wpa81\Toasts.Forms.Plugin.WinRT.dll" />
-    <file src="..\Toasts.Forms.Plugin.WinRT\bin\Release\Toasts.Forms.Plugin.WinRT.pdb" target="lib\portable-netcore451+wpa81\Toasts.Forms.Plugin.WinRT.pdb" />
+    <file src="..\Toasts.Forms.Plugin.WinRT\bin\Release\Toasts.Forms.Plugin.WinRT.dll" target="lib\portable-netcore451+wpa81" />
+    <file src="..\Toasts.Forms.Plugin.WinRT\bin\Release\Toasts.Forms.Plugin.WinRT.pdb" target="lib\portable-netcore451+wpa81" />
+    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\portable-netcore451+wpa81" />
+    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.pdb" target="lib\portable-netcore451+wpa81" />
 
     <!--UWP-->
-    <file src="..\Toasts.Forms.Plugin.UWP\bin\Release\Toasts.Forms.Plugin.UWP.dll" target="lib\uap10.0\Toasts.Forms.Plugin.UWP.dll" />
-    <file src="..\Toasts.Forms.Plugin.UWP\bin\Release\Toasts.Forms.Plugin.UWP.pdb" target="lib\uap10.0\Toasts.Forms.Plugin.UWP.pdb" />
+    <file src="..\Toasts.Forms.Plugin.UWP\bin\Release\Toasts.Forms.Plugin.UWP.dll" target="lib\uap10.0" />
+    <file src="..\Toasts.Forms.Plugin.UWP\bin\Release\Toasts.Forms.Plugin.UWP.pdb" target="lib\uap10.0" />
+    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\uap10.0" />
+    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.pdb" target="lib\uap10.0" />
 
     <!--Xamarin.Android-->
-    <file src="..\Toasts.Forms.Plugin.Droid\bin\Release\Toasts.Forms.Plugin.Droid.dll" target="lib\MonoAndroid10\Toasts.Forms.Plugin.Droid.dll" />
-    <file src="..\Toasts.Forms.Plugin.Droid\bin\Release\Toasts.Forms.Plugin.Droid.pdb" target="lib\MonoAndroid10\Toasts.Forms.Plugin.Droid.pdb" />
+    <file src="..\Toasts.Forms.Plugin.Droid\bin\Release\Toasts.Forms.Plugin.Droid.dll" target="lib\MonoAndroid10" />
+    <file src="..\Toasts.Forms.Plugin.Droid\bin\Release\Toasts.Forms.Plugin.Droid.pdb" target="lib\MonoAndroid10" />
+    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\MonoAndroid10" />
+    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.pdb" target="lib\MonoAndroid10" />
 
     <!--Xamarin.iOS-->
-    <file src="..\Toasts.Forms.Plugin.iOS\bin\iPhone\Release\Toasts.Forms.Plugin.iOS.dll" target="lib\Xamarin.iOS10\Toasts.Forms.Plugin.iOS.dll" />
+    <file src="..\Toasts.Forms.Plugin.iOS\bin\iPhone\Release\Toasts.Forms.Plugin.iOS.dll" target="lib\Xamarin.iOS10" />
+    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\Xamarin.iOS10" />
+    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.pdb" target="lib\Xamarin.iOS10" />
 
   </files>
 

@@ -140,6 +140,7 @@ namespace Plugin.Toasts.WinRT
             Task.Run(async () => callback(await Notify(options)));
         }
 
+
         /// <summary>
         /// Delivered Notifications for UWP that have not been dismissed.
         /// Not Available for WinRT.
@@ -166,6 +167,13 @@ namespace Plugin.Toasts.WinRT
             return Task.FromResult(notifications);
 #endif
 
+        }
+
+        public void CancelAllDelivered()
+        {
+#if WINDOWS_UWP
+            ToastNotificationManager.History.Clear();
+#endif
         }
     }
 }

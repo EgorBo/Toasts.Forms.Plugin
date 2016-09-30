@@ -12,6 +12,8 @@ namespace Plugin.Toasts
     {
         private IDictionary<string, ManualResetEvent> _resetEvents = new Dictionary<string, ManualResetEvent>();
         private IDictionary<string, NotificationResult> _eventResult = new Dictionary<string, NotificationResult>();
+        private IList<Snackbar> _snackBars = new List<Snackbar>();
+
         private int _count = 0;
         private object _lock = new object();
 
@@ -20,12 +22,12 @@ namespace Plugin.Toasts
             var view = activity.FindViewById(Android.Resource.Id.Content);
 
             SpannableStringBuilder builder = new SpannableStringBuilder();
-           
+
             builder.Append(options.Title);
 
             if (!string.IsNullOrEmpty(options.Title) && !string.IsNullOrEmpty(options.Description))
                 builder.Append("\n"); // Max of 2 lines for snackbar
-            
+
             builder.Append(options.Description);
 
             var id = _count.ToString();
@@ -43,7 +45,7 @@ namespace Plugin.Toasts
             // Setup reset events
             var resetEvent = new ManualResetEvent(false);
             _resetEvents.Add(id, resetEvent);
-
+            _snackBars.Add(snackbar);
             snackbar.Show();
 
             resetEvent.WaitOne(); // Wait for a result
@@ -53,7 +55,16 @@ namespace Plugin.Toasts
             _eventResult.Remove(id);
             _resetEvents.Remove(id);
 
+            if (_snackBars.Contains(snackbar))
+                _snackBars.Remove(snackbar);
+
             return notificationResult;
+        }
+
+        public void CancelAll()
+        {
+            foreach (var snackbar in _snackBars)
+                snackbar.Dismiss();
         }
 
         private void ToastClosed(string id, NotificationResult result)

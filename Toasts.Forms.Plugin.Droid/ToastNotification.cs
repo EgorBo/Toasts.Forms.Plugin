@@ -50,6 +50,12 @@ namespace Plugin.Toasts
             Task.Run(async () => callback(await Notify(options)));
         }
 
+        public void CancelAllDelivered()
+        {
+            _notificationBuilder.CancelAll(_activity);
+            _snackbarNotification.CancelAll();
+        }
+
         /// <summary>
         /// Available on >= API23 (Android 6.0) as is.
         /// Not Available on >= API23, will return empty list

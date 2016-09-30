@@ -1,5 +1,6 @@
 ﻿using Xamarin.Forms;
 using Plugin.Toasts;
+using System.Threading.Tasks;
 
 namespace Toasts.Forms.Plugin.Sample
 {
@@ -36,9 +37,9 @@ namespace Toasts.Forms.Plugin.Sample
         private async void ShowToast(INotificationOptions options)
         {
             var notificator = DependencyService.Get<IToastNotificator>();
-            var result = await notificator.Notify(options);
 
-           var notifications = await notificator.GetDeliveredNotifications();
+            var result = await notificator.Notify(options);
+            
         }
     }
 }

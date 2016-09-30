@@ -30,5 +30,10 @@
         /// <returns></returns>
         Task<IList<INotification>> GetDeliveredNotifications();
 
+        /// <summary>
+        /// Cancels all currently showing or previously shown notifications
+        /// </summary>
+        void CancelAllDelivered();
+
     }
 }

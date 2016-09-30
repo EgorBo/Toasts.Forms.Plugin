@@ -45,6 +45,7 @@
 
                 var resetEvent = new ManualResetEvent(false);
                 _resetEvents.Add(id, resetEvent);
+
                 notificationCenter.AddNotificationRequest(request, (error) =>
                 {
                     if (error != null)
@@ -77,6 +78,7 @@
 
             foreach (var notification in deliveredNotifications)
             {
+
                 UNNotificationContent content = notification.Request.Content;
                 list.Add(new Notification()
                 {
@@ -85,10 +87,19 @@
                     Description = content.Body,
                     Delivered = notification.Date.ToDateTime()
                 });
+
             }
 
             return list;
         }
+
+        public void CancelAllDelivered()
+        {
+            var notificationCenter = UNUserNotificationCenter.Current;
+
+            notificationCenter.RemoveAllDeliveredNotifications();
+        }
+
     }
 
     internal class UserNotificationCenterDelegate : UNUserNotificationCenterDelegate

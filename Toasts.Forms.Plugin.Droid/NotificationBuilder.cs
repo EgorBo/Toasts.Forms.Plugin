@@ -2,7 +2,6 @@ namespace Plugin.Toasts
 {
     using Android.App;
     using Android.Content;
-    using Android.Service.Notification;
     using System;
     using System.Collections.Generic;
     using System.Threading;
@@ -119,6 +118,14 @@ namespace Plugin.Toasts
             timer.Dispose();
 
             return notificationResult;
+        }
+        
+        public void CancelAll(Activity activity)
+        {
+            NotificationManager notificationManager =
+                activity.GetSystemService(Context.NotificationService) as NotificationManager;
+
+            notificationManager.CancelAll();
         }
 
         private void TimerFinished(string id)
