@@ -22,6 +22,8 @@ Setup and usage
 |Windows 10 UWP|Yes|10+|
 |Xamarin.Mac|No||
 
+Now uses .NET Standard 1.3
+
 In your iOS, Android, WinRT and UWP projects please call:
 
 ```csharp
