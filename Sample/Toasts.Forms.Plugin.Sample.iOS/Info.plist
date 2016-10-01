@@ -25,7 +25,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>Toasts.Forms.Plugin.Sample</string>
 	<key>CFBundleIdentifier</key>
-	<string>newcrest.mobile.nml.dev</string>
+	<string>com.toasts.plugin.ios</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>CFBundleIconFiles</key>
