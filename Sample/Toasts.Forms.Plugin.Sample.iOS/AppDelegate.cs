@@ -28,18 +28,30 @@ namespace Toasts.Forms.Plugin.Sample.iOS
 
             LoadApplication(new App());
 
-            // Request Permissions
-            UNUserNotificationCenter.Current.RequestAuthorization(UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound, (granted, error) =>
+            if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
             {
-                // Do something if needed
-            });
+                // Request Permissions
+                UNUserNotificationCenter.Current.RequestAuthorization(UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound, (granted, error) =>
+                {
+                    // Do something if needed
+                });
+            }
+            else if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
+            {
+                var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes(
+                 UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null
+                    );
+
+                app.RegisterUserNotificationSettings(notificationSettings);
+            }
 
             return base.FinishedLaunching(app, options);
         }
         public override void ReceivedLocalNotification(UIApplication application, UILocalNotification notification)
         {
-           // Local Notifications are received here
+     
+            // Local Notifications are received here
         }
-       
+
     }
 }

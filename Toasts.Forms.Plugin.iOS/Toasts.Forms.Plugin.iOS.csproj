@@ -39,8 +39,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Extensions\DateExtensions.cs" />
+    <Compile Include="LocalNotificationManager.cs" />
     <Compile Include="ToastNotification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UNNotificationManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
