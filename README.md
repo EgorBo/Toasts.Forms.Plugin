@@ -24,6 +24,13 @@ Setup and usage
 
 Now uses .NET Standard 1.3
 
+**iOS Support**
+Version 3+ of this plugin requires iOS10 to display the toast notification. If you require support for iOS7+ then please use version 2.0.4.
+
+I you want to use the latest plugin with a version less than iOS 10 you can hook into the ReceivedLocalNotification in the AppDelegate to display an Alert.
+
+**Setup
+
 In your iOS, Android, WinRT and UWP projects please call:
 
 ```csharp
