@@ -69,6 +69,11 @@ namespace Plugin.Toasts
             Intent clickIntent = new Intent(OnClickIntent);
             clickIntent.PutExtra(NotificationId, notificationId);
 
+            // Add custom args
+            if (options.CustomArgs != null)
+                foreach (var arg in options.CustomArgs)
+                    clickIntent.PutExtra(arg.Key, arg.Value);
+
             PendingIntent pendingClickIntent = PendingIntent.GetBroadcast(activity.ApplicationContext, 123, clickIntent, 0);
 
             int smallIcon;

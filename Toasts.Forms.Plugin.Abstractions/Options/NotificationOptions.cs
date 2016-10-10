@@ -1,5 +1,6 @@
 ﻿namespace Plugin.Toasts
 {
+    using System.Collections.Generic;
 
     public class NotificationOptions : INotificationOptions
     {
@@ -14,5 +15,7 @@
         public IAndroidOptions AndroidOptions { get; set; } = new AndroidOptions();
 
         public IiOSOptions iOSOptions { get; set; } = new iOSOptions();
+
+        public IDictionary<string, string> CustomArgs { get; set; } = new Dictionary<string, string>();
     }
 }

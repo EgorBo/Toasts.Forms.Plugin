@@ -24,8 +24,22 @@
     <releaseNotes>
       [3.1.1]
       - Basic support for iOS8 but not toast displayed.
-
+      - Custom Args support
     </releaseNotes>
+    <dependencies>      
+      <group targetFramework=".NETStandard1.3">
+        <dependency id="NETStandard.Library" version="1.6.0" />
+      </group>
+      <group targetFramework="MonoAndroid10">
+        <dependency id="Xamarin.Android.Support.v7.AppCompat" version="[23.3.0]" />
+      </group>
+      <group targetFramework="Xamarin.iOS10">
+      </group>
+      <group targetFramework="wpa81">
+      </group>
+      <group targetFramework="uap10.0">
+      </group>
+    </dependencies>
   </metadata>
   <files>
     <!--Core-->
