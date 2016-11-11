@@ -87,18 +87,18 @@
     <AndroidResource Include="Resources\Values\Strings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Toasts.Forms.Plugin.Abstractions\Toasts.Forms.Plugin.Abstractions.csproj">
-      <Project>{a6005e12-de46-4f28-8f97-8b8564af191c}</Project>
-      <Name>Toasts.Forms.Plugin.Abstractions</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Resources\Drawable\" />
     <Folder Include="Resources\Layout\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ImageInSnackbar.txt" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Toasts.Forms.Plugin.Abstractions\Toasts.Forms.Plugin.Abstractions.csproj">
+      <Project>{A6005E12-DE46-4F28-8F97-8B8564AF191C}</Project>
+      <Name>Toasts.Forms.Plugin.Abstractions</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

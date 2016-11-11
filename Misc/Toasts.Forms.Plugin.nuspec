@@ -2,7 +2,7 @@
 <package>
   <metadata minClientVersion="3.1">
     <id>Toasts.Forms.Plugin</id>
-    <version>3.1.0</version>
+    <version>3.1.1</version>
     <title>Toast Notification Plugin for Xamarin and Windows</title>
     <authors>Adam Pedley, Egor Bogatov</authors>
     <owners>Adam Pedley, Egor Bogatov</owners>
@@ -11,7 +11,7 @@
     <iconUrl>https://i.imgsafe.org/2026268038.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>
-      Display toast notifications on Xamarin and Windows.
+      Toasts notifications on Xamarin and Windows.
     </summary>
     <description>
       Display toast notifications on Xamarin and Windows Platforms.
@@ -23,12 +23,11 @@
     <tags>xamarin, xamarin.forms, android, ios, windows phone, uwp, toast notifications, toast, toasts, UNUserNotificationCenter, ToastNotificationManager, local notifications, snackbar</tags>
     <releaseNotes>
       [3.1.1]
-      - Basic support for iOS8 but not toast displayed.
+      - Basic support for iOS8 + 9 but toast not displayed when app open.
       - Custom Args support
     </releaseNotes>
     <dependencies>      
-      <group targetFramework=".NETStandard1.3">
-        <dependency id="NETStandard.Library" version="1.6.0" />
+      <group targetFramework=".NETStandard1.1">
       </group>
       <group targetFramework="MonoAndroid10">
         <dependency id="Xamarin.Android.Support.v7.AppCompat" version="[23.3.0]" />

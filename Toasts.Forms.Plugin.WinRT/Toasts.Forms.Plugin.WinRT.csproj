@@ -102,13 +102,6 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <ProjectReference Include="..\Toasts.Forms.Plugin.Abstractions\Toasts.Forms.Plugin.Abstractions.csproj">
-      <Project>{a6005e12-de46-4f28-8f97-8b8564af191c}</Project>
-      <Name>Toasts.Forms.Plugin.Abstractions</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="..\Toasts.Forms.Plugin.UWP\ToastNotification.cs">
       <Link>ToastNotification.cs</Link>
     </Compile>
@@ -117,6 +110,12 @@
   <ItemGroup>
     <TargetPlatform Include="Windows, Version=8.1" />
     <TargetPlatform Include="WindowsPhoneApp, Version=8.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Toasts.Forms.Plugin.Abstractions\Toasts.Forms.Plugin.Abstractions.csproj">
+      <Project>{a6005e12-de46-4f28-8f97-8b8564af191c}</Project>
+      <Name>Toasts.Forms.Plugin.Abstractions</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>

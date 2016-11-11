@@ -51,12 +51,6 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Toasts.Forms.Plugin.Abstractions\Toasts.Forms.Plugin.Abstractions.csproj">
-      <Project>{a6005e12-de46-4f28-8f97-8b8564af191c}</Project>
-      <Name>Toasts.Forms.Plugin.Abstractions</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\Icons\icon-error.png" />
   </ItemGroup>
   <ItemGroup>
@@ -80,12 +74,16 @@
   <ItemGroup>
     <BundleResource Include="Resources\Icons\icon-warning.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Toasts.Forms.Plugin.Abstractions\Toasts.Forms.Plugin.Abstractions.csproj">
+      <Project>{A6005E12-DE46-4F28-8F97-8B8564AF191C}</Project>
+      <Name>Toasts.Forms.Plugin.Abstractions</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
- 
   </Target>
-
 </Project>
