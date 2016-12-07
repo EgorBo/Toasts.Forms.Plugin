@@ -82,10 +82,6 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <ProjectReference Include="..\..\Toasts.Forms.Plugin.WinRT\Toasts.Forms.Plugin.WinRT.csproj">
-      <Project>{13aba0ca-8103-4790-bca2-fe3b942fa59d}</Project>
-      <Name>Toasts.Forms.Plugin.WinRT</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Toasts.Forms.Plugin.Sample\Toasts.Forms.Plugin.Sample.csproj">
       <Project>{553a881c-278b-4a3c-9c79-606edeee3270}</Project>
       <Name>Toasts.Forms.Plugin.Sample</Name>
