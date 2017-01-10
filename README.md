@@ -17,12 +17,12 @@ Setup and usage
 |Xamarin.iOS Unified|Yes|iOS 10+|
 |Xamarin.Android|Yes|API 16+ (AppCompat Only)|
 |Windows Phone Silverlight|No||
-|Windows Phone RT|Yes|8.1+|
-|Windows Store RT|Yes|8.1+|
+|Windows Phone RT|No||
+|Windows Store RT|No||
 |Windows 10 UWP|Yes|10+|
 |Xamarin.Mac|No||
 
-Now uses .NET Standard 1.3
+Now uses .NET Standard 1.3, does support PCL 111.
 
 **iOS Support**
 Version 3+ of this plugin requires iOS10 to display the toast notification. If you require support for iOS7+ then please use version 2.0.4.
