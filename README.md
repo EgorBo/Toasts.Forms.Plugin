@@ -17,8 +17,8 @@ Setup and usage
 |Xamarin.iOS Unified|Yes|iOS 10+|
 |Xamarin.Android|Yes|API 16+ (AppCompat Only)|
 |Windows Phone Silverlight|No||
-|Windows Phone RT|Yes|8.1+|
-|Windows Store RT|Yes|8.1+|
+|Windows Phone RT|No||
+|Windows Store RT|No||
 |Windows 10 UWP|Yes|10+|
 |Xamarin.Mac|No||
 

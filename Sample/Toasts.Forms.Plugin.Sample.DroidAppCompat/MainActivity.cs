@@ -13,8 +13,8 @@ namespace Toasts.Forms.Plugin.Sample.DroidAppCompat
         {
             base.OnCreate(bundle);
 
-            FormsAppCompatActivity.ToolbarResource = Resource.Layout.toolbar;
-            FormsAppCompatActivity.TabLayoutResource = Resource.Layout.tabs;
+            ToolbarResource = Resource.Layout.toolbar;
+            TabLayoutResource = Resource.Layout.tabs;
 
             Xamarin.Forms.Forms.Init(this, bundle);
 

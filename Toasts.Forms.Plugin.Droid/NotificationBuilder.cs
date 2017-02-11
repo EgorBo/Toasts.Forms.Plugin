@@ -102,7 +102,7 @@ namespace Plugin.Toasts
 
             notificationManager.Notify(notificationId, notification);
 
-            var timer = new Timer(x => TimerFinished(id), null, TimeSpan.FromSeconds(7), TimeSpan.FromSeconds(100));
+            var timer = new Timer(x => TimerFinished(activity, id, options.ClearFromHistory), null, TimeSpan.FromSeconds(7), TimeSpan.FromSeconds(100));
 
             var resetEvent = new ManualResetEvent(false);
             ResetEvent.Add(id, resetEvent);
@@ -133,8 +133,16 @@ namespace Plugin.Toasts
             notificationManager.CancelAll();
         }
 
-        private void TimerFinished(string id)
+        private void TimerFinished(Activity activity, string id, bool cancel)
         {
+            if (cancel) // Will clear from Notification Center
+            {
+                NotificationManager notificationManager =
+                   activity.GetSystemService(Context.NotificationService) as NotificationManager;
+
+                notificationManager.Cancel(Convert.ToInt32(id));
+            }
+
             if (ResetEvent.ContainsKey(id))
             {
                 EventResult.Add(id, new NotificationResult() { Action = NotificationAction.Timeout });

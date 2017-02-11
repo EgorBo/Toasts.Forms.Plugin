@@ -35,7 +35,7 @@
                         _eventResult.Add(identifier, notificationResult);
                         _resetEvents[identifier].Set();
                     }
-            });
+            }, options.ClearFromHistory);
 
             var resetEvent = new ManualResetEvent(false);
             _resetEvents.Add(id, resetEvent);
@@ -60,18 +60,24 @@
         {
             private Action<string, NotificationResult> _action;
             private string _id;
-            public UserNotificationCenterDelegate(string id, Action<string, NotificationResult> action)
+            private bool _cancel;
+            public UserNotificationCenterDelegate(string id, Action<string, NotificationResult> action, bool cancel)
             {
                 _action = action;
                 _id = id;
+                _cancel = cancel;
             }
-          
+
             public override void WillPresentNotification(UNUserNotificationCenter center, UNNotification notification, Action<UNNotificationPresentationOptions> completionHandler)
             {
                 // Timer here for a timeout since no Toast Dismissed Event (7 seconds til auto dismiss)
                 var timer = NSTimer.CreateScheduledTimer(TimeSpan.FromSeconds(7), (nsTimer) =>
                 {
                     _action(_id, new NotificationResult() { Action = NotificationAction.Timeout });
+
+                    if (_cancel) // Clear notification from list
+                        UNUserNotificationCenter.Current.RemoveDeliveredNotifications(new string[] { _id });
+
                     nsTimer.Invalidate();
                 });
 

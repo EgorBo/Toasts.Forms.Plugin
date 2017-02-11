@@ -19,6 +19,7 @@ namespace Plugin.Toasts.WinRT
 
         private IDictionary<string, ManualResetEvent> _resetEvents = new Dictionary<string, ManualResetEvent>();
         private IDictionary<string, NotificationResult> _eventResult = new Dictionary<string, NotificationResult>();
+        private IDictionary<string, INotificationOptions> _notificationOptions = new Dictionary<string, INotificationOptions>();
         private int _count = 0;
 
 #if WINRT
@@ -64,6 +65,8 @@ namespace Plugin.Toasts.WinRT
                 toast.Dismissed += Toast_Dismissed;
                 toast.Activated += Toast_Activated;
                 toast.Failed += Toast_Failed;
+
+                _notificationOptions.Add(id, options);
 
                 var waitEvent = new ManualResetEvent(false);
 
@@ -130,6 +133,15 @@ namespace Plugin.Toasts.WinRT
                 default:
                     _eventResult.Add(id, new NotificationResult() { Action = NotificationAction.Dismissed });
                     break;
+            }
+            if (_notificationOptions.ContainsKey(id))
+            {
+                var options = _notificationOptions[id];
+
+                if (options.ClearFromHistory)
+                    ToastNotificationManager.History.Remove(id);
+                
+                _notificationOptions.Remove(id);
             }
 
             _resetEvents[id].Set();

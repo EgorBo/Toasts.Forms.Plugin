@@ -14,7 +14,8 @@ namespace Toasts.Forms.Plugin.Sample
                 Title = "Title",
                 Description = "Some Description",
                 IsClickable = true,
-                WindowsOptions = new WindowsOptions() { LogoUri = "icon.png" }
+                WindowsOptions = new WindowsOptions() { LogoUri = "icon.png" },
+                ClearFromHistory = false
             };
 
             Button showToast = new Button { Text = "Show Toast" };
