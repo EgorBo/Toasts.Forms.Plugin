@@ -9,16 +9,8 @@ namespace Plugin.Toasts
     [BroadcastReceiver(Enabled = true, Label = "Toasts Broadcast Receiver")]
     public class AlarmHandler : BroadcastReceiver
     {
-        /// <summary>
-        /// 
-        /// </summary>
         public const string NotificationKey = "LocalNotification";
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="context"></param>
-        /// <param name="intent"></param>
+           
         public override void OnReceive(Context context, Intent intent)
         {
             var extra = intent.GetStringExtra(NotificationKey);
