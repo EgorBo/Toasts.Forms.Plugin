@@ -1,6 +1,8 @@
 ﻿namespace Plugin.Toasts
 {
+    using Extensions;
     using Foundation;
+    using System;
     using System.Collections.Generic;
     using System.Threading;
     using UIKit;
@@ -15,7 +17,7 @@
             var notification = new UILocalNotification();
 
             // set the fire date (the date time in which it will fire)
-            notification.FireDate = NSDate.Now;
+            notification.FireDate = options.DelayUntil == null ? NSDate.Now : options.DelayUntil.Value.ToNSDate();
 
             // configure the alert
             notification.AlertTitle = options.Title;

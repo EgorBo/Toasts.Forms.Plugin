@@ -1,6 +1,7 @@
 ﻿using Xamarin.Forms;
 using Plugin.Toasts;
 using System.Threading.Tasks;
+using System;
 
 namespace Toasts.Forms.Plugin.Sample
 {
@@ -8,19 +9,17 @@ namespace Toasts.Forms.Plugin.Sample
     {
         public App()
         {
-
-            var options = new NotificationOptions()
+            Button showToast = new Button { Text = "Show Toast" };
+            showToast.Clicked += (s, e) => ShowToast(new NotificationOptions()
             {
                 Title = "Title",
                 Description = "Some Description",
                 IsClickable = true,
                 WindowsOptions = new WindowsOptions() { LogoUri = "icon.png" },
-                ClearFromHistory = false
-            };
+                ClearFromHistory = false,
+                DelayUntil = DateTime.Now.AddSeconds(10)
+            });
 
-            Button showToast = new Button { Text = "Show Toast" };
-            showToast.Clicked += (s, e) => ShowToast(options);
-            
             // The root page of your application
             MainPage = new ContentPage
             {
@@ -40,7 +39,7 @@ namespace Toasts.Forms.Plugin.Sample
             var notificator = DependencyService.Get<IToastNotificator>();
 
             var result = await notificator.Notify(options);
-            
+
         }
     }
 }

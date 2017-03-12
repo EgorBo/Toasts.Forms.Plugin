@@ -74,12 +74,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlarmHandler.cs" />
     <Compile Include="Options\PlatformOptions.cs" />
     <Compile Include="Options\IPlatformOptions.cs" />
     <Compile Include="NotificationBuilder.cs" />
     <Compile Include="Options\NotificationStyle.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScheduledNotification.cs" />
     <Compile Include="SnackbarNotification.cs" />
     <Compile Include="ToastNotification.cs" />
   </ItemGroup>

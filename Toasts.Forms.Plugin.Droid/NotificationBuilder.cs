@@ -4,7 +4,9 @@ namespace Plugin.Toasts
     using Android.Content;
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Threading;
+    using System.Xml.Serialization;
 
     internal class NotificationBuilder
     {
@@ -54,13 +56,83 @@ namespace Plugin.Toasts
 
             return list;
         }
+        private void ScheduleNotification(string id, INotificationOptions options)
+        {
+            var intent = new Intent(Application.Context, typeof(AlarmHandler))
+                .SetAction("AlarmHandlerIntent" + id);
+
+            var notification = new ScheduledNotification()
+            {
+                AndroidOptions = (AndroidOptions)options.AndroidOptions,
+                ClearFromHistory = options.ClearFromHistory,
+                DelayUntil = options.DelayUntil,
+                Description = options.Description,
+                IsClickable = options.IsClickable,
+                Title = options.Title
+            };
+            
+            var serializedNotification = Serialize(notification);
+            intent.PutExtra(AlarmHandler.NotificationKey, serializedNotification);
+            intent.PutExtra(NotificationId, id);
+
+            var pendingIntent = PendingIntent.GetBroadcast(Application.Context, 0, intent, PendingIntentFlags.CancelCurrent);
+            var triggerTime = NotifyTimeInMilliseconds(options.DelayUntil.Value);
+            var alarmManager = Application.Context.GetSystemService(Context.AlarmService) as AlarmManager;
+
+            alarmManager.Set(AlarmType.RtcWakeup, triggerTime, pendingIntent);
+
+        }
+
+        private long NotifyTimeInMilliseconds(DateTime notifyTime)
+        {
+            var utcTime = TimeZoneInfo.ConvertTimeToUtc(notifyTime);
+            var epochDifference = (new DateTime(1970, 1, 1) - DateTime.MinValue).TotalSeconds;
+
+            var utcAlarmTimeInMillis = utcTime.AddSeconds(-epochDifference).Ticks / 10000;
+            return utcAlarmTimeInMillis;
+        }
+
+        private string Serialize(ScheduledNotification options)
+        {
+            try
+            {
+                var xmlSerializer = new XmlSerializer(typeof(ScheduledNotification));
+                using (var stringWriter = new StringWriter())
+                {
+                    xmlSerializer.Serialize(stringWriter, options);
+                    return stringWriter.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                return string.Empty;
+            }
+        }
 
         public INotificationResult Notify(Activity activity, INotificationOptions options)
         {
+
             var notificationId = _count;
             var id = _count.ToString();
             _count++;
 
+            int smallIcon;
+
+            if (options.AndroidOptions.SmallDrawableIcon.HasValue)
+                smallIcon = options.AndroidOptions.SmallDrawableIcon.Value;
+            else if (_androidOptions.SmallIconDrawable.HasValue)
+                smallIcon = _androidOptions.SmallIconDrawable.Value;
+            else
+                smallIcon = Android.Resource.Drawable.IcDialogInfo; // As last resort
+
+            if (options.DelayUntil.HasValue)
+            {
+                options.AndroidOptions.SmallDrawableIcon = smallIcon;
+                ScheduleNotification(id, options);
+                return new NotificationResult() { Action = NotificationAction.NotApplicable };
+            }
+
+            // Show Notification Right Now
             Intent dismissIntent = new Intent(DismissedClickIntent);
             dismissIntent.PutExtra(NotificationId, notificationId);
 
@@ -76,15 +148,6 @@ namespace Plugin.Toasts
 
             PendingIntent pendingClickIntent = PendingIntent.GetBroadcast(activity.ApplicationContext, 123, clickIntent, 0);
 
-            int smallIcon;
-
-            if (options.AndroidOptions.SmallDrawableIcon.HasValue)
-                smallIcon = options.AndroidOptions.SmallDrawableIcon.Value;
-            else if (_androidOptions.SmallIconDrawable.HasValue)
-                smallIcon = _androidOptions.SmallIconDrawable.Value;
-            else
-                smallIcon = Android.Resource.Drawable.IcDialogInfo; // As last resort
-
             Android.App.Notification.Builder builder = new Android.App.Notification.Builder(activity)
                     .SetContentTitle(options.Title)
                     .SetContentText(options.Description)
@@ -92,7 +155,7 @@ namespace Plugin.Toasts
                     .SetPriority((int)NotificationPriority.High) // Must be set to High to get Heads-up notification
                     .SetDefaults(NotificationDefaults.All) // Must also include vibrate to get Heads-up notification
                     .SetAutoCancel(true) // To allow click event to trigger delete Intent
-                    .SetContentIntent(pendingClickIntent) // Must have Intent to accept the click
+                    .SetContentIntent(pendingClickIntent) // Must have Intent to accept the click                   
                     .SetDeleteIntent(pendingDismissIntent);
 
             Android.App.Notification notification = builder.Build();
@@ -101,6 +164,9 @@ namespace Plugin.Toasts
                 activity.GetSystemService(Context.NotificationService) as NotificationManager;
 
             notificationManager.Notify(notificationId, notification);
+
+            if (options.DelayUntil.HasValue)
+                return new NotificationResult() { Action = NotificationAction.NotApplicable };
 
             var timer = new Timer(x => TimerFinished(activity, id, options.ClearFromHistory), null, TimeSpan.FromSeconds(7), TimeSpan.FromSeconds(100));
 
@@ -124,7 +190,7 @@ namespace Plugin.Toasts
 
             return notificationResult;
         }
-        
+
         public void CancelAll(Activity activity)
         {
             NotificationManager notificationManager =

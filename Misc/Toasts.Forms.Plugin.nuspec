@@ -2,7 +2,7 @@
 <package>
   <metadata minClientVersion="3.1">
     <id>Toasts.Forms.Plugin</id>
-    <version>3.1.4</version>
+    <version>3.2.0-beta1</version>
     <title>Toast Notification Plugin for Xamarin and Windows</title>
     <authors>Adam Pedley, Egor Bogatov</authors>
     <owners>Adam Pedley, Egor Bogatov</owners>
@@ -22,9 +22,8 @@
     </description>
     <tags>toast notifications, toast, toasts, xamarin, xamarin.forms, android, ios, windows phone, uwp, UNUserNotificationCenter, ToastNotificationManager, local notifications, snackbar</tags>
     <releaseNotes>
-      [3.1.4]
-      - Added ClearFromHistory Option
-      - Allows Android support library >= 23.3.0 in line with upcoming Xamarin Forms changes
+      [3.2.0]
+      - Schedule toasts in the future
     </releaseNotes>
     <dependencies>      
       <group targetFramework=".NETStandard1.1">

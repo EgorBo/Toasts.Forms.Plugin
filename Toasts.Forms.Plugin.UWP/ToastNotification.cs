@@ -54,40 +54,50 @@ namespace Plugin.Toasts.WinRT
                     toastXml.GetElementsByTagName("binding")[0].Attributes[0].InnerText = "ToastGeneric";
                 }
 
-                Windows.UI.Notifications.ToastNotification toast = new Windows.UI.Notifications.ToastNotification(toastXml);
-                var id = _count.ToString();
+                if (options.DelayUntil.HasValue)
+                {
+                    ScheduledToastNotification toast = new ScheduledToastNotification(toastXml, options.DelayUntil.Value);
+                    ToastNotifier.AddToSchedule(toast);
+                    return new NotificationResult() { Action = NotificationAction.NotApplicable };
+                }
+                else
+                {
+                    Windows.UI.Notifications.ToastNotification toast = new Windows.UI.Notifications.ToastNotification(toastXml);
+
+                    var id = _count.ToString();
 #if WINDOWS_UWP
-                toast.Tag = id;
+                    toast.Tag = id;
 #else
                 _toasts.Add(id, toast);
 #endif
-                _count++;
-                toast.Dismissed += Toast_Dismissed;
-                toast.Activated += Toast_Activated;
-                toast.Failed += Toast_Failed;
+                    _count++;
+                    toast.Dismissed += Toast_Dismissed;
+                    toast.Activated += Toast_Activated;
+                    toast.Failed += Toast_Failed;
 
-                _notificationOptions.Add(id, options);
+                    _notificationOptions.Add(id, options);
 
-                var waitEvent = new ManualResetEvent(false);
+                    var waitEvent = new ManualResetEvent(false);
 
-                _resetEvents.Add(id, waitEvent);
+                    _resetEvents.Add(id, waitEvent);
 
-                ToastNotifier.Show(toast);
+                    ToastNotifier.Show(toast);
 
-                waitEvent.WaitOne();
+                    waitEvent.WaitOne();
 
-                INotificationResult result = _eventResult[id];
+                    INotificationResult result = _eventResult[id];
 
-                if (!options.IsClickable && result.Action == NotificationAction.Clicked) // A click is transformed to manual dismiss
-                    result = new NotificationResult() { Action = NotificationAction.Dismissed };
+                    if (!options.IsClickable && result.Action == NotificationAction.Clicked) // A click is transformed to manual dismiss
+                        result = new NotificationResult() { Action = NotificationAction.Dismissed };
 
-                _resetEvents.Remove(id);
-                _eventResult.Remove(id);
+                    _resetEvents.Remove(id);
+                    _eventResult.Remove(id);
 
 #if WINRT
                 _toasts.Remove(id);
 #endif
-                return result;
+                    return result;
+                }
 
             });
         }

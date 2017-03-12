@@ -1,5 +1,6 @@
 ﻿namespace Plugin.Toasts
 {
+    using Extensions;
     using Foundation;
     using System;
     using System.Collections.Generic;
@@ -21,7 +22,12 @@
             content.Title = options.Title;
             content.Body = options.Description;
             content.Sound = UNNotificationSound.Default;
-            var trigger = UNTimeIntervalNotificationTrigger.CreateTrigger(0.1, false); // Trigger now
+            UNNotificationTrigger trigger;
+
+            if (options.DelayUntil.HasValue)
+                trigger = UNCalendarNotificationTrigger.CreateTrigger(options.DelayUntil.Value.ToNSDateComponents(), false);
+            else
+                trigger = UNTimeIntervalNotificationTrigger.CreateTrigger(0.1, false);
 
             var id = _count.ToString();
             _count++;
@@ -30,7 +36,7 @@
             notificationCenter.Delegate = new UserNotificationCenterDelegate(id, (identifier, notificationResult) =>
             {
                 lock (_lock)
-                    if (_resetEvents.ContainsKey(identifier) && !_eventResult.ContainsKey(identifier))
+                    if (_resetEvents?.ContainsKey(identifier) == true && _eventResult?.ContainsKey(identifier) == false)
                     {
                         _eventResult.Add(identifier, notificationResult);
                         _resetEvents[identifier].Set();
@@ -43,8 +49,11 @@
             notificationCenter.AddNotificationRequest(request, (error) =>
             {
                 if (error != null)
-                    _eventResult.Add(request.Identifier, new NotificationResult() { Action = NotificationAction.Failed });
+                    _eventResult?.Add(request.Identifier, new NotificationResult() { Action = NotificationAction.Failed });
             });
+
+            if (options.DelayUntil.HasValue)
+                return new NotificationResult() { Action = NotificationAction.NotApplicable };
 
             resetEvent.WaitOne();
 
