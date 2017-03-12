@@ -70,42 +70,32 @@ namespace Plugin.Toasts
                 IsClickable = options.IsClickable,
                 Title = options.Title
             };
-            
+
             var serializedNotification = Serialize(notification);
             intent.PutExtra(AlarmHandler.NotificationKey, serializedNotification);
             intent.PutExtra(NotificationId, id);
 
             var pendingIntent = PendingIntent.GetBroadcast(Application.Context, 0, intent, PendingIntentFlags.CancelCurrent);
-            var triggerTime = NotifyTimeInMilliseconds(options.DelayUntil.Value);
+            var timeTriggered = ConvertToMilliseconds(options.DelayUntil.Value);
             var alarmManager = Application.Context.GetSystemService(Context.AlarmService) as AlarmManager;
 
-            alarmManager.Set(AlarmType.RtcWakeup, triggerTime, pendingIntent);
-
+            alarmManager.Set(AlarmType.RtcWakeup, timeTriggered, pendingIntent);
         }
 
-        private long NotifyTimeInMilliseconds(DateTime notifyTime)
+        private long ConvertToMilliseconds(DateTime notifyTime)
         {
             var utcTime = TimeZoneInfo.ConvertTimeToUtc(notifyTime);
             var epochDifference = (new DateTime(1970, 1, 1) - DateTime.MinValue).TotalSeconds;
-
-            var utcAlarmTimeInMillis = utcTime.AddSeconds(-epochDifference).Ticks / 10000;
-            return utcAlarmTimeInMillis;
+            return utcTime.AddSeconds(-epochDifference).Ticks / 10000;
         }
 
         private string Serialize(ScheduledNotification options)
         {
-            try
+            var xmlSerializer = new XmlSerializer(typeof(ScheduledNotification));
+            using (var stringWriter = new StringWriter())
             {
-                var xmlSerializer = new XmlSerializer(typeof(ScheduledNotification));
-                using (var stringWriter = new StringWriter())
-                {
-                    xmlSerializer.Serialize(stringWriter, options);
-                    return stringWriter.ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                return string.Empty;
+                xmlSerializer.Serialize(stringWriter, options);
+                return stringWriter.ToString();
             }
         }
 

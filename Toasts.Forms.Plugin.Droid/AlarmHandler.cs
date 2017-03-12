@@ -46,10 +46,7 @@ namespace Plugin.Toasts
         {
             var xmlSerializer = new XmlSerializer(typeof(ScheduledNotification));
             using (var stringReader = new StringReader(notificationString))
-            {
-                var notification = (ScheduledNotification)xmlSerializer.Deserialize(stringReader);
-                return notification;
-            }
+                return (ScheduledNotification)xmlSerializer.Deserialize(stringReader);                
         }
     }
 }
