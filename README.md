@@ -29,7 +29,7 @@ Version 3+ of this plugin requires iOS10 to display the toast notification. If y
 
 I you want to use the latest plugin with a version less than iOS 10 you can hook into the ReceivedLocalNotification in the AppDelegate to display an Alert.
 
-**Setup
+**Setup**
 
 In your iOS, Android, WinRT and UWP projects please call:
 
@@ -44,7 +44,7 @@ ToastNotification.Init(this);
 If you are using Xamarin Forms, you must do this AFTER your call to Xamarin.Forms.Init();
 
 #### Usage
-Use dependency service in order to resolve IToastNotificator
+Use dependency service in order to resolve IToastNotificator.
 ```csharp
 var notificator = DependencyService.Get<IToastNotificator>();
 
