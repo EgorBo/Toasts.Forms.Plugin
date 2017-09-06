@@ -69,11 +69,14 @@ namespace Plugin.Toasts
 
         private void ToastClosed(string id, NotificationResult result)
         {
-            lock (_lock)
-            {
-                _eventResult.Add(id, result);
-                _resetEvents[id].Set();
-            }
+			lock (_lock)
+			{
+				if (_resetEvents.ContainsKey(id))
+				{
+					_eventResult.Add(id, result);
+					_resetEvents[id].Set();
+				}
+			}
         }
     }
 

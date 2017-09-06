@@ -2,7 +2,7 @@
 <package>
   <metadata minClientVersion="3.1">
     <id>Toasts.Forms.Plugin</id>
-    <version>3.2.0-beta1</version>
+    <version>3.2.1</version>
     <title>Toast Notification Plugin for Xamarin and Windows</title>
     <authors>Adam Pedley, Egor Bogatov</authors>
     <owners>Adam Pedley, Egor Bogatov</owners>
@@ -22,8 +22,8 @@
     </description>
     <tags>toast notifications, toast, toasts, xamarin, xamarin.forms, android, ios, windows phone, uwp, UNUserNotificationCenter, ToastNotificationManager, local notifications, snackbar</tags>
     <releaseNotes>
-      [3.2.0]
-      - Schedule toasts in the future
+      [3.2.1]
+      - Fixed Snackbar Notification Crash
     </releaseNotes>
     <dependencies>      
       <group targetFramework=".NETStandard1.1">
