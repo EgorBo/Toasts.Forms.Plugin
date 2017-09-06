@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package>
-  <metadata minClientVersion="3.1">
+  <metadata>
     <id>Toasts.Forms.Plugin</id>
     <version>3.2.1</version>
     <title>Toast Notification Plugin for Xamarin and Windows</title>
@@ -8,7 +8,7 @@
     <owners>Adam Pedley, Egor Bogatov</owners>
     <licenseUrl>https://github.com/EgorBo/Toasts.Forms.Plugin/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/EgorBo/Toasts.Forms.Plugin</projectUrl>
-    <iconUrl>https://i.imgsafe.org/2026268038.png</iconUrl>
+    <iconUrl>https://i.imgsafe.org/f3/f3dda9387a.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>
       Toasts notifications on Xamarin and Windows.
@@ -20,7 +20,7 @@
 
       Read the full documentation on the projects page.
     </description>
-    <tags>toast notifications, toast, toasts, xamarin, xamarin.forms, android, ios, windows phone, uwp, UNUserNotificationCenter, ToastNotificationManager, local notifications, snackbar</tags>
+    <tags>toast, toasts, toast notifications, local notifications, xamarin, xamarin.forms, android, ios, windows phone, uwp, UNUserNotificationCenter, ToastNotificationManager, snackbar</tags>
     <releaseNotes>
       [3.2.1]
       - Fixed Snackbar Notification Crash

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toasts.Forms.Plugin.Abstractions", "Toasts.Forms.Plugin.Abstractions\Toasts.Forms.Plugin.Abstractions.csproj", "{A6005E12-DE46-4F28-8F97-8B8564AF191C}"
 EndProject
@@ -15,6 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toasts.Forms.Plugin.Sample.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{5107FF7E-7D8C-486A-A304-50EE5DA447EC}"
 	ProjectSection(SolutionItems) = preProject
+		Misc\toast_logo.png = Misc\toast_logo.png
 		Misc\Toasts.Forms.Plugin.nuspec = Misc\Toasts.Forms.Plugin.nuspec
 	EndProjectSection
 EndProject
@@ -473,5 +474,8 @@ Global
 		{996BAC7F-CAA7-475A-80D7-2D00C03AEB49} = {ECF5C521-9DE4-4A54-8BC1-62C7FE1B28B4}
 		{6C594133-C136-4C70-AC36-E56B7452BD2E} = {ECF5C521-9DE4-4A54-8BC1-62C7FE1B28B4}
 		{31049358-DB24-492B-A566-7F4521E19B41} = {ECF5C521-9DE4-4A54-8BC1-62C7FE1B28B4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {72C23B27-9373-4BED-9AF6-61CAECF2EF33}
 	EndGlobalSection
 EndGlobal
