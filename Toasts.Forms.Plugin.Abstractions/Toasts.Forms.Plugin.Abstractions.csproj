@@ -55,6 +55,8 @@
     <Compile Include="NotificationResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Options\WindowsOptions.cs" />
+    <Compile Include="Interfaces\IAndroidChannelOptions.cs" />
+    <Compile Include="Options\AndroidChannelOptions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Target Name="_SetTargetFrameworkMonikerAttribute" BeforeTargets="GenerateTargetFrameworkMonikerAttribute">
