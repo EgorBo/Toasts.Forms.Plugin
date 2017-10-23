@@ -18,20 +18,20 @@ namespace Plugin.Toasts
             var id = intent.GetStringExtra(NotificationBuilder.NotificationId);
             var options = DeserializeNotification(extra);
 
-            if (!string.IsNullOrEmpty(options.AndroidOptions.HexColour) && options.AndroidOptions.HexColour.Substring(0, 1) != "#")
+            if (!string.IsNullOrEmpty(options.AndroidOptions.HexColor) && options.AndroidOptions.HexColor.Substring(0, 1) != "#")
             {
-                options.AndroidOptions.HexColour = "#" + options.AndroidOptions.HexColour;
+                options.AndroidOptions.HexColor = "#" + options.AndroidOptions.HexColor;
             }
 
             // Show Notification
             Android.App.Notification.Builder builder = new Android.App.Notification.Builder(Application.Context)
-                .SetContentTitle(options.AndroidOptions.DebugShowIdInTitle ? "[" + id + "] " + options.Title : options.Title)
+                .SetContentTitle(options.Title)
                 .SetContentText(options.Description)
                 .SetSmallIcon(options.AndroidOptions.SmallDrawableIcon.Value) // Must have small icon to display
                 .SetPriority((int)NotificationPriority.High) // Must be set to High to get Heads-up notification
                 .SetDefaults(NotificationDefaults.All) // Must also include vibrate to get Heads-up notification
                 .SetAutoCancel(true)
-                .SetColor(Color.ParseColor(options.AndroidOptions.HexColour));
+                .SetColor(Color.ParseColor(options.AndroidOptions.HexColor));
 
             if (options.AndroidOptions.ForceOpenAppOnNotificationTap)
             {

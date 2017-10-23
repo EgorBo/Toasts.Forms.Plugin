@@ -25,7 +25,7 @@ namespace Toasts.Forms.Plugin.Sample
                         //DelayUntil = DateTime.Now.AddSeconds((new Random()).Next((3 + i), (6 + i))),
                         AndroidOptions = new AndroidOptions()
                         {
-                            HexColour = "#F99D1C",
+                            HexColor = "#F99D1C",
                             ForceOpenAppOnNotificationTap = true
                         }
                     });

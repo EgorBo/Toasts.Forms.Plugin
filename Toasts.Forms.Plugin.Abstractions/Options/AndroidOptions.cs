@@ -12,12 +12,8 @@ namespace Plugin.Toasts
         public int? SmallDrawableIcon { get; set; } = null;
         public string DismissText { get; set; } = "Dismiss";
         public string ViewText { get; set; } = "View";
-        public string HexColour { get; set; } = "#FFFFFFFF";
+        public string HexColor { get; set; } = "#FFFFFFFF";
         public bool ForceOpenAppOnNotificationTap { get; set; } = false;
         public IAndroidChannelOptions ChannelOptions { get; set; } = new AndroidChannelOptions();
-
-        // Debug Help
-        public bool DebugShowCallbackToast { get; set; } = false;
-        public bool DebugShowIdInTitle { get; set; } = false;
     }
 }

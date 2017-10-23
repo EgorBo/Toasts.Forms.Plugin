@@ -104,9 +104,9 @@ namespace Plugin.Toasts
             {
                 var intent = new Intent(Application.Context, typeof(AlarmHandler)).SetAction("AlarmHandlerIntent" + id);
 
-                if (!string.IsNullOrEmpty(options.AndroidOptions.HexColour) && options.AndroidOptions.HexColour.Substring(0, 1) != "#")
+                if (!string.IsNullOrEmpty(options.AndroidOptions.HexColor) && options.AndroidOptions.HexColor.Substring(0, 1) != "#")
                 {
-                    options.AndroidOptions.HexColour = "#" + options.AndroidOptions.HexColour;
+                    options.AndroidOptions.HexColor = "#" + options.AndroidOptions.HexColor;
                 }
 
                 var notification = new ScheduledNotification()
@@ -191,13 +191,13 @@ namespace Plugin.Toasts
 
                 var pendingClickIntent = PendingIntent.GetBroadcast(Application.Context, (StartId + notificationId), clickIntent, 0);
 
-                if (!string.IsNullOrEmpty(options.AndroidOptions.HexColour) && options.AndroidOptions.HexColour.Substring(0, 1) != "#")
+                if (!string.IsNullOrEmpty(options.AndroidOptions.HexColor) && options.AndroidOptions.HexColor.Substring(0, 1) != "#")
                 {
-                    options.AndroidOptions.HexColour = "#" + options.AndroidOptions.HexColour;
+                    options.AndroidOptions.HexColor = "#" + options.AndroidOptions.HexColor;
                 }
 
                 Android.App.Notification.Builder builder = new Android.App.Notification.Builder(Application.Context)
-                    .SetContentTitle(options.AndroidOptions.DebugShowIdInTitle ? "[" + id + "] " + options.Title : options.Title)
+                    .SetContentTitle(options.Title)
                     .SetContentText(options.Description)
                     .SetSmallIcon(smallIcon) // Must have small icon to display
                     .SetPriority((int)NotificationPriority.High) // Must be set to High to get Heads-up notification
@@ -205,7 +205,7 @@ namespace Plugin.Toasts
                     .SetAutoCancel(true) // To allow click event to trigger delete Intent
                     .SetContentIntent(pendingClickIntent) // Must have Intent to accept the click                   
                     .SetDeleteIntent(pendingDismissIntent)
-                    .SetColor(Color.ParseColor(options.AndroidOptions.HexColour));
+                    .SetColor(Color.ParseColor(options.AndroidOptions.HexColor));
 
                 // Notification Channel
                 if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.O)

@@ -55,15 +55,7 @@ namespace Plugin.Toasts
                 return await Notify(options);
             }).ContinueWith((task) =>
             {
-                var tResult = task.Result;
-                if (options.AndroidOptions.DebugShowCallbackToast)
-                {
-                    _activity.RunOnUiThread(() =>
-                    {
-                        Toast.MakeText(Application.Context, "Notification [" + tResult.Id + "] Result Action: " + tResult.Action, ToastLength.Short).Show();
-                    });
-                }
-                callback.Invoke(tResult);
+                callback.Invoke(task.Result);
             });
         }
 
