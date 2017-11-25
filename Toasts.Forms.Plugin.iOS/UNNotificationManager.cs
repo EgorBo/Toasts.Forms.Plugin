@@ -22,6 +22,10 @@
             content.Title = options.Title;
             content.Body = options.Description;
             content.Sound = UNNotificationSound.Default;
+
+            if (options.iOSOptions != null && options.iOSOptions.SetBadgeCount)
+               content.Badge = options.iOSOptions.BadgeCount;
+
             UNNotificationTrigger trigger;
 
             if (options.DelayUntil.HasValue)

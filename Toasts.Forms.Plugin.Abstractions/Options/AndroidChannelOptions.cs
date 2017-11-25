@@ -7,7 +7,7 @@ namespace Plugin.Toasts.Options
         public string Name { get; set; } = "default";
         public string Description { get; set; } = null;
         public bool EnableVibration { get; set; } = true;
-        public bool ShowBadge { get; set; } = true;
+        public bool ShowBadge { get; set; } = false;
 
         public AndroidChannelOptions() { }
 
