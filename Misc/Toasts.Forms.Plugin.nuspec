@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Toasts.Forms.Plugin</id>
-    <version>3.2.2-pre1</version>
+    <version>3.3.0-pre1</version>
     <title>Toast Notification Plugin for Xamarin and Windows</title>
     <authors>Adam Pedley, Egor Bogatov</authors>
     <owners>Adam Pedley, Egor Bogatov</owners>
@@ -22,11 +22,12 @@
     </description>
     <tags>toast, toasts, toast notifications, local notifications, xamarin, xamarin.forms, android, ios, windows phone, uwp, UNUserNotificationCenter, ToastNotificationManager, snackbar</tags>
     <releaseNotes>
-      [3.2.2-pre1]
-        - Added support for setting the notification channels in Android Oreo and above, with a default fallback channel, and support for enabling vibration, and showing the badge dot above the app icon.
-        - Added support for setting the colour for the Android notifications.
-        - Added a new option AllowTapInNotificationCenter to allow tap from notification center.
-        - Added click Intent to Android scheduled local notifications to allow them to re-focus/open the app on tap as well.
+        - Added support for setting the notification channels in Android Oreo and above, with a default fallback channel
+        - Support for enabling vibration on Android
+        - Support for the Badge on Android and iOS
+        - Added support for setting the colour for the Android notifications
+        - Added a new option AllowTapInNotificationCenter to allow tap from notification center
+        - Added click Intent to Android scheduled local notifications to allow them to re-focus/open the app on tap as well
         - Several bug fixes
    </releaseNotes>
     <dependencies>      
@@ -43,25 +44,25 @@
   </metadata>
   <files>
     <!--Core-->
-    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\netstandard1.1" />
-    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.pdb" target="lib\netstandard1.1" />
+    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\netstandard1.1\Toasts.Forms.Plugin.Abstractions.dll" target="lib\netstandard1.1" />
+    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\netstandard1.1\Toasts.Forms.Plugin.Abstractions.pdb" target="lib\netstandard1.1" />
     
     <!--UWP-->
     <file src="..\Toasts.Forms.Plugin.UWP\bin\Release\Toasts.Forms.Plugin.UWP.dll" target="lib\uap10.0" />
     <file src="..\Toasts.Forms.Plugin.UWP\bin\Release\Toasts.Forms.Plugin.UWP.pdb" target="lib\uap10.0" />
-    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\uap10.0" />
-    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.pdb" target="lib\uap10.0" />
+    <file src="..\Toasts.Forms.Plugin.UWP\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\uap10.0" />
+    <file src="..\Toasts.Forms.Plugin.UWP\bin\Release\Toasts.Forms.Plugin.Abstractions.pdb" target="lib\uap10.0" />
 
     <!--Xamarin.Android-->
     <file src="..\Toasts.Forms.Plugin.Droid\bin\Release\Toasts.Forms.Plugin.Droid.dll" target="lib\MonoAndroid10" />
     <file src="..\Toasts.Forms.Plugin.Droid\bin\Release\Toasts.Forms.Plugin.Droid.pdb" target="lib\MonoAndroid10" />
-    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\MonoAndroid10" />
-    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.pdb" target="lib\MonoAndroid10" />
+    <file src="..\Toasts.Forms.Plugin.Droid\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\MonoAndroid10" />
+    <file src="..\Toasts.Forms.Plugin.Droid\bin\Release\Toasts.Forms.Plugin.Abstractions.pdb" target="lib\MonoAndroid10" />
 
     <!--Xamarin.iOS-->
     <file src="..\Toasts.Forms.Plugin.iOS\bin\iPhone\Release\Toasts.Forms.Plugin.iOS.dll" target="lib\Xamarin.iOS10" />
-    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\Xamarin.iOS10" />
-    <file src="..\Toasts.Forms.Plugin.Abstractions\bin\Release\Toasts.Forms.Plugin.Abstractions.pdb" target="lib\Xamarin.iOS10" />
+    <file src="..\Toasts.Forms.Plugin.iOS\bin\iPhone\Release\Toasts.Forms.Plugin.Abstractions.dll" target="lib\Xamarin.iOS10" />
+    <file src="..\Toasts.Forms.Plugin.iOS\bin\iPhone\Release\Toasts.Forms.Plugin.Abstractions.pdb" target="lib\Xamarin.iOS10" />
 
   </files>
 
