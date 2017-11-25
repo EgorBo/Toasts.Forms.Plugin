@@ -35,5 +35,11 @@
         /// </summary>
         void CancelAllDelivered();
 
+        /// <summary>
+        /// Used on some platforms to pass system args through on certain events
+        /// </summary>
+        /// <param name="args"></param>
+        void SystemEvent(object args);
+
     }
 }

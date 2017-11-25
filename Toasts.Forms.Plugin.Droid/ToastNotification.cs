@@ -1,3 +1,5 @@
+using Android.Widget;
+
 namespace Plugin.Toasts
 {
     using Android.App;
@@ -7,10 +9,10 @@ namespace Plugin.Toasts
 
     public class ToastNotification : IToastNotificator
     {
-        private static Activity _activity = null;
-        private static IPlatformOptions _androidOptions;
-        private static SnackbarNotification _snackbarNotification;
-        private static NotificationBuilder _notificationBuilder;
+        static Activity _activity = null;
+        static IPlatformOptions _androidOptions;
+        static SnackbarNotification _snackbarNotification;
+        static NotificationBuilder _notificationBuilder;
 
         public static void Init(Activity activity, IPlatformOptions androidOptions = null)
         {
@@ -23,7 +25,7 @@ namespace Plugin.Toasts
             else
                 _androidOptions = androidOptions;
 
-            _notificationBuilder.Init(_activity, _androidOptions);
+            _notificationBuilder.Init(_androidOptions);
         }
 
         public async Task<INotificationResult> Notify(INotificationOptions options)
@@ -45,14 +47,21 @@ namespace Plugin.Toasts
                 }
             });
         }
+
         public void Notify(Action<INotificationResult> callback, INotificationOptions options)
         {
-            Task.Run(async () => callback(await Notify(options)));
+            Task.Run(async () =>
+            {
+                return await Notify(options);
+            }).ContinueWith((task) =>
+            {
+                callback.Invoke(task.Result);
+            });
         }
 
         public void CancelAllDelivered()
         {
-            _notificationBuilder.CancelAll(_activity);
+            _notificationBuilder.CancelAll();
             _snackbarNotification.CancelAll();
         }
 
@@ -63,7 +72,12 @@ namespace Plugin.Toasts
         /// <returns></returns>
         public Task<IList<INotification>> GetDeliveredNotifications()
         {
-            return Task.FromResult(_notificationBuilder.GetDeliveredNotifications(_activity));
+            return Task.FromResult(_notificationBuilder.GetDeliveredNotifications());
+        }
+
+        public void SystemEvent(object args)
+        {
+            throw new NotSupportedException();
         }
     }
 

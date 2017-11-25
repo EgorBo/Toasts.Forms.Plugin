@@ -84,6 +84,10 @@
             }
         }
 
+        public void SystemEvent(object args)
+        {
+            throw new NotSupportedException();
+        }
     }
 
 

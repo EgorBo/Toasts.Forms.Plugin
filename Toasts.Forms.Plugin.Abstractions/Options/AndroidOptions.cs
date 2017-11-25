@@ -1,4 +1,6 @@
 ﻿using System;
+using Plugin.Toasts.Interfaces;
+using Plugin.Toasts.Options;
 
 namespace Plugin.Toasts
 {
@@ -10,5 +12,8 @@ namespace Plugin.Toasts
         public int? SmallDrawableIcon { get; set; } = null;
         public string DismissText { get; set; } = "Dismiss";
         public string ViewText { get; set; } = "View";
+        public string HexColor { get; set; } = "#FFFFFFFF";
+        public bool ForceOpenAppOnNotificationTap { get; set; } = false;
+        public IAndroidChannelOptions ChannelOptions { get; set; } = new AndroidChannelOptions();
     }
 }

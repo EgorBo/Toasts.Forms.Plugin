@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plugin.Toasts;
+using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -45,7 +46,7 @@ namespace Toasts.Forms.Plugin.Sample.UWP
                 rootFrame = new Frame();
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
-
+               
                 Xamarin.Forms.Forms.Init(e);
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
@@ -81,6 +82,14 @@ namespace Toasts.Forms.Plugin.Sample.UWP
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
 
+        protected override void OnActivated(IActivatedEventArgs args)
+        {
+            base.OnActivated(args);
+
+            if (args is ToastNotificationActivatedEventArgs toastArgs)
+                Xamarin.Forms.DependencyService.Get<IToastNotificator>()?.SystemEvent(toastArgs);
+        }
+
         /// <summary>
         /// Invoked when application execution is being suspended.  Application state is saved
         /// without knowing whether the application will be terminated or resumed with the contents
@@ -91,7 +100,7 @@ namespace Toasts.Forms.Plugin.Sample.UWP
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            //TODO: Save application state and stop any background activity
+            //Save application state and stop any background activity
             deferral.Complete();
         }
     }
