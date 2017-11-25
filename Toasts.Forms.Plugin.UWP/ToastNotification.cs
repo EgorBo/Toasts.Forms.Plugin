@@ -1,18 +1,13 @@
-﻿#if WINDOWS_UWP
-namespace Plugin.Toasts.UWP
+﻿namespace Plugin.Toasts.UWP
 {
-#else
-namespace Plugin.Toasts.WinRT
-{
-    using System.Linq;
-#endif
-
     using Toasts;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
     using Windows.UI.Notifications;
     using System;
+    using Windows.ApplicationModel.Activation;
+    using System.Xml;
 
     public class ToastNotification : IToastNotificator
     {
@@ -21,10 +16,6 @@ namespace Plugin.Toasts.WinRT
         private IDictionary<string, NotificationResult> _eventResult = new Dictionary<string, NotificationResult>();
         private IDictionary<string, INotificationOptions> _notificationOptions = new Dictionary<string, INotificationOptions>();
         private int _count = 0;
-
-#if WINRT
-        private IDictionary<string, Windows.UI.Notifications.ToastNotification> _toasts = new Dictionary<string, Windows.UI.Notifications.ToastNotification>();
-#endif
 
         public static void Init() { }
 
@@ -38,6 +29,11 @@ namespace Plugin.Toasts.WinRT
                 toastNodeList.Item(0).AppendChild(toastXml.CreateTextNode(options.Title));
                 toastNodeList.Item(1).AppendChild(toastXml.CreateTextNode(options.Description));
                 Windows.Data.Xml.Dom.IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
+
+                var id = _count.ToString();
+
+                var root = toastXml.DocumentElement;
+                root.SetAttribute("launch", id.ToString());
 
                 if (!string.IsNullOrEmpty(options.WindowsOptions.LogoUri))
                 {
@@ -64,17 +60,12 @@ namespace Plugin.Toasts.WinRT
                 {
                     Windows.UI.Notifications.ToastNotification toast = new Windows.UI.Notifications.ToastNotification(toastXml);
 
-                    var id = _count.ToString();
-#if WINDOWS_UWP
+
                     toast.Tag = id;
-#else
-                _toasts.Add(id, toast);
-#endif
                     _count++;
                     toast.Dismissed += Toast_Dismissed;
                     toast.Activated += Toast_Activated;
                     toast.Failed += Toast_Failed;
-
                     _notificationOptions.Add(id, options);
 
                     var waitEvent = new ManualResetEvent(false);
@@ -90,12 +81,13 @@ namespace Plugin.Toasts.WinRT
                     if (!options.IsClickable && result.Action == NotificationAction.Clicked) // A click is transformed to manual dismiss
                         result = new NotificationResult() { Action = NotificationAction.Dismissed };
 
-                    _resetEvents.Remove(id);
-                    _eventResult.Remove(id);
+                    if (_resetEvents.ContainsKey(id))
+                        _resetEvents.Remove(id);
+                    if (_eventResult.ContainsKey(id))
+                        _eventResult.Remove(id);
+                    if (_notificationOptions.ContainsKey(id))
+                        _notificationOptions.Remove(id);
 
-#if WINRT
-                _toasts.Remove(id);
-#endif
                     return result;
                 }
 
@@ -104,33 +96,34 @@ namespace Plugin.Toasts.WinRT
 
         private void Toast_Failed(Windows.UI.Notifications.ToastNotification sender, ToastFailedEventArgs args)
         {
-#if WINDOWS_UWP
             var id = sender.Tag;
-#else
-            var id = _toasts.Single(x => x.Value == sender).Key;
-#endif
             _eventResult.Add(id, new NotificationResult() { Action = NotificationAction.Failed });
             _resetEvents[id].Set();
         }
+        private object _eventLock = new object();
 
         private void Toast_Activated(Windows.UI.Notifications.ToastNotification sender, object args)
         {
-#if WINDOWS_UWP
-            var id = sender.Tag;
-#else
-            var id = _toasts.Single(x => x.Value == sender).Key;
-#endif
-            _eventResult.Add(id, new NotificationResult() { Action = NotificationAction.Clicked });
-            _resetEvents[id].Set();
+            lock (_eventLock)
+            {
+                var id = sender.Tag;
+
+                if (!_eventResult.ContainsKey(id))
+                    _eventResult.Add(id, new NotificationResult() { Action = NotificationAction.Clicked });
+
+                if (_resetEvents.ContainsKey(id))
+                    _resetEvents[id].Set();
+            }
         }
 
         private void Toast_Dismissed(Windows.UI.Notifications.ToastNotification sender, ToastDismissedEventArgs args)
         {
-#if WINDOWS_UWP
             var id = sender.Tag;
-#else
-            var id = _toasts.Single(x => x.Value == sender).Key;
-#endif
+            var options = _notificationOptions[id];
+
+            if (args.Reason != ToastDismissalReason.UserCanceled && options.AllowTapInNotificationCenter)
+                return;
+
             switch (args.Reason)
             {
                 case ToastDismissalReason.ApplicationHidden:
@@ -146,11 +139,9 @@ namespace Plugin.Toasts.WinRT
             }
             if (_notificationOptions.ContainsKey(id))
             {
-                var options = _notificationOptions[id];
-
                 if (options.ClearFromHistory)
                     ToastNotificationManager.History.Remove(id);
-                
+
                 _notificationOptions.Remove(id);
             }
 
@@ -159,19 +150,17 @@ namespace Plugin.Toasts.WinRT
 
         public void Notify(Action<INotificationResult> callback, INotificationOptions options)
         {
-            Task.Run(async () => callback(await Notify(options)));
+            Task.Run(async () =>
+            callback(await Notify(options))
+            );
         }
-
 
         /// <summary>
         /// Delivered Notifications for UWP that have not been dismissed.
-        /// Not Available for WinRT.
         /// </summary>
         /// <returns></returns>
         public Task<IList<INotification>> GetDeliveredNotifications()
         {
-
-#if WINDOWS_UWP
             IList<INotification> notifications = new List<INotification>();
 
             foreach (var notification in ToastNotificationManager.History.GetHistory())
@@ -184,18 +173,38 @@ namespace Plugin.Toasts.WinRT
                 });
 
             return Task.FromResult(notifications);
-#else
-            IList<INotification> notifications = new List<INotification>();
-            return Task.FromResult(notifications);
-#endif
-
         }
 
         public void CancelAllDelivered()
         {
-#if WINDOWS_UWP
             ToastNotificationManager.History.Clear();
-#endif
+        }
+
+        public void SystemEvent(object args)
+        {
+            if (args is ToastNotificationActivatedEventArgs toastArgs)
+            {
+                lock (_eventLock)
+                {
+                    // Toast notification was clicked, 
+                    var id = toastArgs.Argument;
+                    if (_notificationOptions.ContainsKey(id))
+                    {
+                        var options = _notificationOptions[id];
+
+                        if (options.ClearFromHistory)
+                            ToastNotificationManager.History.Remove(id);
+
+                        _notificationOptions.Remove(id);
+                    }
+
+                    if (!_eventResult.ContainsKey(id))
+                        _eventResult.Add(id, new NotificationResult() { Action = NotificationAction.Clicked });
+
+                    if (_resetEvents.ContainsKey(id))
+                        _resetEvents[id].Set();
+                }
+            }
         }
     }
 }

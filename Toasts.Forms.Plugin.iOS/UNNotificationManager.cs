@@ -41,7 +41,7 @@
                         _eventResult.Add(identifier, notificationResult);
                         _resetEvents[identifier].Set();
                     }
-            }, options.ClearFromHistory);
+            }, options.ClearFromHistory, options.AllowTapInNotificationCenter);
 
             var resetEvent = new ManualResetEvent(false);
             _resetEvents.Add(id, resetEvent);
@@ -70,11 +70,13 @@
             private Action<string, NotificationResult> _action;
             private string _id;
             private bool _cancel;
-            public UserNotificationCenterDelegate(string id, Action<string, NotificationResult> action, bool cancel)
+            private bool _allowTapInNotificationCenter;
+            public UserNotificationCenterDelegate(string id, Action<string, NotificationResult> action, bool cancel, bool allowTapInNotificationCenter)
             {
                 _action = action;
                 _id = id;
                 _cancel = cancel;
+                _allowTapInNotificationCenter = allowTapInNotificationCenter;
             }
 
             public override void WillPresentNotification(UNUserNotificationCenter center, UNNotification notification, Action<UNNotificationPresentationOptions> completionHandler)
@@ -82,7 +84,8 @@
                 // Timer here for a timeout since no Toast Dismissed Event (7 seconds til auto dismiss)
                 var timer = NSTimer.CreateScheduledTimer(TimeSpan.FromSeconds(7), (nsTimer) =>
                 {
-                    _action(_id, new NotificationResult() { Action = NotificationAction.Timeout });
+                    if (_cancel || !_allowTapInNotificationCenter)
+                        _action(_id, new NotificationResult() { Action = NotificationAction.Timeout });
 
                     if (_cancel) // Clear notification from list
                         UNUserNotificationCenter.Current.RemoveDeliveredNotifications(new string[] { _id });

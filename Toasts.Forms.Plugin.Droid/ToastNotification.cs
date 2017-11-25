@@ -75,6 +75,10 @@ namespace Plugin.Toasts
             return Task.FromResult(_notificationBuilder.GetDeliveredNotifications());
         }
 
+        public void SystemEvent(object args)
+        {
+            throw new NotSupportedException();
+        }
     }
 
 }

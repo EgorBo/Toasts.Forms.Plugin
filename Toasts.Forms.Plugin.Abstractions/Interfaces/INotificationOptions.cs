@@ -22,5 +22,6 @@
         IWindowsOptions WindowsOptions { get; }
         IAndroidOptions AndroidOptions { get; }
         IiOSOptions iOSOptions { get; }
+        bool AllowTapInNotificationCenter { get; }
     }
 }

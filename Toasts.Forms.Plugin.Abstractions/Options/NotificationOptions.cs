@@ -22,5 +22,7 @@
         public bool ClearFromHistory { get; set; } = false;
 
         public DateTime? DelayUntil { get; set; } = null;
+
+        public bool AllowTapInNotificationCenter { get; set; } = false;
     }
 }

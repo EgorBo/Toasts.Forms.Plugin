@@ -228,7 +228,7 @@ namespace Plugin.Toasts
                     return new NotificationResult() { Action = NotificationAction.NotApplicable, Id = notificationId };
                 }
 
-                var timer = new Timer(x => TimerFinished(id, options.ClearFromHistory), null, TimeSpan.FromSeconds(7), TimeSpan.FromSeconds(100));
+                var timer = new Timer(x => TimerFinished(id, options.ClearFromHistory, options.AllowTapInNotificationCenter), null, TimeSpan.FromSeconds(7), TimeSpan.FromMilliseconds(-1));
 
                 var resetEvent = new ManualResetEvent(false);
                 ResetEvent.Add(id, resetEvent);
@@ -269,30 +269,32 @@ namespace Plugin.Toasts
             }
         }
 
-        void TimerFinished(string id, bool cancel)
+        void TimerFinished(string id, bool cancel, bool allowTapInNotificationCenter)
         {
-            if (!string.IsNullOrEmpty(id))
-            {
-                if (cancel) // Will clear from Notification Center
-                {
-                    using (NotificationManager notificationManager = Application.Context.GetSystemService(Context.NotificationService) as NotificationManager)
-                    {
-                        notificationManager.Cancel(Convert.ToInt32(id));
-                    }
+            if (string.IsNullOrEmpty(id))
+                return;
 
-                    if (ResetEvent.ContainsKey(id))
-                    {
-                        if (EventResult != null)
-                        {
-                            EventResult.Add(id, new NotificationResult() { Action = NotificationAction.Timeout, Id = int.Parse(id) });
-                        }
-                        if (ResetEvent != null && ResetEvent.ContainsKey(id))
-                        {
-                            ResetEvent[id].Set();
-                        }
-                    }
+            if (cancel) // Will clear from Notification Center
+            {
+                using (NotificationManager notificationManager = Application.Context.GetSystemService(Context.NotificationService) as NotificationManager)
+                {
+                    notificationManager.Cancel(Convert.ToInt32(id));
                 }
             }
+
+            if (!allowTapInNotificationCenter || cancel)
+                if (ResetEvent.ContainsKey(id))
+                {
+                    if (EventResult != null)
+                    {
+                        EventResult.Add(id, new NotificationResult() { Action = NotificationAction.Timeout, Id = int.Parse(id) });
+                    }
+                    if (ResetEvent != null && ResetEvent.ContainsKey(id))
+                    {
+                        ResetEvent[id].Set();
+                    }
+                }
+
         }
 
     }

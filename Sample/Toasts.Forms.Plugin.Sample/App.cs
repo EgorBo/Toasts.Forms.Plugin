@@ -2,6 +2,7 @@
 using Plugin.Toasts;
 using System;
 using Plugin.Toasts.Options;
+using System.Threading.Tasks;
 
 namespace Toasts.Forms.Plugin.Sample
 {
@@ -13,23 +14,21 @@ namespace Toasts.Forms.Plugin.Sample
 
             showToast.Clicked += (s, e) =>
             {
-                for (int i = 0; i < 6; i++)
+
+                ShowToast(new NotificationOptions()
                 {
-                    ShowToast(new NotificationOptions()
+                    Title = "The Title Line",
+                    Description = "The Description Content",
+                    IsClickable = true,
+                    WindowsOptions = new WindowsOptions() { LogoUri = "icon.png" },
+                    ClearFromHistory = false,
+                    AllowTapInNotificationCenter = false,
+                    AndroidOptions = new AndroidOptions()
                     {
-                        Title = "The Title Line",
-                        Description = "The Description Content",
-                        IsClickable = true,
-                        WindowsOptions = new WindowsOptions() { LogoUri = "icon.png" },
-                        ClearFromHistory = false,
-                        //DelayUntil = DateTime.Now.AddSeconds((new Random()).Next((3 + i), (6 + i))),
-                        AndroidOptions = new AndroidOptions()
-                        {
-                            HexColor = "#F99D1C",
-                            ForceOpenAppOnNotificationTap = true
-                        }
-                    });
-                }
+                        HexColor = "#F99D1C",
+                        ForceOpenAppOnNotificationTap = true
+                    }
+                });
             };
 
             // The root page of your application
@@ -49,6 +48,9 @@ namespace Toasts.Forms.Plugin.Sample
         void ShowToast(INotificationOptions options)
         {
             var notificator = DependencyService.Get<IToastNotificator>();
+
+           // await notificator.Notify(options);
+
             notificator.Notify((INotificationResult result) =>
             {
                 System.Diagnostics.Debug.WriteLine("Notification [" + result.Id + "] Result Action: " + result.Action);

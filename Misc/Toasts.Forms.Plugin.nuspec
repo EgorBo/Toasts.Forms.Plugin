@@ -25,15 +25,10 @@
       [3.2.2-pre1]
         - Added support for setting the notification channels in Android Oreo and above, with a default fallback channel, and support for enabling vibration, and showing the badge dot above the app icon.
         - Added support for setting the colour for the Android notifications.
-        - Added a new option to the Android local notifications to make it attempt to bring focus back to the app when tapped. (Note: This gives best results when the MainLauncher Activity has a LaunchMode of SingleTop.)
+        - Added a new option AllowTapInNotificationCenter to allow tap from notification center.
         - Added click Intent to Android scheduled local notifications to allow them to re-focus/open the app on tap as well.
-        - Added two helpful debug options for Android; one for showing the internal notification id at the beginning of the notification title, and another to display a toast with the internal notification id and result (when a notification is tapped).
-        - Made the Android NotificationBuilder code more stable.
-        - Changed the notification result to return the Id as well as the Action.
-        - Updated the Target Framework Version to 8.0.
-        - Updated the Xamarin Forms version from 2.3.0.46-pre3 to 2.3.4.270.
-        - Updated the Sample app so it runs with newer versions of Visual Studio for Mac, and shows an example of setting the Android notification colour, etc.
-    </releaseNotes>
+        - Several bug fixes
+   </releaseNotes>
     <dependencies>      
       <group targetFramework=".NETStandard1.1">
       </group>
