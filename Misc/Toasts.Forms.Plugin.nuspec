@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Toasts.Forms.Plugin</id>
-    <version>3.3.0-pre1</version>
+    <version>3.3.1</version>
     <title>Toast Notification Plugin for Xamarin and Windows</title>
     <authors>Adam Pedley, Egor Bogatov</authors>
     <owners>Adam Pedley, Egor Bogatov</owners>
@@ -22,18 +22,16 @@
     </description>
     <tags>toast, toasts, toast notifications, local notifications, xamarin, xamarin.forms, android, ios, windows phone, uwp, UNUserNotificationCenter, ToastNotificationManager, snackbar</tags>
     <releaseNotes>
-        - Added support for setting the notification channels in Android Oreo and above, with a default fallback channel
-        - Support for enabling vibration on Android
-        - Support for the Badge on Android and iOS
-        - Added support for setting the colour for the Android notifications
-        - Added a new option AllowTapInNotificationCenter to allow tap from notification center
-        - Added click Intent to Android scheduled local notifications to allow them to re-focus/open the app on tap as well
-        - Several bug fixes
+        - Bug fix: Builder.SetChannelId not found
+        - Bug fix: Unable to deserialize ChannelOptions
    </releaseNotes>
     <dependencies>      
       <group targetFramework=".NETStandard1.1">
       </group>
       <group targetFramework="MonoAndroid10">
+        <dependency id="Xamarin.Android.Support.v7.AppCompat" version="[23.3.0]" />
+      </group>
+      <group targetFramework="MonoAndroid70">
         <dependency id="Xamarin.Android.Support.v7.AppCompat" version="23.3.0" />
       </group>
       <group targetFramework="Xamarin.iOS10">

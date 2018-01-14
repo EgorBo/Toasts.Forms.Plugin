@@ -174,3 +174,5 @@ FakesAssemblies/
 /.vs
 project.lock.json
 *.targets
+/.nuget/Toasts.Forms.Plugin.3.3.1.nupkg
+/.nuget/Toasts.Forms.Plugin.3.3.0.nupkg

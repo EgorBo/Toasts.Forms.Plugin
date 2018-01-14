@@ -1,4 +1,5 @@
-﻿using Plugin.Toasts.Interfaces;
+﻿using Plugin.Toasts.Options;
+
 namespace Plugin.Toasts
 {
     public interface IAndroidOptions
@@ -29,6 +30,6 @@ namespace Plugin.Toasts
         /// Android Oreo (26) and above only.
         /// </summary>
         /// <value>The notification channel options.</value>
-        IAndroidChannelOptions ChannelOptions { get; set; }
+        AndroidChannelOptions ChannelOptions { get; set; }
     }
 }

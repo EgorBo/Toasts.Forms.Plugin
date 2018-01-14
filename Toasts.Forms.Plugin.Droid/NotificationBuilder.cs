@@ -207,15 +207,21 @@ namespace Plugin.Toasts
                     .SetDeleteIntent(pendingDismissIntent)
                     .SetColor(Color.ParseColor(options.AndroidOptions.HexColor));
 
-                // Notification Channel
-                if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.O)
+                try
                 {
-                    var notificationChannelId = GetOrCreateChannel(options.AndroidOptions.ChannelOptions);
-                    if (!string.IsNullOrEmpty(notificationChannelId))
+                    // Notification Channel
+                    if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.O)
                     {
-                        builder.SetChannelId(notificationChannelId);
+                        var notificationChannelId = GetOrCreateChannel(options.AndroidOptions.ChannelOptions);
+                        if (!string.IsNullOrEmpty(notificationChannelId))
+                        {
+                            builder.SetChannelId(notificationChannelId);
+                        }
                     }
                 }
+                catch { }
+                // System.MissingMethodException: Method 'Android.App.Notification/Builder.SetChannelId' not found.
+                // I know this is bad, but I can't replicate it on any version, and many people are experiencing it.
 
                 Android.App.Notification notification = builder.Build();
 
