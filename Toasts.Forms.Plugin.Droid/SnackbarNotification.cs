@@ -5,13 +5,14 @@ namespace Plugin.Toasts
     using Android.Text;
     using Android.Views;
     using System;
-    using System.Collections.Generic;
+	using System.Collections.Concurrent;
+	using System.Collections.Generic;
     using System.Threading;
 
     internal class SnackbarNotification
     {
-        private IDictionary<string, ManualResetEvent> _resetEvents = new Dictionary<string, ManualResetEvent>();
-        private IDictionary<string, NotificationResult> _eventResult = new Dictionary<string, NotificationResult>();
+        private IDictionary<string, ManualResetEvent> _resetEvents = new ConcurrentDictionary<string, ManualResetEvent>();
+        private IDictionary<string, NotificationResult> _eventResult = new ConcurrentDictionary<string, NotificationResult>();
         private IList<Snackbar> _snackBars = new List<Snackbar>();
 
         private int _count = 0;

@@ -1,7 +1,8 @@
 ﻿namespace Plugin.Toasts
 {
     using System;
-    using System.Collections.Generic;
+	using System.Collections.Concurrent;
+	using System.Collections.Generic;
 
     public class NotificationOptions : INotificationOptions
     {
@@ -17,7 +18,7 @@
 
         public IiOSOptions iOSOptions { get; set; } = new iOSOptions();
 
-        public IDictionary<string, string> CustomArgs { get; set; } = new Dictionary<string, string>();
+        public IDictionary<string, string> CustomArgs { get; set; } = new ConcurrentDictionary<string, string>();
 
         public bool ClearFromHistory { get; set; } = false;
 

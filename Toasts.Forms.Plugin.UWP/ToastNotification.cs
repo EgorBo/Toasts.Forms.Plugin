@@ -8,13 +8,14 @@
     using System;
     using Windows.ApplicationModel.Activation;
     using System.Xml;
+	using System.Collections.Concurrent;
 
-    public class ToastNotification : IToastNotificator
+	public class ToastNotification : IToastNotificator
     {
 
-        private IDictionary<string, ManualResetEvent> _resetEvents = new Dictionary<string, ManualResetEvent>();
-        private IDictionary<string, NotificationResult> _eventResult = new Dictionary<string, NotificationResult>();
-        private IDictionary<string, INotificationOptions> _notificationOptions = new Dictionary<string, INotificationOptions>();
+        private IDictionary<string, ManualResetEvent> _resetEvents = new ConcurrentDictionary<string, ManualResetEvent>();
+        private IDictionary<string, NotificationResult> _eventResult = new ConcurrentDictionary<string, NotificationResult>();
+        private IDictionary<string, INotificationOptions> _notificationOptions = new ConcurrentDictionary<string, INotificationOptions>();
         private int _count = 0;
 
         public static void Init() { }

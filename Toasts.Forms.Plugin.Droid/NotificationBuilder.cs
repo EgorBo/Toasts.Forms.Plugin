@@ -7,6 +7,7 @@ using System.IO;
 using System.Threading;
 using System.Xml.Serialization;
 using Plugin.Toasts.Interfaces;
+using System.Collections.Concurrent;
 
 namespace Plugin.Toasts
 {
@@ -14,8 +15,8 @@ namespace Plugin.Toasts
     {
         public static string PackageName { get; set; }
 
-        public static IDictionary<string, ManualResetEvent> ResetEvent = new Dictionary<string, ManualResetEvent>();
-        public static IDictionary<string, NotificationResult> EventResult = new Dictionary<string, NotificationResult>();
+        public static IDictionary<string, ManualResetEvent> ResetEvent = new ConcurrentDictionary<string, ManualResetEvent>();
+        public static IDictionary<string, NotificationResult> EventResult = new ConcurrentDictionary<string, NotificationResult>();
         public static List<string> Channels = new List<string>();
 
         public const string NotificationId = "NOTIFICATION_ID";
@@ -154,10 +155,15 @@ namespace Plugin.Toasts
             INotificationResult notificationResult = null;
             if (options != null)
             {
-                var notificationId = _count;
-                var id = _count.ToString();
-                _count++;
-
+				var notificationId = 0;
+				var id = "";
+				lock (_lock)
+				{
+					notificationId = _count;
+					id = _count.ToString();
+					_count++;
+				}
+             
                 int smallIcon;
 
                 if (options.AndroidOptions.SmallDrawableIcon.HasValue)

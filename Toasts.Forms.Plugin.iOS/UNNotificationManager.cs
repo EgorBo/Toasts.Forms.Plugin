@@ -3,14 +3,15 @@
     using Extensions;
     using Foundation;
     using System;
-    using System.Collections.Generic;
+	using System.Collections.Concurrent;
+	using System.Collections.Generic;
     using System.Threading;
     using UserNotifications;
 
     public class UNNotificationManager
     {
-        private IDictionary<string, ManualResetEvent> _resetEvents = new Dictionary<string, ManualResetEvent>();
-        private IDictionary<string, NotificationResult> _eventResult = new Dictionary<string, NotificationResult>();
+        private IDictionary<string, ManualResetEvent> _resetEvents = new ConcurrentDictionary<string, ManualResetEvent>();
+        private IDictionary<string, NotificationResult> _eventResult = new ConcurrentDictionary<string, NotificationResult>();
         private int _count = 0;
         private static object _lock = new object();
 
