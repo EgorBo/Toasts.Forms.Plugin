@@ -1,15 +1,14 @@
 ﻿namespace Plugin.Toasts
 {
-    using Extensions;
-    using System;
-    using System.Collections.Generic;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Toasts;
-    using UIKit;
-    using UserNotifications;
+	using Extensions;
+	using System;
+	using System.Collections.Generic;
+	using System.Threading;
+	using System.Threading.Tasks;
+	using UIKit;
+	using UserNotifications;
 
-    public class ToastNotification : IToastNotificator
+	public class ToastNotification : IToastNotificator
     {
         private UNNotificationManager _notificationManager;
         private LocalNotificationManager _localNotificationManager;

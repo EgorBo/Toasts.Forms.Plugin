@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Toasts.Forms.Plugin</id>
-    <version>3.3.1</version>
+    <version>3.3.2</version>
     <title>Toast Notification Plugin for Xamarin and Windows</title>
     <authors>Adam Pedley, Egor Bogatov</authors>
     <owners>Adam Pedley, Egor Bogatov</owners>
@@ -22,8 +22,8 @@
     </description>
     <tags>toast, toasts, toast notifications, local notifications, xamarin, xamarin.forms, android, ios, windows phone, uwp, UNUserNotificationCenter, ToastNotificationManager, snackbar</tags>
     <releaseNotes>
-        - Bug fix: Builder.SetChannelId not found
-        - Bug fix: Unable to deserialize ChannelOptions
+        - Bug fix: Ensure ChannelId is set
+        - Bug fix: ConcurrentDictionaries to avoid multi-threading issues
    </releaseNotes>
     <dependencies>      
       <group targetFramework=".NETStandard1.1">
