@@ -49,10 +49,19 @@ namespace Plugin.Toasts
         }
 
         public static string GetOrCreateChannel(IAndroidChannelOptions channelOptions)
-        {
+        {			
             if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.O)
             {
-                var channelId = channelOptions.Name.Replace(" ", string.Empty).ToLower();
+				var channelId = "";
+
+				if (channelOptions == null)
+					channelId = DefaultChannelName;
+				else
+					channelId = channelOptions.Name == null? DefaultChannelName : channelOptions.Name.Replace(" ", string.Empty).ToLower();
+
+				if (string.IsNullOrEmpty(channelId) && channelOptions != null)
+					channelOptions.Name = DefaultChannelName;
+
                 if (!Channels.Contains(channelId))
                 {
                     // Create new channel.
