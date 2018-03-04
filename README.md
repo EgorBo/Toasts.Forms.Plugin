@@ -97,7 +97,6 @@ else if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
 
 #### Contributors
 * [EgorBo](https://github.com/EgorBo)
-* [AdamPed](https://github.com/AdamPed)
 
 Thanks!
 

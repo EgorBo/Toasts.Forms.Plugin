@@ -4,8 +4,8 @@
     <id>Toasts.Forms.Plugin</id>
     <version>3.3.2</version>
     <title>Toast Notification Plugin for Xamarin and Windows</title>
-    <authors>Adam Pedley, Egor Bogatov</authors>
-    <owners>Adam Pedley, Egor Bogatov</owners>
+    <authors>Egor Bogatov</authors>
+    <owners>Egor Bogatov</owners>
     <licenseUrl>https://github.com/EgorBo/Toasts.Forms.Plugin/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/EgorBo/Toasts.Forms.Plugin</projectUrl>
     <iconUrl>https://i.imgsafe.org/f3/f3dda9387a.png</iconUrl>
