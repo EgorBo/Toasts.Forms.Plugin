@@ -3,6 +3,8 @@ Toasts Notification Plugin for Xamarin and Windows
 
 A simple way of showing notifications inside your Xamarin or Windows application. In windows phone world we call them "Toasts". This plugin uses the platforms native toast / notification API's.
 
+![Screenshot of plugin in action](Misc/readme_mobile_devices_appearance.png "Screenhots")
+
 Setup and usage
 ===================
 #### Setup
