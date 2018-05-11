@@ -36,12 +36,12 @@ namespace Plugin.Toasts
 
             var snackbar = Snackbar.Make(view, builder, Snackbar.LengthLong);
             if (options.IsClickable)
-                snackbar.SetAction(options.AndroidOptions.ViewText, new EmptyOnClickListener(id, (toastId, result) => { ToastClosed(toastId, result); }, new NotificationResult() { Action = NotificationAction.Clicked }));
+                snackbar.SetAction(options.AndroidOptions.ViewText, new EmptyOnClickListener(id, ToastClosed, new NotificationResult() { Action = NotificationAction.Clicked }));
             else
-                snackbar.SetAction(options.AndroidOptions.DismissText, new EmptyOnClickListener(id, (toastId, result) => { ToastClosed(toastId, result); }, new NotificationResult() { Action = NotificationAction.Dismissed }));
+                snackbar.SetAction(options.AndroidOptions.DismissText, new EmptyOnClickListener(id, ToastClosed, new NotificationResult() { Action = NotificationAction.Dismissed }));
 
             // Monitor callbacks
-            snackbar.SetCallback(new ToastCallback(id, (toastId, result) => { ToastClosed(toastId, result); }));
+            snackbar.AddCallback(new ToastCallback(id, ToastClosed));
 
             // Setup reset events
             var resetEvent = new ManualResetEvent(false);
