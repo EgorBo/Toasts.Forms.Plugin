@@ -28,7 +28,6 @@
     <MtouchArch>Default, i386, x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>True</MtouchDebug>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchSdkVersion>
     </MtouchSdkVersion>
     <MtouchProfiling>False</MtouchProfiling>

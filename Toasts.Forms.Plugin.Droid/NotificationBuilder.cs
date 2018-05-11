@@ -8,6 +8,7 @@ using System.Threading;
 using System.Xml.Serialization;
 using Plugin.Toasts.Interfaces;
 using System.Collections.Concurrent;
+using Android.Support.V4.App;
 
 namespace Plugin.Toasts
 {
@@ -211,12 +212,12 @@ namespace Plugin.Toasts
                     options.AndroidOptions.HexColor = "#" + options.AndroidOptions.HexColor;
                 }
 
-                Android.App.Notification.Builder builder = new Android.App.Notification.Builder(Application.Context)
+                var builder = new NotificationCompat.Builder(Application.Context, DefaultChannelName)
                     .SetContentTitle(options.Title)
                     .SetContentText(options.Description)
                     .SetSmallIcon(smallIcon) // Must have small icon to display
                     .SetPriority((int)NotificationPriority.High) // Must be set to High to get Heads-up notification
-                    .SetDefaults(NotificationDefaults.All) // Must also include vibrate to get Heads-up notification
+                    .SetDefaults((int) NotificationDefaults.All) // Must also include vibrate to get Heads-up notification
                     .SetAutoCancel(true) // To allow click event to trigger delete Intent
                     .SetContentIntent(pendingClickIntent) // Must have Intent to accept the click                   
                     .SetDeleteIntent(pendingDismissIntent)

@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Xml.Serialization;
 using Android.Graphics;
+using Android.Support.V4.App;
 
 namespace Plugin.Toasts
 {
@@ -24,12 +25,12 @@ namespace Plugin.Toasts
             }
 
             // Show Notification
-            Android.App.Notification.Builder builder = new Android.App.Notification.Builder(Application.Context)
+            var builder = new NotificationCompat.Builder(Application.Context, NotificationBuilder.DefaultChannelName)
                 .SetContentTitle(options.Title)
                 .SetContentText(options.Description)
                 .SetSmallIcon(options.AndroidOptions.SmallDrawableIcon.Value) // Must have small icon to display
                 .SetPriority((int)NotificationPriority.High) // Must be set to High to get Heads-up notification
-                .SetDefaults(NotificationDefaults.All) // Must also include vibrate to get Heads-up notification
+                .SetDefaults((int) NotificationDefaults.All) // Must also include vibrate to get Heads-up notification
                 .SetAutoCancel(true)
                 .SetColor(Color.ParseColor(options.AndroidOptions.HexColor));
 
