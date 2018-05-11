@@ -16,8 +16,8 @@
     <AndroidApplication>true</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
+    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -115,49 +115,49 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Android.Support.Animated.Vector.Drawable">
-      <Version>25.4.0.2</Version>
+      <Version>27.0.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Compat">
-      <Version>25.4.0.2</Version>
+      <Version>27.0.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Core.UI">
-      <Version>25.4.0.2</Version>
+      <Version>27.0.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Core.Utils">
-      <Version>25.4.0.2</Version>
+      <Version>27.0.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Design">
-      <Version>25.4.0.2</Version>
+      <Version>27.0.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Fragment">
-      <Version>25.4.0.2</Version>
+      <Version>27.0.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Media.Compat">
-      <Version>25.4.0.2</Version>
+      <Version>27.0.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Transition">
-      <Version>25.4.0.2</Version>
+      <Version>27.0.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.v4">
-      <Version>25.4.0.2</Version>
+      <Version>27.0.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat">
-      <Version>25.4.0.2</Version>
+      <Version>27.0.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.v7.CardView">
-      <Version>25.4.0.2</Version>
+      <Version>27.0.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter">
-      <Version>25.4.0.2</Version>
+      <Version>27.0.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.v7.Palette">
-      <Version>25.4.0.2</Version>
+      <Version>27.0.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.v7.RecyclerView">
-      <Version>25.4.0.2</Version>
+      <Version>27.0.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Vector.Drawable">
-      <Version>25.4.0.2</Version>
+      <Version>27.0.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
       <Version>3.0.0.446417</Version>
