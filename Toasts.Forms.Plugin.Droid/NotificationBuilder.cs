@@ -306,7 +306,7 @@ namespace Plugin.Toasts
             if (!allowTapInNotificationCenter || cancel)
                 if (ResetEvent.ContainsKey(id))
                 {
-                    if (EventResult != null)
+                    if (EventResult != null && !EventResult.ContainsKey(id))
                     {
                         EventResult.Add(id, new NotificationResult() { Action = NotificationAction.Timeout, Id = int.Parse(id) });
                     }
