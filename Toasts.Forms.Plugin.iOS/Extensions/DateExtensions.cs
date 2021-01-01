@@ -14,8 +14,7 @@
 
         public static NSDate ToNSDate(this DateTime date)
         {
-            DateTime reference = TimeZone.CurrentTimeZone.ToLocalTime(
-                new DateTime(2001, 1, 1, 0, 0, 0));
+            DateTime reference = TimeZoneInfo.ConvertTime (_nsRef, TimeZoneInfo.Local);
             return NSDate.FromTimeIntervalSinceReferenceDate(
                 (date - reference).TotalSeconds);
         }

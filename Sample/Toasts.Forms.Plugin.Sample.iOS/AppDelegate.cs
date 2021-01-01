@@ -3,6 +3,7 @@ using Foundation;
 using UIKit;
 using Xamarin.Forms;
 using UserNotifications;
+using System;
 
 namespace Toasts.Forms.Plugin.Sample.iOS
 {
@@ -34,6 +35,18 @@ namespace Toasts.Forms.Plugin.Sample.iOS
                 UNUserNotificationCenter.Current.RequestAuthorization(UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound, (granted, error) =>
                 {
                     // Do something if needed
+                    if(error != null) {
+                        UIApplication.SharedApplication.InvokeOnMainThread (() => {
+                            var alert = UIAlertController.Create (
+                            "Notification Request Error",
+                            error.LocalizedDescription + Environment.NewLine + "Reason: " + error.LocalizedFailureReason,
+                            UIAlertControllerStyle.Alert);
+
+                            alert.AddAction (UIAlertAction.Create ("Ok", UIAlertActionStyle.Cancel, null));
+
+                            UIApplication.SharedApplication.KeyWindow.RootViewController.PresentViewController (alert, animated: true, completionHandler: null);
+                        });
+                    }
                 });
             }
             else if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
@@ -47,6 +60,7 @@ namespace Toasts.Forms.Plugin.Sample.iOS
 
             return base.FinishedLaunching(app, options);
         }
+
         public override void ReceivedLocalNotification(UIApplication application, UILocalNotification notification)
         {
      
