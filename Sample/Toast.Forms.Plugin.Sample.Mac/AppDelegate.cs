@@ -39,12 +39,13 @@ namespace Toast.Forms.Plugin.Sample.Mac
 
         NSWindow window;
         public override NSWindow MainWindow => window;
+        private UNUserNotificationCenter currentNotificationCenter;
 
         public override void WillFinishLaunching (NSNotification notification)
         {
             // Check we're at least v10.14
             if (NSProcessInfo.ProcessInfo.IsOperatingSystemAtLeastVersion (new NSOperatingSystemVersion (10, 14, 0))) {
-                var currentNotificationCenter = UNUserNotificationCenter.Current;
+                currentNotificationCenter = UNUserNotificationCenter.Current;
                 currentNotificationCenter.Delegate = new UNUserNotificationCenterDelegate ();
                 // Request Permissions
                 currentNotificationCenter.RequestAuthorization (UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound, (granted, error) => {

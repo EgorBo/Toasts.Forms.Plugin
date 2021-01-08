@@ -87,7 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Toasts.Forms.Plugin.Abstractions\Toasts.Forms.Plugin.Abstractions.csproj">
-      <Project>{A6005E12-DE46-4F28-8F97-8B8564AF191C}</Project>
+      <Project>{722C613C-5F6D-43E9-9D79-0C34204E3EE3}</Project>
       <Name>Toasts.Forms.Plugin.Abstractions</Name>
     </ProjectReference>
   </ItemGroup>
