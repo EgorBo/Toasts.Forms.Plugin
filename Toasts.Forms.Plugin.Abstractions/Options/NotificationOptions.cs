@@ -18,6 +18,8 @@
 
         public IiOSOptions iOSOptions { get; set; } = new iOSOptions();
 
+        public IMacOptions MacOptions { get; set; } = new MacOptions();
+
         public IDictionary<string, string> CustomArgs { get; set; } = new ConcurrentDictionary<string, string>();
 
         public bool ClearFromHistory { get; set; } = false;

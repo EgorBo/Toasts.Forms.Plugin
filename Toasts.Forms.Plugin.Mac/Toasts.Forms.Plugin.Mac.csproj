@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1B4B80D9-B321-453F-A099-9D045CD5E93D}</ProjectGuid>
+    <ProjectTypeGuids>{A3F8F2AB-B479-4A4A-A458-A89E7DC349F1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Toasts.Forms.Plugin.Mac</RootNamespace>
+    <AssemblyName>Toasts.Forms.Plugin.Mac</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkIdentifier>Xamarin.Mac</TargetFrameworkIdentifier>
+    <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <EnableCodeSigning>false</EnableCodeSigning>
+    <CreatePackage>false</CreatePackage>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <IncludeMonoRuntime>false</IncludeMonoRuntime>
+    <UseSGen>false</UseSGen>
+    <HttpClientHandler></HttpClientHandler>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <EnableCodeSigning>false</EnableCodeSigning>
+    <CreatePackage>false</CreatePackage>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <IncludeMonoRuntime>false</IncludeMonoRuntime>
+    <UseSGen>false</UseSGen>
+    <HttpClientHandler></HttpClientHandler>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.Mac" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\Toasts.Forms.Plugin.iOS\UNNotificationManager.cs">
+      <Link>UNNotificationManager.cs</Link>
+    </Compile>
+    <Compile Include="..\Toasts.Forms.Plugin.iOS\Extensions\DateExtensions.cs">
+      <Link>Extensions\DateExtensions.cs</Link>
+    </Compile>
+    <Compile Include="ToastNotification.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="..\Toasts.Forms.Plugin.iOS\Resources\Icons\icon-info%402x.png">
+      <Link>Resources\Icons\icon-info%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\Toasts.Forms.Plugin.iOS\Resources\Icons\icon-error.png">
+      <Link>Resources\Icons\icon-error.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\Toasts.Forms.Plugin.iOS\Resources\Icons\icon-warning.png">
+      <Link>Resources\Icons\icon-warning.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\Toasts.Forms.Plugin.iOS\Resources\Icons\icon-info.png">
+      <Link>Resources\Icons\icon-info.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\Toasts.Forms.Plugin.iOS\Resources\Icons\icon-success%402x.png">
+      <Link>Resources\Icons\icon-success%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\Toasts.Forms.Plugin.iOS\Resources\Icons\icon-warning%402x.png">
+      <Link>Resources\Icons\icon-warning%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\Toasts.Forms.Plugin.iOS\Resources\Icons\icon-error%402x.png">
+      <Link>Resources\Icons\icon-error%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\Toasts.Forms.Plugin.iOS\Resources\Icons\icon-success.png">
+      <Link>Resources\Icons\icon-success.png</Link>
+    </BundleResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Toasts.Forms.Plugin.Abstractions\Toasts.Forms.Plugin.Abstractions.csproj">
+      <Project>{722C613C-5F6D-43E9-9D79-0C34204E3EE3}</Project>
+      <Name>Toasts.Forms.Plugin.Abstractions</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
+</Project>
